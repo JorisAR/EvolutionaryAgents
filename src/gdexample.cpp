@@ -6,6 +6,7 @@ using namespace godot;
 void GDExample::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("get_amplitude"), &GDExample::get_amplitude);
 	ClassDB::bind_method(D_METHOD("set_amplitude", "p_amplitude"), &GDExample::set_amplitude);
+	// ClassDB::bind_method(D_METHOD("_process", "delta"), &GDExample::_process);
 
 	ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "amplitude"), "set_amplitude", "get_amplitude");
 }

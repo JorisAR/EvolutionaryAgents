@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cp25qrpq0vtsp"]
+
+[ext_resource type="Texture2D" uid="uid://dk5cgcy62h65t" path="res://icon.svg" id="1_q8b6k"]
+[ext_resource type="Script" path="res://gd_example_2.gd" id="2_00d6i"]
+
+[node name="Main" type="Node"]
+
+[node name="GDExample" type="GDExample" parent="."]
+amplitude = 100.0
+position = Vector2(28.5685, 17.2825)
+texture = ExtResource("1_q8b6k")
+
+[node name="GDExample2" type="GDExample" parent="."]
+amplitude = 200.0
+position = Vector2(57.1369, 34.5649)
+texture = ExtResource("1_q8b6k")
+script = ExtResource("2_00d6i")
+
+[node name="Gym" type="Gym" parent="."]

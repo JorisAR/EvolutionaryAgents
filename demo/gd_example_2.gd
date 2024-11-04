@@ -1,6 +1,5 @@
 extends GDExample
 
-
-func _ready() -> void:
-	pass
-	#modulate = Color(randf(), randf(), randf(), randf());
+#func _process(delta):
+	#super(delta)
+	#pass

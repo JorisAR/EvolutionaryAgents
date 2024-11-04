@@ -7,11 +7,13 @@
 
 [node name="GDExample" type="GDExample" parent="."]
 amplitude = 100.0
-position = Vector2(180.306, 23.4715)
+position = Vector2(164.169, 125.986)
 texture = ExtResource("1_q8b6k")
 
 [node name="GDExample2" type="GDExample" parent="."]
 amplitude = 200.0
-position = Vector2(13.7678, 177.49)
+position = Vector2(328.338, 251.971)
 texture = ExtResource("1_q8b6k")
 script = ExtResource("2_00d6i")
+
+[node name="Gym" type="Gym" parent="."]
