@@ -1,0 +1,5 @@
+[gd_resource type="SerializableNeuralNetwork" format=3 uid="uid://b7gc53l60xf5g"]
+
+[resource]
+layer_structure = PackedInt32Array(3, 4, 4, 5)
+parameters = PackedFloat32Array(nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan)

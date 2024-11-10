@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://duwsovhfdmrhh"]
+
+[ext_resource type="Script" path="res://BallancingBall/agent.gd" id="1_tsyaf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_bs7ac"]
+size = Vector3(4, 0.2, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nl3jr"]
+size = Vector3(4, 0.2, 4)
+
+[sub_resource type="SphereMesh" id="SphereMesh_08gvu"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3nksf"]
+
+[node name="Room" type="Node3D"]
+
+[node name="Room" type="Room" parent="." node_paths=PackedStringArray("agents")]
+agents = [NodePath("../Agent")]
+
+[node name="Agent" type="Agent" parent="." node_paths=PackedStringArray("ball", "platform")]
+script = ExtResource("1_tsyaf")
+ball = NodePath("../Ball")
+platform = NodePath("../Platform")
+active = true
+
+[node name="Platform" type="CharacterBody3D" parent="."]
+motion_mode = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platform"]
+mesh = SubResource("BoxMesh_bs7ac")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform"]
+shape = SubResource("BoxShape3D_nl3jr")
+
+[node name="Ball" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.19179, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ball"]
+mesh = SubResource("SphereMesh_08gvu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ball"]
+shape = SubResource("SphereShape3D_3nksf")
+
+[connection signal="room_started" from="Room" to="Agent" method="_on_room_room_started"]

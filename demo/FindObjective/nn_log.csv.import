@@ -1,0 +1,15 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bkrflv4pa56yp"
+valid=false
+
+[deps]
+
+source_file="res://FindObjective/nn_log.csv"
+
+[params]
+
+compress=true
+delimiter=0

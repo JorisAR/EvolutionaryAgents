@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://d13qcnx6vo1nc"]
+
+[ext_resource type="SerializableNeuralNetwork" uid="uid://b7gc53l60xf5g" path="res://FindObjective/nn.tres" id="1_gkgye"]
+[ext_resource type="Script" path="res://gym.gd" id="2_3m2bo"]
+[ext_resource type="PackedScene" uid="uid://s3hpnc6xapdb" path="res://FindObjective/room.tscn" id="3_6mwls"]
+
+[sub_resource type="SepCMAESParameters" id="SepCMAESParameters_dw4kv"]
+sigma = 100.0
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kspyi"]
+
+[sub_resource type="Sky" id="Sky_6ka3r"]
+sky_material = SubResource("ProceduralSkyMaterial_kspyi")
+
+[sub_resource type="Environment" id="Environment_d0548"]
+background_mode = 2
+sky = SubResource("Sky_6ka3r")
+
+[node name="corridor_gym" type="EvolutionaryGym"]
+verbose = true
+log = true
+evolutionary_algorithm_parameters = SubResource("SepCMAESParameters_dw4kv")
+serializable_neural_network = ExtResource("1_gkgye")
+script = ExtResource("2_3m2bo")
+time_scale = 1000
+
+[node name="Game" parent="." instance=ExtResource("3_6mwls")]
+
+[node name="Game2" parent="." instance=ExtResource("3_6mwls")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0, 0)
+
+[node name="Game3" parent="." instance=ExtResource("3_6mwls")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 0)
+
+[node name="Game4" parent="." instance=ExtResource("3_6mwls")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+
+[node name="Game5" parent="." instance=ExtResource("3_6mwls")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, -5, 0)
+
+[node name="Game6" parent="." instance=ExtResource("3_6mwls")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, -5, 0)
+
+[node name="Game7" parent="." instance=ExtResource("3_6mwls")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+
+[node name="Game8" parent="." instance=ExtResource("3_6mwls")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 5, 0)
+
+[node name="Game9" parent="." instance=ExtResource("3_6mwls")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 5, 0)
+
+[node name="Game10" parent="." instance=ExtResource("3_6mwls")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+
+[node name="Game11" parent="." instance=ExtResource("3_6mwls")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 10, 0)
+
+[node name="Game12" parent="." instance=ExtResource("3_6mwls")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 10, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.996194, 0.0871557, 0, -0.0871557, 0.996194, 0, 8.471, 32.792)
+environment = SubResource("Environment_d0548")
+current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.612372, 0.707107, 0.353553, -0.5, -3.78552e-08, 0.866025, 0.612373, -0.707107, 0.353553, 0, 0, 0)

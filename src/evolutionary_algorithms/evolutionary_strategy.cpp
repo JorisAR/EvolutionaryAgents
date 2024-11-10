@@ -43,4 +43,8 @@ namespace EA {
         population = generate_population();
     }
 
+    std::vector<float> EvolutionaryStrategy::get_best_individual()
+    {
+        return weights_;
+    }
 }

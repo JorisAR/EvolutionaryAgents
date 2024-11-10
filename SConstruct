@@ -1,33 +1,47 @@
 #!/usr/bin/env python
 import os
 import sys
+# from scons_compiledb import compile_db # Import the compile_db function # Call the compile_db function to enable compile_commands.json generation 
+# compile_db()
+
 
 # Import the SConstruct from godot-cpp
 env = SConscript("godot-cpp/SConstruct")
 
 # Add necessary include directories
-env.Append(CPPPATH=[
-    "src/", 
-    "src/gym/", 
+env.Append(CPPPATH=[    
     "src/neural_networks/",
     "src/evolutionary_algorithms/", 
-    "src/evolutionary_algorithms/test_application/"    
+    "src/evolutionary_algorithms/parameters/", 
+    "src/evolutionary_algorithms/test_application/"  
+    "src/gym/",   
+    "src/utility/",   
+    "src/", 
 ])
 
 # Add main source files
-sources = Glob("src/*.cpp") + \
-          Glob("src/gym/*.cpp")
+sources = Glob("src/*.cpp") + Glob("src/utility/*.cpp")
 
-# Manually specify the order for evolutionary_algorithms
 evolutionary_sources = [
     "src/evolutionary_algorithms/evolutionary_algorithm.cpp",
-    "src/evolutionary_algorithms/evolutionary_strategy.cpp"
-]
+    "src/evolutionary_algorithms/evolutionary_strategy.cpp",
+    "src/evolutionary_algorithms/firefly_algorithm.cpp",
+    "src/evolutionary_algorithms/sep_cma_es.cpp",
+] + Glob("src/evolutionary_algorithms/parameters/*.cpp")
+
 
 # Add neural network source files
 neural_network_sources = [
     "src/neural_networks/neural_network.cpp"
 ]
+
+gym_sources = [
+    "src/gym/agent.cpp",
+    "src/gym/room.cpp",
+    "src/gym/evolutionary_gym.cpp"
+]
+
+sources = sources + evolutionary_sources + neural_network_sources + gym_sources
 
 # Add test application source files
 test_sources = Glob("src/evolutionary_algorithms/test_application/*.cpp")
@@ -38,26 +52,26 @@ if env["platform"] == "macos":
         "demo/bin/libgdexample.{}.{}.framework/libgdexample.{}.{}".format(
             env["platform"], env["target"], env["platform"], env["target"]
         ),
-        source=sources + evolutionary_sources + neural_network_sources,
+        source=sources,
     )
 elif env["platform"] == "ios":
     if env["ios_simulator"]:
         library = env.StaticLibrary(
             "demo/bin/libgdexample.{}.{}.simulator.a".format(env["platform"], env["target"]),
-            source=sources + evolutionary_sources + neural_network_sources,
+            source=sources,
         )
     else:
         library = env.StaticLibrary(
             "demo/bin/libgdexample.{}.{}.a".format(env["platform"], env["target"]),
-            source=sources + evolutionary_sources + neural_network_sources,
+            source=sources,
         )
 else:
     library = env.SharedLibrary(
         "demo/bin/libgdexample{}{}".format(env["suffix"], env["SHLIBSUFFIX"]),
-        source=sources + evolutionary_sources + neural_network_sources,
+        source=sources,
     )
 
 # Build test application
-test_program = env.Program(target='src/evolutionary_algorithms/test_application/test_program', source=test_sources + evolutionary_sources + neural_network_sources)
+test_program = env.Program(target='src/evolutionary_algorithms/test_application/test_program', source=sources+test_sources)
 
-Default([library, test_program])
+Default([library, test_program]) #])#
