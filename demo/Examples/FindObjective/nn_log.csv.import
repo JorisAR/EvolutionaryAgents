@@ -2,12 +2,12 @@
 
 importer="csv_translation"
 type="Translation"
-uid="uid://bkrflv4pa56yp"
+uid="uid://gc2ju8em0k1b"
 valid=false
 
 [deps]
 
-source_file="res://FindObjective/nn_log.csv"
+source_file="res://Examples/FindObjective/nn_log.csv"
 
 [params]
 

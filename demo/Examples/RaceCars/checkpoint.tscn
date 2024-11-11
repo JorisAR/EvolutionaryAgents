@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://be5lt1m7t8d1i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cobkm"]
+transparency = 1
+albedo_color = Color(0, 0.733333, 1, 0.443137)
+
+[sub_resource type="SphereMesh" id="SphereMesh_l7dwu"]
+material = SubResource("StandardMaterial3D_cobkm")
+radius = 4.0
+height = 8.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hleh3"]
+radius = 4.0
+
+[node name="Checkpoint" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("SphereMesh_l7dwu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("SphereShape3D_hleh3")

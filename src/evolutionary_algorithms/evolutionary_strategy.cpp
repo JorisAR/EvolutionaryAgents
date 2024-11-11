@@ -10,22 +10,27 @@ namespace EA {
     EvolutionaryStrategy::EvolutionaryStrategy(int population_size, int individual_size, float sigma, float alpha)
         : EvolutionaryAlgorithm(population_size, individual_size), sigma_(sigma), alpha_(alpha) {
         weights_ = std::vector<float>(individual_size, 0.0f);
-        generate_population();
+        population = generate_population();
     }
 
-    std::vector<std::vector<float>> EvolutionaryStrategy::generate_population() {
+    std::vector<std::vector<float>>  EvolutionaryStrategy::generate_population() {
         std::random_device rd;
         std::mt19937 gen(rd());
         std::normal_distribution<float> dist(0, 1);
 
-        std::vector<std::vector<float>> population(population_size, std::vector<float>(individual_size));
+        population = std::vector<std::vector<float>>(population_size, std::vector<float>(individual_size));
 
         for (int i = 0; i < population_size; ++i) {
             for (int j = 0; j < individual_size; ++j) {
                 population[i][j] = weights_[j] + sigma_ * dist(gen);
             }
         }
-        return population;
+    }
+
+    void EvolutionaryStrategy::set_starting_point(const std::vector<float> &individual)
+    {
+        weights_ = individual;
+        population = generate_population();
     }
 
     void EvolutionaryStrategy::evolve(const std::vector<float>& fitness) {
@@ -47,4 +52,4 @@ namespace EA {
     {
         return weights_;
     }
-}
+    } // namespace EA

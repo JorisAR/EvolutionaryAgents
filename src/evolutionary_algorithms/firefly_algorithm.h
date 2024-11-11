@@ -11,6 +11,7 @@ public:
     ~FireflyAlgorithm() {}
 
     void evolve(const std::vector<float>& fitness) override;
+    void set_starting_point(const std::vector<float>& individual) override {};
     std::vector<float> get_best_individual() override;
 
 private:

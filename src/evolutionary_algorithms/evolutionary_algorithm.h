@@ -13,6 +13,7 @@ namespace EA {
 
         std::vector<std::vector<float>> get_population() const;
         virtual void evolve(const std::vector<float>& fitness) = 0;
+        virtual void set_starting_point(const std::vector<float>& individual) = 0;
         virtual std::vector<float> get_best_individual() = 0;
         void set_population(const std::vector<float> individual);
 

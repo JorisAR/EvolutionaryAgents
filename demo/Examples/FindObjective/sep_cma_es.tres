@@ -1,0 +1,4 @@
+[gd_resource type="SepCMAESParameters" format=3 uid="uid://uv5n53k65hmw"]
+
+[resource]
+sigma = 100.0

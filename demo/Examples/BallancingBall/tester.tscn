@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ckv1gqatddpt4"]
 
-[ext_resource type="PackedScene" uid="uid://duwsovhfdmrhh" path="res://BallancingBall/BallancingBallRoom.tscn" id="1_poo1h"]
+[ext_resource type="PackedScene" uid="uid://duwsovhfdmrhh" path="res://Examples/BallancingBall/BallancingBallRoom.tscn" id="1_poo1h"]
 
 [node name="Tester" type="Node"]
 

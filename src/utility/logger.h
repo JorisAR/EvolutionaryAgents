@@ -21,10 +21,7 @@ public:
     }
 
     ~Logger() {
-        if(invalid) return;
-        if (log_file.is_open()) {
-            log_file.close();
-        }
+        flush();
     }
 
     void log_generation(float mean_fitness, float best_fitness) {
@@ -46,6 +43,10 @@ public:
             write_to_file();            
         }
         godot::UtilityFunctions::print(static_cast<godot::String>("Saved log to: " + godot::String(file_path.c_str())));
+        if (log_file.is_open()) {
+            log_file.close();
+        }
+        invalid = true;
     }
 
 private:

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://duwsovhfdmrhh"]
 
-[ext_resource type="Script" path="res://BallancingBall/game.gd" id="1_tsyaf"]
-[ext_resource type="SerializableNeuralNetwork" uid="uid://bh21hk2wkf7bt" path="res://BallancingBall/nn1.tres" id="2_5j6y1"]
+[ext_resource type="Script" path="res://Examples/BallancingBall/game.gd" id="1_tsyaf"]
+[ext_resource type="SerializableNeuralNetwork" uid="uid://bh21hk2wkf7bt" path="res://Examples/BallancingBall/nn1.tres" id="2_5j6y1"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_bs7ac"]
 size = Vector3(4, 0.2, 4)
@@ -13,19 +13,12 @@ size = Vector3(4, 0.2, 4)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3nksf"]
 
-[node name="Game" type="Node3D" node_paths=PackedStringArray("room", "agent", "ball", "platform")]
+[node name="Game" type="Node3D" node_paths=PackedStringArray("agent", "ball", "platform")]
 script = ExtResource("1_tsyaf")
-room = NodePath("Room")
-agent = NodePath("Room/Agent")
+agent = NodePath("Platform/Agent")
 ball = NodePath("Ball")
 platform = NodePath("Platform")
 active = true
-
-[node name="Room" type="Room" parent="." node_paths=PackedStringArray("agents")]
-agents = [NodePath("Agent")]
-
-[node name="Agent" type="Agent" parent="Room"]
-neural_network = ExtResource("2_5j6y1")
 
 [node name="Platform" type="CharacterBody3D" parent="."]
 motion_mode = 1
@@ -36,6 +29,9 @@ mesh = SubResource("BoxMesh_bs7ac")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platform"]
 shape = SubResource("BoxShape3D_nl3jr")
 
+[node name="Agent" type="Agent" parent="Platform"]
+neural_network = ExtResource("2_5j6y1")
+
 [node name="Ball" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.941562, 0)
 
@@ -45,4 +41,4 @@ mesh = SubResource("SphereMesh_08gvu")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ball"]
 shape = SubResource("SphereShape3D_3nksf")
 
-[connection signal="started" from="Room" to="." method="_on_room_started"]
+[connection signal="started" from="Platform/Agent" to="." method="_on_agent_started"]

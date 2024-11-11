@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3r1vbucf1njc"]
+
+[ext_resource type="Script" path="res://movable_camera.gd" id="1_xjcbb"]
+[ext_resource type="PackedScene" uid="uid://fle61c6dj2j7" path="res://Examples/RaceCars/race_track.tscn" id="2_ttxyt"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ljua4"]
+
+[sub_resource type="Sky" id="Sky_6ka3r"]
+sky_material = SubResource("ProceduralSkyMaterial_ljua4")
+
+[sub_resource type="Environment" id="Environment_kct5u"]
+background_mode = 2
+sky = SubResource("Sky_6ka3r")
+
+[node name="RacingGym" type="Node3D"]
+
+[node name="EvolutionaryGym" type="EvolutionaryGym" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.996194, 0.0871557, 0, -0.0871557, 0.996194, 0, 8.471, 32.792)
+environment = SubResource("Environment_kct5u")
+current = true
+script = ExtResource("1_xjcbb")
+
+[node name="RaceTrack" parent="." instance=ExtResource("2_ttxyt")]

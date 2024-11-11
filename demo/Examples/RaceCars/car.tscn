@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://df0jdtrfvtrxk"]
+
+[ext_resource type="Script" path="res://Examples/RaceCars/car.gd" id="1_1vfak"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ifwc"]
+albedo_color = Color(1, 0.28, 0.2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ox3e6"]
+size = Vector3(1, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a5k7a"]
+size = Vector3(1, 1, 2)
+
+[node name="Car" type="RigidBody3D"]
+collision_layer = 2
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 2
+script = ExtResource("1_1vfak")
+
+[node name="Agent" type="Agent" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_4ifwc")
+mesh = SubResource("BoxMesh_ox3e6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_a5k7a")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

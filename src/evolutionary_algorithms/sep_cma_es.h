@@ -15,6 +15,7 @@ public:
     ~SepCMAES() {}
 
     void evolve(const std::vector<float>& fitness) override;
+    void set_starting_point(const std::vector<float>& individual) override;
     std::vector<float> get_best_individual() override;
 
 private:
@@ -27,16 +28,16 @@ private:
     std::vector<float> D_; //eigendecomposition of C
     std::vector<float> C_; //diagonal covariance matrix
 
-    std::vector<float> mean_; 
-    float sigma_;
+    std::vector<float> mean_;  //mean and current best solution
+    float sigma_; //standard deviation 
     std::vector<float> p_sigma_; 
     std::vector<float> pc_; 
-    float c_sigma_;
+    float c_sigma_; //variance of updating
     float d_sigma_;
     int mu_;
     float mu_eff_;
-    float cc_;
-    float c1_;
+    float cc_; //constant update rate covaraince matrix
+    float c1_; //constant update rate 
     float cmu_;
     float cm_;
     float chi_n_;

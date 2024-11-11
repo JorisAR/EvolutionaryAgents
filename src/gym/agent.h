@@ -8,6 +8,8 @@
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
 #include <vector>
+#include <numeric>
+#include <random>
 
 namespace godot
 {
@@ -19,6 +21,7 @@ class Agent : public Node
   public:
     static void _bind_methods()
     {
+        ClassDB::bind_method(D_METHOD("_on_game_started"), &Agent::_on_game_started);
         ClassDB::bind_method(D_METHOD("infer"), &Agent::infer);
         ADD_SIGNAL(MethodInfo("neural_network_inferred", PropertyInfo(Variant::PACKED_FLOAT32_ARRAY, "action_vector")));
 
@@ -28,9 +31,16 @@ class Agent : public Node
 
         ClassDB::bind_method(D_METHOD("set_neural_network", "value"), &Agent::set_neural_network);
         ClassDB::bind_method(D_METHOD("get_neural_network"), &Agent::get_neural_network);
+
+        ClassDB::bind_static_method("Agent", D_METHOD("get_max_element_index", "array"), &Agent::GetMaxElementIndex);
+        ClassDB::bind_static_method("Agent", D_METHOD("soft_max", "array"), &Agent::SoftMax);
+        ClassDB::bind_static_method("Agent", D_METHOD("weighted_sample_index", "array", "random_sample"), &Agent::WeightedSampleIndex);
         ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "neural_network", PROPERTY_HINT_RESOURCE_TYPE,
                                   "SerializableNeuralNetwork"),
                      "set_neural_network", "get_neural_network");
+
+        ADD_SIGNAL(MethodInfo("started"));
+        ADD_SIGNAL(MethodInfo("ended"));
     }
 
     Agent() : nn(NeuralNetwork({1, 1}))
@@ -39,6 +49,10 @@ class Agent : public Node
     ~Agent()
     {
     }
+
+    static int GetMaxElementIndex(const PackedFloat32Array &array);
+    static PackedFloat32Array SoftMax(const PackedFloat32Array &array);
+    static int WeightedSampleIndex(const PackedFloat32Array &array, const float random_sample);
 
     PackedFloat32Array infer(const PackedFloat32Array &state_vector);
     void Agent::update(const std::vector<int> &new_layers, const std::vector<float> &parameters);
@@ -62,6 +76,9 @@ class Agent : public Node
     {
         return neural_network;
     }
+
+    void start_game();
+    void _on_game_started() {};
 
   private:
     NeuralNetwork nn;

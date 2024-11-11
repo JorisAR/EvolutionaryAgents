@@ -7,7 +7,7 @@
 #include <godot_cpp/variant/utility_functions.hpp>
 #include <vector>
 
-#include "Room.h"
+#include "Agent.h"
 #include "evolutionary_algorithm_parameters.h"
 #include "evolutionary_strategy.h"
 #include "logger.h"
@@ -29,12 +29,12 @@ class EvolutionaryGym : public Node
         ClassDB::bind_method(D_METHOD("start_generation"), &EvolutionaryGym::start_generation);
         ClassDB::bind_method(D_METHOD("end_generation"), &EvolutionaryGym::end_generation);
 
-        ClassDB::bind_method(D_METHOD("on_room_ended"), &EvolutionaryGym::on_room_ended);
-        ClassDB::bind_method(D_METHOD("set_rooms", "rooms"), &EvolutionaryGym::set_rooms);
-        ClassDB::bind_method(D_METHOD("get_rooms"), &EvolutionaryGym::get_rooms);
-        ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "rooms", PROPERTY_HINT_TYPE_STRING,
-                                  String::num(Variant::OBJECT) + "/" + String::num(PROPERTY_HINT_NODE_TYPE) + ":Room"),
-                     "set_rooms", "get_rooms"); // The list of rooms the gym will use during training.
+        ClassDB::bind_method(D_METHOD("on_agent_ended"), &EvolutionaryGym::on_agent_ended);
+        ClassDB::bind_method(D_METHOD("set_agents", "agents"), &EvolutionaryGym::set_agents);
+        ClassDB::bind_method(D_METHOD("get_agents"), &EvolutionaryGym::get_agents);
+        ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "agents", PROPERTY_HINT_TYPE_STRING,
+                                  String::num(Variant::OBJECT) + "/" + String::num(PROPERTY_HINT_NODE_TYPE) + ":Agent"),
+                     "set_agents", "get_agents"); // The list of agents the gym will use during training.
 
         ClassDB::bind_method(D_METHOD("set_verbose", "verbose"), &EvolutionaryGym::set_verbose);
         ClassDB::bind_method(D_METHOD("get_verbose"), &EvolutionaryGym::get_verbose);
@@ -47,7 +47,7 @@ class EvolutionaryGym : public Node
         ClassDB::bind_method(D_METHOD("get_current_generation"), &EvolutionaryGym::get_current_generation);
         ADD_SIGNAL(MethodInfo("generation_ended")); // Signal emitted every generation.
 
-        ClassDB::bind_method(D_METHOD("set_ea_params", "ea parameters"), &EvolutionaryGym::set_ea_params);
+        ClassDB::bind_method(D_METHOD("set_ea_params", "ea_parameters"), &EvolutionaryGym::set_ea_params);
         ClassDB::bind_method(D_METHOD("get_ea_params"), &EvolutionaryGym::get_ea_params);
         ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "evolutionary_algorithm_parameters", PROPERTY_HINT_RESOURCE_TYPE,
                                   "EvolutionaryAlgorithmParameters"),
@@ -69,40 +69,28 @@ class EvolutionaryGym : public Node
         delete ea;
     }
 
-    void _init()
-    {
-        current_generation = 0;
-        active_room_count = 0;
-        rooms.clear();
-    }
-
     void start_training();
     void end_training();
     void start_generation();
-    void on_room_ended();
+    void on_agent_ended();
     void end_generation();
 
-    void _ready()
+    void set_agents(const TypedArray<Agent> value)
     {
-        start_training();
-    }
-
-    void set_rooms(const TypedArray<Room> value)
-    {
-        rooms = value;
-        _room_vector.clear();
-        for (size_t i = 0; i < rooms.size(); i++)
+        agents = value;
+        agent_vector_.clear();
+        for (size_t i = 0; i < agents.size(); i++)
         {
-            Room *room = Object::cast_to<Room>(rooms[i]);
-            if (room)
+            Agent *agent = Object::cast_to<Agent>(agents[i]);
+            if (agent)
             {
-                _room_vector.push_back(room);
+                agent_vector_.push_back(agent);
             }
         }
     }
-    TypedArray<Room> get_rooms() const
+    TypedArray<Agent> get_agents() const
     {
-        return rooms;
+        return agents;
     }
 
     bool get_verbose() const
@@ -149,15 +137,15 @@ class EvolutionaryGym : public Node
     }
 
   private:
-    TypedArray<Room> rooms;
-    std::vector<Room *> _room_vector;
-    int current_generation;
-    int active_room_count;
-    int agent_count;
+    TypedArray<Agent> agents;
+    std::vector<Agent*> agent_vector_;
+    int current_generation = 0;
+    int active_agent_count = 0;
+    int agent_count = 0;
 
     std::vector<int> layers;
-    int weight_count;
-    int bias_count;
+    int weight_count = 0;
+    int bias_count = 0;
     Ref<EvolutionaryAlgorithmParameters> ea_params;
     EA::EvolutionaryAlgorithm *ea;
     bool verbose = false;

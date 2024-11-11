@@ -3,11 +3,11 @@ extends EvolutionaryGym
 @export var time_scale := 1;
 
 func _ready() -> void:	
-	rooms = []
+	agents = []
 	for c in get_children():
-		if c.has_method("get_room"):
-			rooms.push_back(c.get_room());
-	set_rooms(rooms);
+		if c.has_method("get_agent"):
+			agents.push_back(c.get_agent());
+	set_agents(agents);
 	toggle_time_scale();
 	start_training();
 

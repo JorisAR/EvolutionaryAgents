@@ -1,6 +1,5 @@
 #include "sep_cma_es.h"
 
-
 // implementation based on: https://github.com/CyberAgentAILab/cmaes/blob/main/cmaes/_sepcma.py
 namespace EA
 {
@@ -22,11 +21,11 @@ double compute_norm(const std::vector<float> &vec)
 SepCMAES::SepCMAES(int population_size, int individual_size, float sigma)
     : EvolutionaryAlgorithm(population_size, individual_size), sigma_(sigma)
 {
-    //init random
+    // init random
     gen = std::mt19937(rd());
     dist = std::normal_distribution<float>(0.0f, 1.0f);
 
-    //init parameters
+    // init parameters
     mu_ = std::floor(population_size / 2.0f);
 
     mean_ = std::vector<float>(individual_size, 0.0f);
@@ -79,9 +78,15 @@ SepCMAES::SepCMAES(int population_size, int individual_size, float sigma)
     population = generate_population();
 }
 
-std::vector<std::vector<float>> SepCMAES::generate_population()
+void SepCMAES::set_starting_point(const std::vector<float> &individual)
 {
-    std::vector<std::vector<float>> population(population_size, std::vector<float>(individual_size));
+    weights_ = individual;
+    population = generate_population();
+}
+
+std::vector<std::vector<float>>  SepCMAES::generate_population()
+{
+    population = std::vector<std::vector<float>>(population_size, std::vector<float>(individual_size));
     for (int i = 0; i < population_size; ++i)
     {
         for (int j = 0; j < individual_size; ++j)
@@ -133,19 +138,19 @@ void SepCMAES::evolve(const std::vector<float> &fitness)
     }
 
     float norm_p_sigma = compute_norm(p_sigma_);
-    //std::cout << "norm_p_sigma: " << norm_p_sigma << std::endl;
+    // std::cout << "norm_p_sigma: " << norm_p_sigma << std::endl;
     sigma_ *= std::exp((c_sigma_ / d_sigma_) * (norm_p_sigma / chi_n_ - 1.0f));
     sigma_ = std::min(SIGMA_MAX, sigma_);
-    //std::cout << "sigma_after_update: " << sigma_ << std::endl;
+    // std::cout << "sigma_after_update: " << sigma_ << std::endl;
 
     // covariance matrix adaptation
     float h_sigma_cond_left = norm_p_sigma / std::sqrt(1.0f - std::pow(1.0f - c_sigma_, 2.0f * (g_ + 1.0f)));
     float h_sigma_cond_right = (1.4f + 2.0f / (individual_size + 1.0f)) * chi_n_;
     float h_sigma = h_sigma_cond_left < h_sigma_cond_right ? 1.0f : 0.0f;
-    //std::cout << "h_sigma: " << h_sigma << std::endl;
+    // std::cout << "h_sigma: " << h_sigma << std::endl;
 
     float pc_update = h_sigma * std::sqrt(cc_ * (2.0f - cc_) * mu_eff_);
-    //std::cout << "pc_update: " << pc_update << std::endl;
+    // std::cout << "pc_update: " << pc_update << std::endl;
     std::vector<float> rank_one(individual_size, 0.0f);
     for (int j = 0; j < individual_size; ++j)
     {
@@ -154,7 +159,7 @@ void SepCMAES::evolve(const std::vector<float> &fitness)
     }
 
     float delta_h_sigma = (1.0f - h_sigma) * cc_ * (2.0f - cc_); // TODO ensure this is <= 1!!!
-    //std::cout << "delta_h_sigma: " << delta_h_sigma << std::endl;
+    // std::cout << "delta_h_sigma: " << delta_h_sigma << std::endl;
     std::vector<float> rank_mu(individual_size, 0.0f);
     for (int i = 0; i < mu_; ++i)
     {
@@ -165,9 +170,10 @@ void SepCMAES::evolve(const std::vector<float> &fitness)
     }
     for (int j = 0; j < individual_size; ++j)
     {
-        //std::cout << "rank_mu: " << rank_mu[j] << ", rank_one: " << rank_one[j] << std::endl;
-    
-        C_[j] = (1.0f + c1_ * delta_h_sigma - c1_ - cmu_ * weights_sum_) * C_[j] + c1_ * rank_one[j] + cmu_ * rank_mu[j];
+        // std::cout << "rank_mu: " << rank_mu[j] << ", rank_one: " << rank_one[j] << std::endl;
+
+        C_[j] =
+            (1.0f + c1_ * delta_h_sigma - c1_ - cmu_ * weights_sum_) * C_[j] + c1_ * rank_one[j] + cmu_ * rank_mu[j];
 
         // update D:
         if (C_[j] <= EPS)

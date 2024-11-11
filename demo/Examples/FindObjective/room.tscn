@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://s3hpnc6xapdb"]
 
-[ext_resource type="Script" path="res://FindObjective/game.gd" id="1_nbqab"]
+[ext_resource type="Script" path="res://Examples/FindObjective/game.gd" id="1_nbqab"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_4tsty"]
 size = Vector3(20, 1, 20)
@@ -27,16 +27,12 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_qlt62"]
 
-[node name="Game" type="Node3D" node_paths=PackedStringArray("room", "agent", "character")]
+[node name="Game" type="Node3D" node_paths=PackedStringArray("agent", "character")]
 script = ExtResource("1_nbqab")
-room = NodePath("Room")
-agent = NodePath("Room/Agent")
+agent = NodePath("Agent")
 character = NodePath("Scene/Agent")
 
-[node name="Room" type="Room" parent="." node_paths=PackedStringArray("agents")]
-agents = [NodePath("Agent")]
-
-[node name="Agent" type="Agent" parent="Room"]
+[node name="Agent" type="Agent" parent="."]
 
 [node name="Scene" type="Node3D" parent="."]
 
@@ -76,6 +72,6 @@ shape = SubResource("BoxShape3D_74bkw")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Scene/Agent"]
 mesh = SubResource("BoxMesh_qlt62")
 
-[connection signal="started" from="Room" to="." method="_on_room_started"]
+[connection signal="started" from="Agent" to="." method="_on_agent_started"]
 [connection signal="body_entered" from="Scene/Big" to="." method="_on_big_body_entered"]
 [connection signal="body_entered" from="Scene/Small" to="." method="_on_small_body_entered"]

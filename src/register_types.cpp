@@ -28,7 +28,6 @@ void initialize_evolutionary_agents_module(ModuleInitializationLevel p_level)
 
     // GDREGISTER_CLASS(GDExample);
     GDREGISTER_CLASS(Agent);
-    GDREGISTER_CLASS(Room);
     GDREGISTER_CLASS(EvolutionaryGym);
 }
 

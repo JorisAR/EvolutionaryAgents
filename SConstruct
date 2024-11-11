@@ -37,7 +37,6 @@ neural_network_sources = [
 
 gym_sources = [
     "src/gym/agent.cpp",
-    "src/gym/room.cpp",
     "src/gym/evolutionary_gym.cpp"
 ]
 

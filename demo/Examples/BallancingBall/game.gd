@@ -1,14 +1,13 @@
 extends Node3D
 
-@export var room: Room;
 @export var agent: Agent;
 @export var ball: RigidBody3D;
 @export var platform: CharacterBody3D;
 @export var active: bool;
 
 
-func get_room() -> Room:
-	return room;
+func get_agent() -> Agent:
+	return agent;
 
 var _ball_pos : Vector3;
 var _platform_rot : Vector3;
@@ -49,10 +48,10 @@ func _on_round_end() -> void:
 	#print(agent.fitness);
 	
 	#we only have one agent per room, so we can emit the rooms signal from here:
-	room.ended.emit();
+	agent.ended.emit();
 	
 
-func _on_room_started() -> void:
+func _on_agent_started() -> void:
 	time = 0;
 	agent.fitness = 0.1;
 	active = true;
@@ -62,4 +61,3 @@ func _on_room_started() -> void:
 	var angle = randf() * 2 * PI;
 	ball.linear_velocity = 1.5 * Vector3(cos(angle), 0, sin(angle)).normalized();
 	ball.get_child(1).disabled = false;
-	

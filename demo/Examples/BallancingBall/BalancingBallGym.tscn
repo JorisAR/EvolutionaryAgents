@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bxw6f2hskp5kq"]
 
-[ext_resource type="PackedScene" uid="uid://duwsovhfdmrhh" path="res://BallancingBall/BallancingBallRoom.tscn" id="1_8bwrs"]
+[ext_resource type="PackedScene" uid="uid://duwsovhfdmrhh" path="res://Examples/BallancingBall/BallancingBallRoom.tscn" id="1_8bwrs"]
 [ext_resource type="Script" path="res://gym.gd" id="1_jx5mt"]
-[ext_resource type="SerializableNeuralNetwork" uid="uid://bh21hk2wkf7bt" path="res://BallancingBall/nn1.tres" id="2_gxrg3"]
+[ext_resource type="SerializableNeuralNetwork" uid="uid://bh21hk2wkf7bt" path="res://Examples/BallancingBall/nn1.tres" id="2_gxrg3"]
 
 [sub_resource type="SepCMAESParameters" id="SepCMAESParameters_emnqm"]
 
