@@ -14,10 +14,12 @@ radius = 4.0
 
 [node name="Checkpoint" type="Node3D"]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="Area" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area"]
 mesh = SubResource("SphereMesh_l7dwu")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area"]
 shape = SubResource("SphereShape3D_hleh3")

@@ -8,10 +8,6 @@ namespace godot {
 
 class Utils {
 public:
-    static void _bind_methods() {
-        // Binding static methods
-    }
-
     Utils() { }
     ~Utils() { }
 

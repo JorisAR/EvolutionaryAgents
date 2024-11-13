@@ -1,7 +1,10 @@
 #include "neural_network.h"
+#include <godot_cpp/variant/packed_float32_array.hpp>
 #include <algorithm>
 #include <random>
 #include <stdexcept>
+
+#include "utils.h"
 
 NeuralNetwork::NeuralNetwork(const std::vector<int> &layers) : layers(layers)
 {
@@ -126,9 +129,6 @@ int NeuralNetwork::get_biases_count() const
     return total_bias_count;
 }
 
-#include "neural_network.h"
-#include <godot_cpp/variant/packed_float32_array.hpp>
-
 godot::PackedFloat32Array NeuralNetwork::get_parameters() const
 {
     godot::PackedFloat32Array parameters;
@@ -190,4 +190,20 @@ std::vector<float> NeuralNetwork::matmul(const std::vector<float> &vec, const st
         }
     }
     return result;
+}
+
+godot::Dictionary NeuralNetwork::to_dict() const
+{
+    godot::Dictionary dict;
+    parameters:
+
+    dict["layers"] = godot::Utils::vector_to_array_int(layers);
+    dict["parameters"] = get_parameters();
+    return dict;
+}
+
+void NeuralNetwork::deserialize_from_dict(const godot::Dictionary &dict)
+{
+    update(godot::Utils::array_to_vector_int(dict["layers"]), 
+    godot::Utils::array_to_vector_float(dict["parameters"]));
 }

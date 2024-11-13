@@ -80,7 +80,7 @@ SepCMAES::SepCMAES(int population_size, int individual_size, float sigma)
 
 void SepCMAES::set_starting_point(const std::vector<float> &individual)
 {
-    weights_ = individual;
+    mean_ = individual;
     population = generate_population();
 }
 
@@ -171,7 +171,6 @@ void SepCMAES::evolve(const std::vector<float> &fitness)
     for (int j = 0; j < individual_size; ++j)
     {
         // std::cout << "rank_mu: " << rank_mu[j] << ", rank_one: " << rank_one[j] << std::endl;
-
         C_[j] =
             (1.0f + c1_ * delta_h_sigma - c1_ - cmu_ * weights_sum_) * C_[j] + c1_ * rank_one[j] + cmu_ * rank_mu[j];
 

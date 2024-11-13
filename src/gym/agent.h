@@ -2,7 +2,7 @@
 #define AGENT_H
 
 #include "neural_network.h"
-#include "serializable_neural_network.h"
+#include "neural_network_parameters.h"
 #include "utils.h"
 #include <godot_cpp/classes/node.hpp>
 #include <godot_cpp/core/class_db.hpp>
@@ -34,25 +34,28 @@ class Agent : public Node
 
         ClassDB::bind_static_method("Agent", D_METHOD("get_max_element_index", "array"), &Agent::GetMaxElementIndex);
         ClassDB::bind_static_method("Agent", D_METHOD("soft_max", "array"), &Agent::SoftMax);
-        ClassDB::bind_static_method("Agent", D_METHOD("weighted_sample_index", "array", "random_sample"), &Agent::WeightedSampleIndex);
-        ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "neural_network", PROPERTY_HINT_RESOURCE_TYPE,
-                                  "SerializableNeuralNetwork"),
+        ClassDB::bind_static_method("Agent", D_METHOD("sample_weighted_index", "array", "random_sample_unit_interval"), &Agent::SampleWeightedIndex);
+        ClassDB::bind_static_method("Agent", D_METHOD("sample_normal", "mean", "sigma"), &Agent::SampleNormal);
+        ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "neural_network_parameters", PROPERTY_HINT_RESOURCE_TYPE,
+                                  "NeuralNetworkParameters"),
                      "set_neural_network", "get_neural_network");
 
         ADD_SIGNAL(MethodInfo("started"));
         ADD_SIGNAL(MethodInfo("ended"));
     }
 
-    Agent() : nn(NeuralNetwork({1, 1}))
+    Agent() : nn(new NeuralNetwork({1,1}))
     {
     }
     ~Agent()
     {
+        delete nn;
     }
 
     static int GetMaxElementIndex(const PackedFloat32Array &array);
     static PackedFloat32Array SoftMax(const PackedFloat32Array &array);
-    static int WeightedSampleIndex(const PackedFloat32Array &array, const float random_sample);
+    static float SampleNormal(const float mean, const float sigma);
+    static int SampleWeightedIndex(const PackedFloat32Array &array, const float random_sample);
 
     PackedFloat32Array infer(const PackedFloat32Array &state_vector);
     void Agent::update(const std::vector<int> &new_layers, const std::vector<float> &parameters);
@@ -65,14 +68,17 @@ class Agent : public Node
         fitness = new_fitness;
     }
 
-    void set_neural_network(Ref<SerializableNeuralNetwork> new_neural_network)
+    void set_neural_network(const Ref<NeuralNetworkParameters> value)
     {
-        neural_network = new_neural_network;
+        neural_network = value;
         if(neural_network == nullptr) return;
-            nn.update(neural_network->get_layers(), Utils::array_to_vector_float(neural_network->get_parameters()));
+        auto network = neural_network->load_neural_network_from_file();
+        if(network == nullptr) return;
+        delete nn;
+        nn = network;
     }
 
-    Ref<SerializableNeuralNetwork> get_neural_network() const
+    Ref<NeuralNetworkParameters> get_neural_network() const
     {
         return neural_network;
     }
@@ -81,9 +87,9 @@ class Agent : public Node
     void _on_game_started() {};
 
   private:
-    NeuralNetwork nn;
+    NeuralNetwork *nn;
     float fitness = 0;
-    Ref<SerializableNeuralNetwork> neural_network;
+    Ref<NeuralNetworkParameters> neural_network;
 };
 
 } // namespace godot

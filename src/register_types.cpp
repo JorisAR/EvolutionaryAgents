@@ -1,11 +1,4 @@
-#include <gdextension_interface.h>
-#include <godot_cpp/core/defs.hpp>
-#include <godot_cpp/godot.hpp>
-#include "evolutionary_strategy_parameters.h"
-#include "firefly_algorithm_parameters.h"
-#include "gym/evolutionary_gym.h"
-#include "serializable_neural_network.h"
-#include "sep_cma_es_parameters.h"
+#include "register_types.h"
 
 using namespace godot;
 
@@ -17,7 +10,7 @@ void initialize_evolutionary_agents_module(ModuleInitializationLevel p_level)
     }
 
     //Neural Networks
-    GDREGISTER_CLASS(SerializableNeuralNetwork);
+    GDREGISTER_CLASS(NeuralNetworkParameters);
 
     // EAs
     GDREGISTER_ABSTRACT_CLASS(EvolutionaryAlgorithmParameters);
@@ -26,9 +19,15 @@ void initialize_evolutionary_agents_module(ModuleInitializationLevel p_level)
     GDREGISTER_CLASS(SepCMAESParameters);
     
 
-    // GDREGISTER_CLASS(GDExample);
+    // Gym
     GDREGISTER_CLASS(Agent);
     GDREGISTER_CLASS(EvolutionaryGym);
+
+    // Sensors
+    GDREGISTER_ABSTRACT_CLASS(Sensor3D);
+    GDREGISTER_CLASS(DepthSensor3D);
+
+
 }
 
 void uninitialize_evolutionary_agents_module(ModuleInitializationLevel p_level)

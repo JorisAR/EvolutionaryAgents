@@ -10,13 +10,14 @@ env = SConscript("godot-cpp/SConstruct")
 
 # Add necessary include directories
 env.Append(CPPPATH=[    
+    "src/utility/",   
+    "src/", 
     "src/neural_networks/",
     "src/evolutionary_algorithms/", 
     "src/evolutionary_algorithms/parameters/", 
-    "src/evolutionary_algorithms/test_application/"  
-    "src/gym/",   
-    "src/utility/",   
-    "src/", 
+    "src/evolutionary_algorithms/test_application/",
+    "src/gym/sensors/",   
+    "src/gym/",
 ])
 
 # Add main source files
@@ -35,12 +36,16 @@ neural_network_sources = [
     "src/neural_networks/neural_network.cpp"
 ]
 
+sensor_sources = [
+    "src/gym/sensors/depth_sensor3d.cpp"
+]
+
 gym_sources = [
     "src/gym/agent.cpp",
     "src/gym/evolutionary_gym.cpp"
 ]
 
-sources = sources + evolutionary_sources + neural_network_sources + gym_sources
+sources = sources + evolutionary_sources + neural_network_sources + sensor_sources + gym_sources
 
 # Add test application source files
 test_sources = Glob("src/evolutionary_algorithms/test_application/*.cpp")

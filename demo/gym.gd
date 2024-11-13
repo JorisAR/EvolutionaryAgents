@@ -1,8 +1,9 @@
 extends EvolutionaryGym
 
-@export var time_scale := 1;
+var _init_scale = 1000;
 
-func _ready() -> void:	
+func _ready() -> void:
+	_init_scale = time_scale;
 	agents = []
 	for c in get_children():
 		if c.has_method("get_agent"):
@@ -13,14 +14,8 @@ func _ready() -> void:
 
 var is_fast_time = false;
 func toggle_time_scale():
-	set_time_scale(1 if is_fast_time else time_scale);
+	set_time_scale(1 if is_fast_time else _init_scale);
 	is_fast_time = !is_fast_time;
-
-func set_time_scale(scale: int):
-	Engine.max_fps = 30;
-	Engine.time_scale = scale;
-	Engine.physics_ticks_per_second = 20 * scale;
-	Engine.max_physics_steps_per_frame = max(1,ceili(float(Engine.physics_ticks_per_second) / Engine.max_fps));
 
 func _exit_tree() -> void:
 	end_training();

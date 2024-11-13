@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://d13qcnx6vo1nc"]
 
-[ext_resource type="SerializableNeuralNetwork" uid="uid://b7gc53l60xf5g" path="res://Examples/FindObjective/nn.tres" id="1_gkgye"]
+[ext_resource type="NeuralNetworkParameters" uid="uid://c1t6ps21w6nkl" path="res://Examples/RaceCars/nn.tres" id="1_ssgur"]
 [ext_resource type="SepCMAESParameters" uid="uid://uv5n53k65hmw" path="res://Examples/FindObjective/sep_cma_es.tres" id="1_yb5b5"]
 [ext_resource type="Script" path="res://gym.gd" id="2_3m2bo"]
 [ext_resource type="PackedScene" uid="uid://s3hpnc6xapdb" path="res://Examples/FindObjective/room.tscn" id="3_6mwls"]
@@ -16,10 +16,8 @@ background_mode = 2
 sky = SubResource("Sky_qs5i4")
 
 [node name="corridor_gym" type="EvolutionaryGym"]
-verbose = true
-log = true
+neural_network_parameters = ExtResource("1_ssgur")
 evolutionary_algorithm_parameters = ExtResource("1_yb5b5")
-serializable_neural_network = ExtResource("1_gkgye")
 script = ExtResource("2_3m2bo")
 time_scale = 1000
 

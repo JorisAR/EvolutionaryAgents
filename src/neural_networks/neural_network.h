@@ -4,10 +4,12 @@
 #include <vector>
 #include <godot_cpp/classes/object.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
+#include "i_serializable.h"
 
-class NeuralNetwork
+class NeuralNetwork : public ISerializable<NeuralNetwork>
 {
-  public:
+public:
+    NeuralNetwork() = default;
     NeuralNetwork(const std::vector<int> &layers);
 
     std::vector<float> infer(const std::vector<float> &inputs);
@@ -18,12 +20,16 @@ class NeuralNetwork
     int get_output_size() const;
     int get_weights_count() const;
     int get_biases_count() const;
+    
 
     godot::PackedFloat32Array get_parameters() const;
+    godot::Dictionary to_dict() const override;
+    void deserialize_from_dict(const godot::Dictionary &dict) override;
 
     static std::vector<int> calculate_total_parameters(const std::vector<int> &layers);
+    std::vector<int> get_layers() { return layers; }
 
-  private:
+private:
     std::vector<int> layers;
     std::vector<std::vector<float>> weights;
     int total_weight_count;
@@ -35,4 +41,4 @@ class NeuralNetwork
     std::vector<float> matmul(const std::vector<float> &vec, const std::vector<float> &weights, int rows, int cols);
 };
 
-#endif
+#endif // NEURAL_NETWORK_H
