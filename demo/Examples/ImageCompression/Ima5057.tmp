@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://6rb6dcomjc1o"]
+
+[ext_resource type="Script" path="res://Examples/ImageCompression/dispatcher.gd" id="1_2t3dg"]
+[ext_resource type="Texture2D" uid="uid://dk5cgcy62h65t" path="res://icon.svg" id="2_epqur"]
+
+[node name="ImageCompression" type="ProblemOptimizer"]
+
+[node name="SplatRenderer" type="Node" parent="." node_paths=PackedStringArray("_renderer")]
+script = ExtResource("1_2t3dg")
+_dataTexture = ExtResource("2_epqur")
+_computeShader = "res://Examples/ImageCompression/primitive_splatter.glsl"
+_renderer = NodePath("../TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_epqur")
+expand_mode = 5
