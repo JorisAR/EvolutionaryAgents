@@ -26,7 +26,6 @@ sources = Glob("src/*.cpp") + Glob("src/utility/*.cpp")
 evolutionary_sources = [
     "src/evolutionary_algorithms/evolutionary_algorithm.cpp",
     "src/evolutionary_algorithms/evolutionary_strategy.cpp",
-    "src/evolutionary_algorithms/firefly_algorithm.cpp",
     "src/evolutionary_algorithms/sep_cma_es.cpp",
 ] + Glob("src/evolutionary_algorithms/parameters/*.cpp")
 
@@ -37,15 +36,15 @@ neural_network_sources = [
 ]
 
 sensor_sources = [
-    "src/gym/sensors/depth_sensor3d.cpp"
+    "src/optimizer/sensors/depth_sensor3d.cpp"
 ]
 
-gym_sources = [
-    "src/gym/agent.cpp",
-    "src/gym/evolutionary_gym.cpp"
+optimizer_sources = [
+    "src/optimizer/agent.cpp",
+    "src/optimizer/evolutionary_gym.cpp"
 ]
 
-sources = sources + evolutionary_sources + neural_network_sources + sensor_sources + gym_sources
+sources = sources + evolutionary_sources + neural_network_sources + sensor_sources + optimizer_sources
 
 # Add test application source files
 test_sources = Glob("src/evolutionary_algorithms/test_application/*.cpp")

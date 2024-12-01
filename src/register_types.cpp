@@ -13,9 +13,12 @@ void initialize_evolutionary_agents_module(ModuleInitializationLevel p_level)
     GDREGISTER_CLASS(NeuralNetworkParameters);
 
     // EAs
+    GDREGISTER_CLASS(EvolutionaryOptimizer);
+    GDREGISTER_CLASS(OptimizableProblem);
+
+
     GDREGISTER_ABSTRACT_CLASS(EvolutionaryAlgorithmParameters);
     GDREGISTER_CLASS(EvolutionaryStrategyParameters);
-    GDREGISTER_CLASS(FireflyAlgorithmParameters);
     GDREGISTER_CLASS(SepCMAESParameters);
     
 

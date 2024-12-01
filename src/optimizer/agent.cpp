@@ -104,5 +104,4 @@ void Agent::update(const std::vector<int> &new_layers, const std::vector<float> 
 void godot::Agent::start_game()
 {
     emit_signal("started");
-    _on_game_started();
 }

@@ -14,13 +14,6 @@ var _pos : Vector3;
 var _rot : Vector3;
 var time = 0;
 
-#func get_sensor_value(i: int):
-	#var s = sensors[i];
-	#if(!s.get_value()):
-		#return s.target_position.length();
-	#return s.get_collision_point().distance_to(s.global_position);
-
-
 func _ready() -> void:
 	_pos = global_position;
 	_rot = global_rotation;
@@ -37,11 +30,11 @@ func _physics_process(delta: float) -> void:
 	
 	var state = [pos.x,pos.y,pos.z,vel.x,vel.y,vel.z];
 	state.append_array([
-		sensors[0].get_value(),
-		sensors[1].get_value(),
-		sensors[2].get_value(),
-		sensors[3].get_value(),
-		sensors[4].get_value(),
+		sensors[0].get_output(),
+		sensors[1].get_output(),
+		sensors[2].get_output(),
+		sensors[3].get_output(),
+		sensors[4].get_output(),
 	]);
 	var action = Array(agent.infer(PackedFloat32Array(state)));
 		

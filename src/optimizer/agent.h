@@ -21,9 +21,7 @@ class Agent : public Node
   public:
     static void _bind_methods()
     {
-        ClassDB::bind_method(D_METHOD("_on_game_started"), &Agent::_on_game_started);
         ClassDB::bind_method(D_METHOD("infer"), &Agent::infer);
-        ADD_SIGNAL(MethodInfo("neural_network_inferred", PropertyInfo(Variant::PACKED_FLOAT32_ARRAY, "action_vector")));
 
         ClassDB::bind_method(D_METHOD("set_fitness", "value"), &Agent::set_fitness);
         ClassDB::bind_method(D_METHOD("get_fitness"), &Agent::get_fitness);
@@ -84,7 +82,6 @@ class Agent : public Node
     }
 
     void start_game();
-    void _on_game_started() {};
 
   private:
     NeuralNetwork *nn;

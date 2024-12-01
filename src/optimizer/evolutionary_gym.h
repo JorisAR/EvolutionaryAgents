@@ -11,7 +11,6 @@
 
 #include "Agent.h"
 #include "evolutionary_algorithm_parameters.h"
-#include "evolutionary_strategy.h"
 #include "json_utils.h"
 #include "logger.h"
 #include "neural_network_parameters.h"

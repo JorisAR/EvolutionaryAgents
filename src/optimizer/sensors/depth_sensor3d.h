@@ -35,6 +35,10 @@ class DepthSensor3D : public Sensor3D
         ClassDB::bind_method(D_METHOD("set_show_debug_ray", "value"), &DepthSensor3D::set_show_debug_ray);
         ClassDB::bind_method(D_METHOD("get_show_debug_ray"), &DepthSensor3D::get_show_debug_ray);
 
+        ClassDB::bind_method(D_METHOD("set_enabled", "value"), &DepthSensor3D::set_enabled);
+        ClassDB::bind_method(D_METHOD("get_enabled"), &DepthSensor3D::get_enabled);
+
+        ADD_PROPERTY(PropertyInfo(Variant::BOOL, "is_enabled"), "set_enabled", "get_enabled");
         ADD_PROPERTY(PropertyInfo(Variant::BOOL, "is_binary"), "set_is_binary", "get_is_binary");
         ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "max_distance"), "set_max_distance", "get_max_distance");
         ADD_PROPERTY(PropertyInfo(Variant::INT, "collision_mask", PROPERTY_HINT_LAYERS_3D_PHYSICS),
@@ -68,10 +72,7 @@ class DepthSensor3D : public Sensor3D
     {
         max_distance = value;
 
-        if (debug_instance.is_valid())
-        {
-            _update_debug_shape();
-        }
+        _update_debug_shape();
     }
 
     int get_collision_mask() const
@@ -83,6 +84,18 @@ class DepthSensor3D : public Sensor3D
         collision_mask = value;
     }
 
+    bool get_enabled() const
+    {
+        return enabled;
+    }
+    void set_enabled(const bool value)
+    {
+        enabled = value;
+        collided = false;
+        output = is_binary ? 0.0f : max_distance;
+        _update_debug_shape();
+    }
+
     bool get_show_debug_ray() const
     {
         return show_debug_ray;
@@ -91,11 +104,7 @@ class DepthSensor3D : public Sensor3D
     {
         show_debug_ray = value;
 
-        if(show_debug_ray) {
-            _update_debug_shape();
-        } else {
-            _clear_debug_shape();
-        }
+        _update_debug_shape();
     }
 
   protected:
@@ -126,8 +135,6 @@ class DepthSensor3D : public Sensor3D
     Ref<ArrayMesh> debug_mesh;
     Ref<StandardMaterial3D> debug_material;
     RID debug_instance;
-
-
 };
 
 } // namespace godot

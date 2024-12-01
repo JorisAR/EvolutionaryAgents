@@ -14,7 +14,7 @@ class Sensor3D : public Node3D
   public:
     static void _bind_methods()
     {
-        ClassDB::bind_method(D_METHOD("get_value"), &Sensor3D::get_value);
+        ClassDB::bind_method(D_METHOD("get_output"), &Sensor3D::get_output);
     }
 
     Sensor3D()
@@ -24,13 +24,13 @@ class Sensor3D : public Node3D
     {
     }
 
-    virtual float get_value() const {
-      return value;
+    virtual float get_output() const {
+      return output;
     }
 
   protected:
     virtual void compute() {};
-    float value = 0;
+    float output = 0;
 };
 
 } // namespace godot

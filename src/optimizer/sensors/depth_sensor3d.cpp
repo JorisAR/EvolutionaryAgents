@@ -2,7 +2,6 @@
 
 void godot::DepthSensor3D::compute()
 {
-    value = 0;
     Ref<World3D> world = get_world_3d();
     ERR_FAIL_COND(world.is_null());
 
@@ -18,22 +17,14 @@ void godot::DepthSensor3D::compute()
 
     Dictionary raycast_result = space_state->intersect_ray(params);
 
-    if (raycast_result.size() > 0)
+    collided = raycast_result.size() > 0;
+    if (collided)
     {
-        collided = true;
-        if (is_binary)
-        {
-            value = 1.0f;
-        }
-        else
-        {
-            value = origin.distance_to(raycast_result["position"]);
-        }
+        output = is_binary ? 1.0f : origin.distance_to(raycast_result["position"]);
     }
     else
     {
-        collided = false;
-        value = is_binary ? 0.0f : max_distance;
+        output = is_binary ? 0.0f : max_distance;
     }
 }
 
@@ -42,33 +33,18 @@ void godot::DepthSensor3D::_notification(int p_what)
     switch (p_what)
     {
     case NOTIFICATION_ENTER_TREE: {
-        if (godot::Engine::get_singleton()->is_editor_hint())
-        {
-            _update_debug_shape_vertices();
-        }
-        if (enabled)
-        {
-            set_physics_process_internal(true);
-        }
-        else
-        {
-            set_physics_process_internal(false);
-        }
+
+        set_physics_process_internal(true);
 
         _update_debug_shape();
     }
     break;
 
     case NOTIFICATION_EXIT_TREE: {
-        if (enabled)
-        {
-            set_physics_process_internal(false);
-        }
 
-        if (debug_instance.is_valid())
-        {
-            _clear_debug_shape();
-        }
+        set_physics_process_internal(false);
+
+        _clear_debug_shape();
     }
     break;
 
@@ -169,8 +145,9 @@ void godot::DepthSensor3D::_update_debug_shape_material(bool p_check_collision)
 
 void godot::DepthSensor3D::_update_debug_shape()
 {
-    if (!enabled)
+    if (!enabled || !show_debug_ray)
     {
+        _clear_debug_shape();
         return;
     }
 
