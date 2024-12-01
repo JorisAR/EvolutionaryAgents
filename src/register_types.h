@@ -8,11 +8,12 @@
 
 #include "optimizer/evolutionary_optimizer.h"
 #include "evolutionary_strategy_parameters.h"
-#include "optimizer/evolutionary_gym.h"
+#include "optimizer/gym.h"
 #include "neural_network_parameters.h"
 #include "sep_cma_es_parameters.h"
 #include "optimizer/sensors/sensor3d.h"
 #include "optimizer/sensors/depth_sensor3d.h"
+#include "optimizer/problem_optimizer.h"
 
 using namespace godot;
 

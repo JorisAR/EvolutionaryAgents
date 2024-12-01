@@ -1,8 +1,4 @@
-[gd_resource type="NeuralNetworkParameters" load_steps=2 format=3 uid="uid://c1t6ps21w6nkl"]
-
-[ext_resource type="JSON" path="res://Examples/RaceCars/nn_network_file.json" id="1_tsbrq"]
+[gd_resource type="NeuralNetworkParameters" format=3 uid="uid://c1t6ps21w6nkl"]
 
 [resource]
 layer_structure = PackedInt32Array(11, 8, 3)
-stored_network = ExtResource("1_tsbrq")
-use_existing_network = true

@@ -33,7 +33,8 @@ public:
         sigma_ = sigma;
     }
 
-    EA::EvolutionaryAlgorithm *get_evolutionary_algorithm(int population_size, int individual_size) override {
+    EA::EvolutionaryAlgorithm *get_evolutionary_algorithm(int population_size, int individual_size) override 
+    {
         return new EA::SepCMAES(population_size, individual_size, sigma_);
     }
 

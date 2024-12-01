@@ -13,7 +13,7 @@ namespace EA {
         population = generate_population();
     }
 
-    std::vector<std::vector<float>>  EvolutionaryStrategy::generate_population() {
+    std::vector<std::vector<float>> EvolutionaryStrategy::generate_population() {
         std::random_device rd;
         std::mt19937 gen(rd());
         std::normal_distribution<float> dist(0, 1);

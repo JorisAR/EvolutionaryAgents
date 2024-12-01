@@ -16,25 +16,25 @@ class OptimizableProblem : public Node
   public:
     static void _bind_methods()
     {
-        ClassDB::bind_method(D_METHOD("get_parameter_count"), &OptimizableProblem::get_parameter_count);
-        ClassDB::bind_method(D_METHOD("set_parameter_count", "count"), &OptimizableProblem::set_parameter_count);
+        ClassDB::bind_method(D_METHOD("get_genome_size"), &OptimizableProblem::get_genome_size);
+        ClassDB::bind_method(D_METHOD("set_genome_size", "count"), &OptimizableProblem::set_genome_size);
 
-        ADD_PROPERTY(PropertyInfo(Variant::INT, "parameter_count"), "set_parameter_count", "get_parameter_count");
-        ADD_SIGNAL(MethodInfo("started", PropertyInfo(Variant::PACKED_FLOAT32_ARRAY, "action_vector")));
+        ADD_PROPERTY(PropertyInfo(Variant::INT, "genome_size"), "set_genome_size", "get_genome_size");
+        ADD_SIGNAL(MethodInfo("started", PropertyInfo(Variant::PACKED_FLOAT32_ARRAY, "genome")));
         ADD_SIGNAL(MethodInfo("ended", PropertyInfo(Variant::FLOAT, "fitness")));
     }
 
-    int get_parameter_count() const
+    int get_genome_size() const
     {
-        return parameter_count;
+        return genome_size;
     }
-    void set_parameter_count(int count)
+    void set_genome_size(int count)
     {
-        parameter_count = std::max(1, count);
+        genome_size = std::max(1, count);
     }
 
   private:
-    int parameter_count;
+    int genome_size = 1;
 };
 
 } // namespace godot

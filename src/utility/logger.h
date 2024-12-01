@@ -1,3 +1,6 @@
+#ifndef LOGGER_H
+#define LOGGER_H
+
 #include <fstream>
 #include <vector>
 #include <string>
@@ -70,3 +73,5 @@ private:
         log_buffer.clear();
     }
 };
+
+#endif

@@ -13,7 +13,8 @@ void initialize_evolutionary_agents_module(ModuleInitializationLevel p_level)
     GDREGISTER_CLASS(NeuralNetworkParameters);
 
     // EAs
-    GDREGISTER_CLASS(EvolutionaryOptimizer);
+    GDREGISTER_ABSTRACT_CLASS(EvolutionaryOptimizer);
+    GDREGISTER_CLASS(ProblemOptimizer);
     GDREGISTER_CLASS(OptimizableProblem);
 
 
@@ -24,7 +25,7 @@ void initialize_evolutionary_agents_module(ModuleInitializationLevel p_level)
 
     // Gym
     GDREGISTER_CLASS(Agent);
-    GDREGISTER_CLASS(EvolutionaryGym);
+    GDREGISTER_CLASS(Gym);
 
     // Sensors
     GDREGISTER_ABSTRACT_CLASS(Sensor3D);

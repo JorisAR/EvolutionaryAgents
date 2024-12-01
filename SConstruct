@@ -35,19 +35,15 @@ neural_network_sources = [
     "src/neural_networks/neural_network.cpp"
 ]
 
-sensor_sources = [
-    "src/optimizer/sensors/depth_sensor3d.cpp"
-]
-
 optimizer_sources = [
+    "src/optimizer/evolutionary_optimizer.cpp",
+    "src/optimizer/problem_optimizer.cpp",
+    "src/optimizer/sensors/depth_sensor3d.cpp",
     "src/optimizer/agent.cpp",
-    "src/optimizer/evolutionary_gym.cpp"
+    "src/optimizer/gym.cpp"    
 ]
 
-sources = sources + evolutionary_sources + neural_network_sources + sensor_sources + optimizer_sources
-
-# Add test application source files
-test_sources = Glob("src/evolutionary_algorithms/test_application/*.cpp")
+sources = sources + evolutionary_sources + neural_network_sources + optimizer_sources
 
 # Handle different platforms
 if env["platform"] == "macos":
@@ -74,7 +70,5 @@ else:
         source=sources,
     )
 
-# Build test application
-test_program = env.Program(target='src/evolutionary_algorithms/test_application/test_program', source=sources+test_sources)
 
-Default([library, test_program]) #])#
+Default(library)
