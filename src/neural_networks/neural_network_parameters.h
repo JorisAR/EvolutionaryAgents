@@ -7,8 +7,8 @@
 #include <godot_cpp/classes/os.hpp>
 #include <godot_cpp/classes/project_settings.hpp>
 #include <godot_cpp/classes/resource.hpp>
-#include <godot_cpp/classes/resource_saver.hpp>
 #include <godot_cpp/classes/resource_loader.hpp>
+#include <godot_cpp/classes/resource_saver.hpp>
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/variant/packed_float32_array.hpp>
 #include <godot_cpp/variant/packed_int32_array.hpp>
@@ -71,13 +71,25 @@ class NeuralNetworkParameters : public Resource
         return path.get_basename() + "_log.csv";
     }
 
+    NeuralNetwork *load_neural_network() const
+    {
+        auto ls = Utils::array_to_vector_int(layer_structure);
+
+        if (!use_existing_network_)
+        {
+            return new NeuralNetwork(ls);
+        }
+        else
+            return load_neural_network_from_file();
+    }
+
     NeuralNetwork *load_neural_network_from_file() const
     {
         auto ls = Utils::array_to_vector_int(layer_structure);
-        
+
         if (!stored_network.is_valid())
         {
-            UtilityFunctions::printerr("No neural network stored.");
+            UtilityFunctions::printerr("No neural network stored in agent, loading empty network.");
             return new NeuralNetwork(ls);
         }
 
@@ -93,16 +105,16 @@ class NeuralNetworkParameters : public Resource
         return nn;
     }
 
-    void save_neural_network_to_file(const std::vector<float>& parameters)
+    void save_neural_network_to_file(const std::vector<float> &parameters)
     {
         auto nn = new NeuralNetwork();
         nn->update(Utils::array_to_vector_int(layer_structure), parameters);
-        
+
         String path = stored_network.is_valid() ? stored_network->get_path() : get_default_network_path();
         if (!path.is_empty())
         {
             JSONUtils::save_to_file<NeuralNetwork>(*nn, path);
-            
+
             // Update the stored_network resource
             Ref<JSON> json_resource = ResourceLoader::get_singleton()->load(path);
             set_stored_network(json_resource);
@@ -133,7 +145,7 @@ class NeuralNetworkParameters : public Resource
     {
         return stored_network;
     }
-    void set_stored_network(const Ref<JSON>& value)
+    void set_stored_network(const Ref<JSON> &value)
     {
         stored_network = value;
         notify_property_list_changed();
@@ -152,8 +164,6 @@ class NeuralNetworkParameters : public Resource
             return path;
         return path.get_basename() + "_network.json";
     }
-
-    
 };
 
 } // namespace godot

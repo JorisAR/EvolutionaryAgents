@@ -56,7 +56,7 @@ void Gym::start_generation()
         auto agent = agent_vector_[i];
         agent->update(layers, population[i]);
         agent->start_game();
-    }    
+    }
 }
 
 void Gym::on_agent_ended()

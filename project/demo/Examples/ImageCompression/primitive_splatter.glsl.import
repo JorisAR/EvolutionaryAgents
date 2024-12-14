@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://cauh3wbauwo7s"
+path="res://.godot/imported/primitive_splatter.glsl-dec53d6fbcdc7a51167c85618b7cc5fd.res"
+
+[deps]
+
+source_file="res://demo/Examples/ImageCompression/primitive_splatter.glsl"
+dest_files=["res://.godot/imported/primitive_splatter.glsl-dec53d6fbcdc7a51167c85618b7cc5fd.res"]
+
+[params]
+

@@ -26,7 +26,9 @@ sources = Glob("src/*.cpp") + Glob("src/utility/*.cpp")
 evolutionary_sources = [
     "src/evolutionary_algorithms/evolutionary_algorithm.cpp",
     "src/evolutionary_algorithms/evolutionary_strategy.cpp",
+    "src/evolutionary_algorithms/genetic_algorithm.cpp",
     "src/evolutionary_algorithms/sep_cma_es.cpp",
+    "src/evolutionary_algorithms/stochastic_ascent_ga.cpp",
 ] + Glob("src/evolutionary_algorithms/parameters/*.cpp")
 
 
@@ -48,7 +50,7 @@ sources = sources + evolutionary_sources + neural_network_sources + optimizer_so
 # Handle different platforms
 if env["platform"] == "macos":
     library = env.SharedLibrary(
-        "demo/bin/libgdexample.{}.{}.framework/libgdexample.{}.{}".format(
+        "project/addons/evolutionary_agents/bin/evolutionary_agents.{}.{}.framework/evolutionary_agents.{}.{}".format(
             env["platform"], env["target"], env["platform"], env["target"]
         ),
         source=sources,
@@ -56,17 +58,17 @@ if env["platform"] == "macos":
 elif env["platform"] == "ios":
     if env["ios_simulator"]:
         library = env.StaticLibrary(
-            "demo/bin/libgdexample.{}.{}.simulator.a".format(env["platform"], env["target"]),
+            "project/addons/evolutionary_agents/bin/evolutionary_agents.{}.{}.simulator.a".format(env["platform"], env["target"]),
             source=sources,
         )
     else:
         library = env.StaticLibrary(
-            "demo/bin/libgdexample.{}.{}.a".format(env["platform"], env["target"]),
+            "project/addons/evolutionary_agents/bin/evolutionary_agents.{}.{}.a".format(env["platform"], env["target"]),
             source=sources,
         )
 else:
     library = env.SharedLibrary(
-        "demo/bin/libgdexample{}{}".format(env["suffix"], env["SHLIBSUFFIX"]),
+        "project/addons/evolutionary_agents/bin/evolutionary_agents{}{}".format(env["suffix"], env["SHLIBSUFFIX"]),
         source=sources,
     )
 

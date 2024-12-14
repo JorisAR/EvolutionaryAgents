@@ -1,0 +1,94 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxw6f2hskp5kq"]
+
+[ext_resource type="PackedScene" uid="uid://duwsovhfdmrhh" path="res://demo/Examples/BallancingBall/BallancingBallRoom.tscn" id="1_8bwrs"]
+[ext_resource type="NeuralNetworkParameters" uid="uid://c0laxjq7yld1b" path="res://demo/Examples/BallancingBall/ball_nn.tres" id="1_cc5kg"]
+[ext_resource type="Script" path="res://demo/gym.gd" id="1_jx5mt"]
+
+[sub_resource type="SepCMAESParameters" id="SepCMAESParameters_emnqm"]
+
+[node name="Gym" type="Gym"]
+neural_network_parameters = ExtResource("1_cc5kg")
+time_scale = 10000
+evolutionary_algorithm_parameters = SubResource("SepCMAESParameters_emnqm")
+script = ExtResource("1_jx5mt")
+
+[node name="Room" parent="." instance=ExtResource("1_8bwrs")]
+
+[node name="Room2" parent="." instance=ExtResource("1_8bwrs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.04092, 0, 0)
+
+[node name="Room3" parent="." instance=ExtResource("1_8bwrs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.46743, 0, 0)
+
+[node name="Room4" parent="." instance=ExtResource("1_8bwrs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.65432, 0)
+
+[node name="Room5" parent="." instance=ExtResource("1_8bwrs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.04092, 4.65432, 0)
+
+[node name="Room6" parent="." instance=ExtResource("1_8bwrs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.46743, 4.65432, 0)
+
+[node name="Room7" parent="." instance=ExtResource("1_8bwrs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.413, 0)
+
+[node name="Room10" parent="." instance=ExtResource("1_8bwrs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.35, 0, 0)
+
+[node name="Room11" parent="." instance=ExtResource("1_8bwrs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.35, 4.65432, 0)
+
+[node name="Room12" parent="." instance=ExtResource("1_8bwrs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.35, 10.413, 0)
+
+[node name="Room13" parent="." instance=ExtResource("1_8bwrs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9889, 0, 0)
+
+[node name="Room14" parent="." instance=ExtResource("1_8bwrs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9889, 4.65432, 0)
+
+[node name="Room15" parent="." instance=ExtResource("1_8bwrs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9889, 10.413, 0)
+
+[node name="Room8" parent="." instance=ExtResource("1_8bwrs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.04092, 10.413, 0)
+
+[node name="Room9" parent="." instance=ExtResource("1_8bwrs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.46743, 10.413, 0)
+
+[node name="Room16" parent="." instance=ExtResource("1_8bwrs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.5823, 0)
+
+[node name="Room17" parent="." instance=ExtResource("1_8bwrs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.35, 14.5823, 0)
+
+[node name="Room18" parent="." instance=ExtResource("1_8bwrs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9889, 14.5823, 0)
+
+[node name="Room19" parent="." instance=ExtResource("1_8bwrs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.04092, 14.5823, 0)
+
+[node name="Room20" parent="." instance=ExtResource("1_8bwrs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.46743, 14.5823, 0)
+
+[node name="Room21" parent="." instance=ExtResource("1_8bwrs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.4216, 0)
+
+[node name="Room22" parent="." instance=ExtResource("1_8bwrs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.35, 19.4216, 0)
+
+[node name="Room23" parent="." instance=ExtResource("1_8bwrs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9889, 19.4216, 0)
+
+[node name="Room24" parent="." instance=ExtResource("1_8bwrs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.04092, 19.4216, 0)
+
+[node name="Room25" parent="." instance=ExtResource("1_8bwrs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.46743, 19.4216, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.826, 20.0371)
+current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.612372, 0.707107, 0.353553, -0.5, -3.78552e-08, 0.866025, 0.612373, -0.707107, 0.353553, 0, 0, 0)

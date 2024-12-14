@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://bmrvin37hegb4"
+path="res://.godot/imported/voronoi_renderer.glsl-1bf3855e8c64db14e73f38c087aaded9.res"
+
+[deps]
+
+source_file="res://demo/Examples/ImageCompression/voronoi_renderer.glsl"
+dest_files=["res://.godot/imported/voronoi_renderer.glsl-1bf3855e8c64db14e73f38c087aaded9.res"]
+
+[params]
+

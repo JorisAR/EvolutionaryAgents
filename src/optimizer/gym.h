@@ -34,9 +34,6 @@ class Gym : public EvolutionaryOptimizer
         ClassDB::bind_method(D_METHOD("set_neural_network", "neural network"), &Gym::set_neural_network);
         ClassDB::bind_method(D_METHOD("get_neural_network"), &Gym::get_neural_network);
 
-        ClassDB::bind_method(D_METHOD("set_training", "is_training"), &Gym::set_training);
-        ClassDB::bind_method(D_METHOD("get_training"), &Gym::get_training);
-
         ClassDB::bind_method(D_METHOD("get_physics_ticks_per_second"), &Gym::get_physics_ticks_per_second);
         ClassDB::bind_method(D_METHOD("set_physics_ticks_per_second", "value"),
                              &Gym::set_physics_ticks_per_second);
@@ -54,7 +51,6 @@ class Gym : public EvolutionaryOptimizer
                                   "NeuralNetworkParameters"),
                      "set_neural_network", "get_neural_network");
 
-        ADD_PROPERTY(PropertyInfo(Variant::BOOL, "is_training"), "set_training", "get_training");
 
         ADD_GROUP("Time", "");
         ADD_PROPERTY(PropertyInfo(Variant::INT, "physics_ticks_per_second"), "set_physics_ticks_per_second",

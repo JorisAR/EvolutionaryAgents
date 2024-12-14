@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://6rb6dcomjc1o"]
+
+[ext_resource type="Script" path="res://demo/Examples/ImageCompression/dispatcher.gd" id="1_2t3dg"]
+[ext_resource type="Texture2D" uid="uid://dk5cgcy62h65t" path="res://icon.svg" id="2_epqur"]
+[ext_resource type="Script" path="res://demo/Examples/ImageCompression/CompressorHandler.gd" id="3_cy0ge"]
+[ext_resource type="Texture2D" uid="uid://nnkmjjwiikrf" path="res://demo/Examples/ImageCompression/jar_half.png" id="4_mamvo"]
+
+[sub_resource type="StochasticAscentGAParameters" id="StochasticAscentGAParameters_tksbw"]
+mutation_rate = 0.2
+block_sizes = PackedInt32Array(2, 3)
+
+[node name="ImageCompression" type="ProblemOptimizer" node_paths=PackedStringArray("problem")]
+problem = NodePath("OptimizableProblem")
+population_size = 50
+evolutionary_algorithm_parameters = SubResource("StochasticAscentGAParameters_tksbw")
+debug_verbose = true
+debug_log_csv = true
+
+[node name="OptimizableProblem" type="OptimizableProblem" parent="." node_paths=PackedStringArray("dispatcher", "optimizer")]
+genome_size = 900
+script = ExtResource("3_cy0ge")
+dispatcher = NodePath("../SplatRenderer")
+optimizer = NodePath("..")
+
+[node name="SplatRenderer" type="Node" parent="." node_paths=PackedStringArray("_renderer")]
+script = ExtResource("1_2t3dg")
+_dataTexture = ExtResource("4_mamvo")
+_computeShader = "res://demo/Examples/ImageCompression/voronoi_renderer.glsl"
+_renderer = NodePath("../AspectRatioContainer/TextureRect")
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="AspectRatioContainer"]
+layout_mode = 2
+texture = ExtResource("2_epqur")
+
+[connection signal="generation_ended" from="." to="OptimizableProblem" method="_on_image_compression_generation_ended"]
+[connection signal="started" from="OptimizableProblem" to="OptimizableProblem" method="_on_started"]
