@@ -2,7 +2,39 @@
 
 using namespace godot;
 
-int godot::Agent::GetMaxElementIndex(const PackedFloat32Array &array)
+void Agent::_bind_methods()
+{
+    ClassDB::bind_method(D_METHOD("infer"), &Agent::infer);
+
+    ClassDB::bind_method(D_METHOD("set_fitness", "value"), &Agent::set_fitness);
+    ClassDB::bind_method(D_METHOD("get_fitness"), &Agent::get_fitness);
+    ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "fitness"), "set_fitness", "get_fitness");
+
+    ClassDB::bind_method(D_METHOD("set_neural_network", "value"), &Agent::set_neural_network);
+    ClassDB::bind_method(D_METHOD("get_neural_network"), &Agent::get_neural_network);
+
+    ClassDB::bind_static_method("Agent", D_METHOD("get_max_element_index", "array"), &Agent::GetMaxElementIndex);
+    ClassDB::bind_static_method("Agent", D_METHOD("soft_max", "array"), &Agent::SoftMax);
+    ClassDB::bind_static_method("Agent", D_METHOD("sample_weighted_index", "array", "random_sample_unit_interval"),
+                                &Agent::SampleWeightedIndex);
+    ClassDB::bind_static_method("Agent", D_METHOD("sample_normal", "mean", "sigma"), &Agent::SampleNormal);
+    ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "neural_network_parameters", PROPERTY_HINT_RESOURCE_TYPE,
+                              "NeuralNetworkParameters"),
+                 "set_neural_network", "get_neural_network");
+
+    ADD_SIGNAL(MethodInfo("started"));
+    ADD_SIGNAL(MethodInfo("ended"));
+}
+
+Agent::Agent() : nn(new NeuralNetwork({1, 1}))
+{
+}
+Agent::~Agent()
+{
+    delete nn;
+}
+
+int Agent::GetMaxElementIndex(const PackedFloat32Array &array)
 {
     int max_index = 0;
     float max_value = array[max_index];
@@ -19,7 +51,7 @@ int godot::Agent::GetMaxElementIndex(const PackedFloat32Array &array)
     return max_index;
 }
 
-PackedFloat32Array godot::Agent::SoftMax(const PackedFloat32Array &array)
+PackedFloat32Array Agent::SoftMax(const PackedFloat32Array &array)
 {
     PackedFloat32Array exp_values;
     float sum_exp = 0.0f;
@@ -41,7 +73,7 @@ PackedFloat32Array godot::Agent::SoftMax(const PackedFloat32Array &array)
     return exp_values;
 }
 
-float godot::Agent::SampleNormal(const float mean, const float sigma)
+float Agent::SampleNormal(const float mean, const float sigma)
 {
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -49,7 +81,7 @@ float godot::Agent::SampleNormal(const float mean, const float sigma)
     return dist(gen);
 }
 
-int godot::Agent::SampleWeightedIndex(const PackedFloat32Array &array, const float random_sample_unit_interval = -1)
+int Agent::SampleWeightedIndex(const PackedFloat32Array &array, const float random_sample_unit_interval = -1)
 {
     float random_value = random_sample_unit_interval;
     if (random_value > 1.0f || random_value < 0.0f)
@@ -77,7 +109,7 @@ int godot::Agent::SampleWeightedIndex(const PackedFloat32Array &array, const flo
     return array.size() - 1;
 }
 
-PackedFloat32Array godot::Agent::infer(const PackedFloat32Array &state_vector)
+PackedFloat32Array Agent::infer(const PackedFloat32Array &state_vector)
 {
     if (nn == nullptr)
     {
@@ -101,7 +133,31 @@ void Agent::update(const std::vector<int> &new_layers, const std::vector<float> 
     nn->update(new_layers, parameters);
 }
 
-void godot::Agent::start_game()
+void Agent::start_game()
 {
     emit_signal("started");
 }
+
+    float Agent::get_fitness() const
+    {
+        return fitness;
+    }
+    void Agent::set_fitness(const float new_fitness)
+    {
+        fitness = new_fitness;
+    }
+
+    void Agent::set_neural_network(const Ref<NeuralNetworkParameters> value)
+    {
+        neural_network = value;
+        if(neural_network == nullptr) return;
+        //auto network = neural_network->load_neural_network();
+        //if(network == nullptr) return;
+        //delete nn;
+        //nn = network;
+    }
+
+    Ref<NeuralNetworkParameters> Agent::get_neural_network() const
+    {
+        return neural_network;
+    }

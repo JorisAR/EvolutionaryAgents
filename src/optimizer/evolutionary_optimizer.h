@@ -25,20 +25,14 @@ class EvolutionaryOptimizer : public Node
     static void _bind_methods();
     void _notification(int what);
 
-    EvolutionaryOptimizer()
-    {
-    }
-    ~EvolutionaryOptimizer()
-    {
-        delete ea;
-        delete logger;
-    }
+    EvolutionaryOptimizer();
+    ~EvolutionaryOptimizer();
 
     virtual void start_training();
     virtual void end_training();
     virtual void start_generation();
     virtual void end_generation();
-    void register_fitness(const float fitness);
+    void register_fitness(const int i, const float fitness);
 
     bool get_verbose() const;
     void set_verbose(const bool value);

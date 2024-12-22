@@ -202,3 +202,91 @@ void godot::DepthSensor3D::_clear_debug_shape()
         debug_mesh = Ref<ArrayMesh>();
     }
 }
+
+void godot::DepthSensor3D::_bind_methods()
+{
+    ClassDB::bind_method(D_METHOD("set_is_binary", "value"), &DepthSensor3D::set_is_binary);
+    ClassDB::bind_method(D_METHOD("get_is_binary"), &DepthSensor3D::get_is_binary);
+    ClassDB::bind_method(D_METHOD("set_max_distance", "value"), &DepthSensor3D::set_max_distance);
+    ClassDB::bind_method(D_METHOD("get_max_distance"), &DepthSensor3D::get_max_distance);
+    ClassDB::bind_method(D_METHOD("set_collision_mask", "value"), &DepthSensor3D::set_collision_mask);
+    ClassDB::bind_method(D_METHOD("get_collision_mask"), &DepthSensor3D::get_collision_mask);
+
+    ClassDB::bind_method(D_METHOD("set_show_debug_ray", "value"), &DepthSensor3D::set_show_debug_ray);
+    ClassDB::bind_method(D_METHOD("get_show_debug_ray"), &DepthSensor3D::get_show_debug_ray);
+
+    ClassDB::bind_method(D_METHOD("set_enabled", "value"), &DepthSensor3D::set_enabled);
+    ClassDB::bind_method(D_METHOD("get_enabled"), &DepthSensor3D::get_enabled);
+
+    ADD_PROPERTY(PropertyInfo(Variant::BOOL, "is_enabled"), "set_enabled", "get_enabled");
+    ADD_PROPERTY(PropertyInfo(Variant::BOOL, "is_binary"), "set_is_binary", "get_is_binary");
+    ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "max_distance"), "set_max_distance", "get_max_distance");
+    ADD_PROPERTY(PropertyInfo(Variant::INT, "collision_mask", PROPERTY_HINT_LAYERS_3D_PHYSICS),
+                 "set_collision_mask", "get_collision_mask");
+
+    ADD_GROUP("Debug", "debug");
+    ADD_PROPERTY(PropertyInfo(Variant::BOOL, "debug_show_debug_ray"), "set_show_debug_ray", "get_show_debug_ray");
+}
+
+godot::DepthSensor3D::DepthSensor3D()
+{
+}
+
+godot::DepthSensor3D::~DepthSensor3D()
+{
+}
+
+float godot::DepthSensor3D::get_is_binary() const
+{
+    return is_binary;
+}
+
+void godot::DepthSensor3D::set_is_binary(const float value)
+{
+    is_binary = value;
+}
+
+float godot::DepthSensor3D::get_max_distance() const
+{
+    return max_distance;
+}
+
+void godot::DepthSensor3D::set_max_distance(const float value)
+{
+    max_distance = value;
+    _update_debug_shape();
+}
+
+int godot::DepthSensor3D::get_collision_mask() const
+{
+    return collision_mask;
+}
+
+void godot::DepthSensor3D::set_collision_mask(const int value)
+{
+    collision_mask = value;
+}
+
+bool godot::DepthSensor3D::get_enabled() const
+{
+    return enabled;
+}
+
+void godot::DepthSensor3D::set_enabled(const bool value)
+{
+    enabled = value;
+    collided = false;
+    output = is_binary ? 0.0f : max_distance;
+    _update_debug_shape();
+}
+
+bool godot::DepthSensor3D::get_show_debug_ray() const
+{
+    return show_debug_ray;
+}
+
+void godot::DepthSensor3D::set_show_debug_ray(const bool value)
+{
+    show_debug_ray = value;
+    _update_debug_shape();
+}

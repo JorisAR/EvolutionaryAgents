@@ -3,7 +3,9 @@ extends OptimizableProblem
 enum ProblemType {
 	ROSENBROCK,
 	POLYNOMIAL,
-	LEAST_SQUARES
+	LEAST_SQUARES,
+	SUM,
+	DECEPTIVE_TRAP
 }
 
 @export var problem_type = ProblemType.ROSENBROCK
@@ -16,9 +18,8 @@ func _init():
 		coeff.append(randf_range(-10, 10))
 	solution_vector.resize(genome_size)
 	for i in range(genome_size):
-		solution_vector[i] = randf_range(-10, 10)
-		
-	print(solution_vector)
+		solution_vector[i] = randf_range(-10, 10)	
+	#print(solution_vector)
 
 # Generalized Rosenbrock function
 func rosenbrock(genome: PackedFloat32Array) -> float:
@@ -46,14 +47,40 @@ func least_squares(genome: PackedFloat32Array) -> float:
 		var diff = genome[i] - solution_vector[i]
 		sum += diff * diff
 	return sum
+	
+# Sum function
+func sum_genome(genome: PackedFloat32Array) -> float:
+	var sum = 0.0
+	for i in range(genome.size()):
+		sum += genome[i];
+	return sum
 
-func _on_started(genome: PackedFloat32Array) -> void:
+# Deceptive trap, increase score as more nonzero, but highest score is all zeroes
+# Deceptive because the gradient points to a suboptimal local maximum, not the global optimum
+func deceptive_trap(genome: PackedFloat32Array) -> float:
+	var sum = 0.0
+	var all_zero = true;
+	for i in range(genome.size()):
+		var zero = genome[i] < 0.5
+		all_zero = all_zero and zero;
+		if(not zero):
+			sum += 1;
+		
+	return genome_size * genome_size if all_zero else sum
+
+func _evaluate(genome: PackedFloat32Array) -> float:
 	var fitness = 0.0
 	if problem_type == ProblemType.ROSENBROCK:
 		fitness = -rosenbrock(genome)
 	elif problem_type == ProblemType.POLYNOMIAL:
 		fitness = -polynomial(genome)
-	else:
+	elif problem_type == ProblemType.LEAST_SQUARES:
 		fitness = -least_squares(genome)
+	elif problem_type == ProblemType.SUM:
+		fitness = sum_genome(genome)
+	elif problem_type == ProblemType.DECEPTIVE_TRAP:
+		fitness = deceptive_trap(genome)
+	return fitness;
 
-	self.ended.emit(fitness)
+func _on_started(genome: PackedFloat32Array) -> void:
+	self.ended.emit(_evaluate(genome))

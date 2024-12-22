@@ -128,6 +128,15 @@ void EvolutionaryOptimizer::_bind_methods()
                  "get_termination_max_generation");
 }
 
+EvolutionaryOptimizer::EvolutionaryOptimizer()
+{
+}
+EvolutionaryOptimizer::~EvolutionaryOptimizer()
+{
+    delete ea;
+    delete logger;
+}
+
 void EvolutionaryOptimizer::_notification(int p_what)
 {
     if (Engine::get_singleton()->is_editor_hint())
@@ -149,7 +158,8 @@ void EvolutionaryOptimizer::_notification(int p_what)
 
 void EvolutionaryOptimizer::start_training()
 {
-    if(training) {
+    if (training)
+    {
         UtilityFunctions::printerr("Training is already in process, new call aborted.");
         return;
     }
@@ -178,6 +188,7 @@ void EvolutionaryOptimizer::start_training()
 
     best_fitness = -1e9f;
     sum_fitness = 0.0f;
+    UtilityFunctions::print("Training started.");
 
     start_generation();
 }
@@ -186,19 +197,19 @@ void EvolutionaryOptimizer::start_generation()
 {
     current_generation++;
     // Generate population
-    fitness_vector.clear();
+    fitness_vector = std::vector<float>(population_size, 0.0f);
     generation_best_fitness = -1e9f;
     generation_sum_fitness = 0;
     population = ea->get_population();
 }
 
-void godot::EvolutionaryOptimizer::register_fitness(const float fitness)
+void godot::EvolutionaryOptimizer::register_fitness(const int i, const float fitness)
 {
     sum_fitness += fitness;
     best_fitness = Math::max(best_fitness, fitness);
     generation_sum_fitness += fitness;
     generation_best_fitness = Math::max(generation_best_fitness, fitness);
-    fitness_vector.push_back(fitness);
+    fitness_vector[i] = fitness;
 }
 
 void EvolutionaryOptimizer::end_generation()
@@ -229,12 +240,13 @@ void EvolutionaryOptimizer::end_generation()
         end_training();
     }
     else
-        start_generation();
+        call_deferred("start_generation");
 }
 
 void EvolutionaryOptimizer::end_training()
 {
-    if(!training) {
+    if (!training)
+    {
         UtilityFunctions::printerr("Training not in progress, cannot end.");
         return;
     }

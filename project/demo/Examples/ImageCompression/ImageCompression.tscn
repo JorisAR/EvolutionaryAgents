@@ -3,7 +3,7 @@
 [ext_resource type="JSON" path="res://demo/Examples/ImageCompression/image_state.json" id="1_2pcgb"]
 [ext_resource type="Script" path="res://demo/Examples/ImageCompression/dispatcher.gd" id="1_2t3dg"]
 [ext_resource type="Texture2D" uid="uid://dk5cgcy62h65t" path="res://icon.svg" id="2_epqur"]
-[ext_resource type="GeneticAlgorithmParameters" uid="uid://x422wi5rb0as" path="res://demo/Examples/ImageCompression/GAParams.tres" id="2_faspe"]
+[ext_resource type="SepCMAESParameters" uid="uid://uv5n53k65hmw" path="res://demo/Examples/FindObjective/sep_cma_es.tres" id="2_vrpcf"]
 [ext_resource type="Script" path="res://demo/Examples/ImageCompression/CompressorHandler.gd" id="3_cy0ge"]
 [ext_resource type="Texture2D" uid="uid://nnkmjjwiikrf" path="res://demo/Examples/ImageCompression/jar_half.png" id="4_mamvo"]
 
@@ -11,15 +11,14 @@
 problem = NodePath("OptimizableProblem")
 population_size = 20
 stored_state = ExtResource("1_2pcgb")
-evolutionary_algorithm_parameters = ExtResource("2_faspe")
+evolutionary_algorithm_parameters = ExtResource("2_vrpcf")
 debug_verbose = true
 debug_log_csv = true
 
-[node name="OptimizableProblem" type="OptimizableProblem" parent="." node_paths=PackedStringArray("dispatcher", "optimizer")]
+[node name="OptimizableProblem" type="OptimizableProblem" parent="." node_paths=PackedStringArray("dispatcher")]
 genome_size = 640
 script = ExtResource("3_cy0ge")
 dispatcher = NodePath("../SplatRenderer")
-optimizer = NodePath("..")
 
 [node name="SplatRenderer" type="Node" parent="." node_paths=PackedStringArray("_renderer")]
 script = ExtResource("1_2t3dg")

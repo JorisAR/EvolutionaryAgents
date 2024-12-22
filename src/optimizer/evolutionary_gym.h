@@ -24,43 +24,9 @@ class EvolutionaryGym : public EvolutionaryOptimizer
     GDCLASS(EvolutionaryGym, EvolutionaryOptimizer)
 
   public:
-    static void _bind_methods()
-    {
-        ClassDB::bind_method(D_METHOD("on_agent_ended"), &EvolutionaryGym::on_agent_ended);
-        ClassDB::bind_method(D_METHOD("set_agents", "agents"), &EvolutionaryGym::set_agents);
-        ClassDB::bind_method(D_METHOD("get_agents"), &EvolutionaryGym::get_agents);
+    static void _bind_methods();
 
-        ClassDB::bind_method(D_METHOD("set_neural_network", "neural network"), &EvolutionaryGym::set_neural_network);
-        ClassDB::bind_method(D_METHOD("get_neural_network"), &EvolutionaryGym::get_neural_network);
-
-        ClassDB::bind_method(D_METHOD("get_physics_ticks_per_second"), &EvolutionaryGym::get_physics_ticks_per_second);
-        ClassDB::bind_method(D_METHOD("set_physics_ticks_per_second", "value"),
-                             &EvolutionaryGym::set_physics_ticks_per_second);
-
-        ClassDB::bind_method(D_METHOD("get_max_fps"), &EvolutionaryGym::get_max_fps);
-        ClassDB::bind_method(D_METHOD("set_max_fps", "value"), &EvolutionaryGym::set_max_fps);
-
-        ClassDB::bind_method(D_METHOD("get_time_scale"), &EvolutionaryGym::get_time_scale);
-        ClassDB::bind_method(D_METHOD("set_time_scale", "value"), &EvolutionaryGym::set_time_scale);
-
-        ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "agents", PROPERTY_HINT_TYPE_STRING,
-                                  String::num(Variant::OBJECT) + "/" + String::num(PROPERTY_HINT_NODE_TYPE) + ":Agent"),
-                     "set_agents", "get_agents");
-        ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "neural_network_parameters", PROPERTY_HINT_RESOURCE_TYPE,
-                                  "NeuralNetworkParameters"),
-                     "set_neural_network", "get_neural_network");
-
-
-        ADD_GROUP("Time", "");
-        ADD_PROPERTY(PropertyInfo(Variant::INT, "physics_ticks_per_second"), "set_physics_ticks_per_second",
-                     "get_physics_ticks_per_second");
-        ADD_PROPERTY(PropertyInfo(Variant::INT, "max_fps"), "set_max_fps", "get_max_fps");
-        ADD_PROPERTY(PropertyInfo(Variant::INT, "time_scale"), "set_time_scale", "get_time_scale");
-    }
-
-    EvolutionaryGym() : EvolutionaryOptimizer()
-    {
-    }
+    EvolutionaryGym();
 
     virtual void start_training() override;
     virtual void end_training() override;
@@ -68,97 +34,27 @@ class EvolutionaryGym : public EvolutionaryOptimizer
     virtual void end_generation() override;
     void on_agent_ended();
 
+    void set_agents(const TypedArray<Agent> value);
+    TypedArray<Agent> get_agents() const;
 
-    void set_agents(const TypedArray<Agent> value)
-    {
-        agents = value;
-        agent_vector_.clear();
-        for (size_t i = 0; i < agents.size(); i++)
-        {
-            Agent *agent = Object::cast_to<Agent>(agents[i]);
-            if (agent)
-            {
-                agent_vector_.push_back(agent);
-            }
-        }
-    }
-    TypedArray<Agent> get_agents() const
-    {
-        return agents;
-    }
+    bool get_training() const;
+    void set_training(const bool value);
 
-  
+    void set_neural_network(Ref<NeuralNetworkParameters> value);
+    Ref<NeuralNetworkParameters> get_neural_network() const;
 
-    bool get_training() const
-    {
-        return training;
-    }
-    void set_training(const bool value)
-    {
-        training = value;
-    }
+    int get_current_generation() const;
 
-    
+    int get_physics_ticks_per_second() const;
+    void set_physics_ticks_per_second(int value);
 
-    void set_neural_network(Ref<NeuralNetworkParameters> value)
-    {
-        neural_network = value;
-    }
+    int get_max_fps() const;
+    void set_max_fps(int value);
 
-    Ref<NeuralNetworkParameters> get_neural_network() const
-    {
-        return neural_network;
-    }
+    int get_time_scale() const;
+    void set_time_scale(int value);
 
-    int get_current_generation() const
-    {
-        return current_generation;
-    }
-
-    int get_physics_ticks_per_second() const
-    {
-        return physics_ticks_per_second;
-    }
-    void set_physics_ticks_per_second(int value)
-    {
-        physics_ticks_per_second = value;
-        update_engine_settings();
-    }
-
-    int get_max_fps() const
-    {
-        return max_fps;
-    }
-    void set_max_fps(int value)
-    {
-        max_fps = value;
-        update_engine_settings();
-    }
-
-    int get_time_scale() const
-    {
-        return time_scale;
-    }
-    void set_time_scale(int value)
-    {
-        time_scale = value;
-        update_engine_settings();
-    }
-
-    void update_engine_settings()
-    {
-        if (Engine::get_singleton()->is_editor_hint())
-        {
-            return;
-        }
-
-        Engine::get_singleton()->set_max_fps(max_fps);
-        Engine::get_singleton()->set_time_scale(time_scale);
-        Engine::get_singleton()->set_physics_ticks_per_second(physics_ticks_per_second * time_scale);
-        Engine::get_singleton()->set_max_physics_steps_per_frame(
-            std::max(1, static_cast<int>(std::ceil(static_cast<float>(physics_ticks_per_second * time_scale) /
-                                                   static_cast<float>(max_fps)))));
-    }
+    void update_engine_settings();
 
   private:
     TypedArray<Agent> agents;
