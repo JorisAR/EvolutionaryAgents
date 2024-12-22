@@ -11,6 +11,13 @@ NeuralNetwork::NeuralNetwork(const std::vector<int> &layers) : layers(layers)
     initialize_weights_and_biases();
 }
 
+NeuralNetwork::NeuralNetwork(const EA::EvolutionaryAlgorithmState *state)
+{
+    layers = state->layers;
+    initialize_weights_and_biases();
+    set_weights_and_biases(state->genome, std::vector<float>());
+}
+
 void NeuralNetwork::initialize_weights_and_biases()
 {
     if (layers.size() < 2)
@@ -190,20 +197,4 @@ std::vector<float> NeuralNetwork::matmul(const std::vector<float> &vec, const st
         }
     }
     return result;
-}
-
-godot::Dictionary NeuralNetwork::to_dict() const
-{
-    godot::Dictionary dict;
-    parameters:
-
-    dict["layers"] = godot::Utils::vector_to_array_int(layers);
-    dict["parameters"] = get_parameters();
-    return dict;
-}
-
-void NeuralNetwork::deserialize_from_dict(const godot::Dictionary &dict)
-{
-    update(godot::Utils::array_to_vector_int(dict["layers"]), 
-    godot::Utils::array_to_vector_float(dict["parameters"]));
 }

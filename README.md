@@ -1,6 +1,9 @@
 # GD Evolutionary Agents
 
-This project is aimed at training neural networks using evolutionary algorithms within the Godot game engine. The project includes logging functionality to track the training progress and tools to visualize the results.
+This project enables the use of evolutionary algorithms (EAs) within the Godot game engine. It's specifically designed for:
+- Maximization problems, where one defines a function F(x), and the optimizer aims to find x such that F(x) is maximal.
+- Reinforcement learning problems, where one defines a Gym, and an agent that obtains a fitness value over a run. The neural network acting as the state-action function is trained using EAs.
+The project includes logging functionality to track the training progress and tools to visualize the results.
 
 ## Features
 
@@ -12,9 +15,13 @@ This project is aimed at training neural networks using evolutionary algorithms 
 
 ### Prerequisites
 
+#### Core
 - [Godot Engine](https://godotengine.org/download)
+
+#### Visualisation
 - [Python](https://www.python.org/downloads/)
 - Python libraries: `pandas`, `matplotlib`
+- Outputs are CSV, alternatives can be used.
 
 ### Installation
 
@@ -33,6 +40,8 @@ This project is aimed at training neural networks using evolutionary algorithms 
    - Launch Godot and open the project directory.
 
 ## Usage
+### Demos
+- Please checkout the demos provided to learn how to structure the problems. To run them, just run the godot as a scene. The project is designed to work in editor, and training may not be reliable as a standalone application.
 
 ### Training
 
@@ -57,5 +66,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-- Inspired by various neural network and evolutionary algorithm implementations.
+- Inspired by various neural network and evolutionary algorithm implementations and papers.
 - Special thanks to the Godot community for their support and resources.

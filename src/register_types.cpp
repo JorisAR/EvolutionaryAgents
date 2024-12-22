@@ -4,7 +4,7 @@
 #include "evolutionary_strategy_parameters.h"
 #include "genetic_algorithm_parameters.h"
 #include "stochastic_ascent_ga_parameters.h"
-#include "optimizer/gym.h"
+#include "optimizer/evolutionary_gym.h"
 #include "neural_network_parameters.h"
 #include "sep_cma_es_parameters.h"
 #include "optimizer/sensors/sensor3d.h"
@@ -33,7 +33,7 @@ void initialize_evolutionary_agents_module(ModuleInitializationLevel p_level)
 
         // Gym
         GDREGISTER_CLASS(Agent);
-        GDREGISTER_CLASS(Gym);
+        GDREGISTER_CLASS(EvolutionaryGym);
 
         // Sensors
         GDREGISTER_ABSTRACT_CLASS(Sensor3D);

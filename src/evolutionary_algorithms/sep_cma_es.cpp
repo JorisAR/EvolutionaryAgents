@@ -28,7 +28,11 @@ SepCMAES::SepCMAES(int population_size, int individual_size, float sigma)
     // init parameters
     mu_ = std::floor(population_size / 2.0f);
 
-    mean_ = std::vector<float>(individual_size, 0.0f);
+    auto initial_value = 0.0f;
+    if(use_bound)
+        initial_value = (lower_bound + upper_bound) / 2.0f;
+
+    mean_ = std::vector<float>(individual_size, initial_value);
     D_ = std::vector<float>(individual_size, 1.0f);
     C_ = std::vector<float>(individual_size, 1.0f);
     p_sigma_ = std::vector<float>(individual_size, 0.0f);
@@ -82,16 +86,21 @@ void SepCMAES::set_starting_point(const std::vector<float> &individual)
 {
     mean_ = individual;
     population = generate_population();
+    population[0] = individual;
 }
 
-std::vector<std::vector<float>>  SepCMAES::generate_population()
+std::vector<std::vector<float>> SepCMAES::generate_population()
 {
     population = std::vector<std::vector<float>>(population_size, std::vector<float>(individual_size));
     for (int i = 0; i < population_size; ++i)
     {
         for (int j = 0; j < individual_size; ++j)
         {
-            population[i][j] = mean_[j] + sigma_ * D_[j] * dist(gen); // ~ N(m, σ^2 C)
+            auto v = mean_[j] + sigma_ * D_[j] * dist(gen); // ~ N(m, σ^2 C)
+            if (use_bound)
+                v = std::max(lower_bound, std::min(v, upper_bound));
+
+            population[i][j] = v;
         }
     }
     return population;

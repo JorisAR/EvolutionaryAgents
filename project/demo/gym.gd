@@ -1,4 +1,4 @@
-extends Gym
+extends EvolutionaryGym
 
 var _init_scale = 1000;
 

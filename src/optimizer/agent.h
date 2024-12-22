@@ -70,10 +70,10 @@ class Agent : public Node
     {
         neural_network = value;
         if(neural_network == nullptr) return;
-        auto network = neural_network->load_neural_network();
-        if(network == nullptr) return;
-        delete nn;
-        nn = network;
+        //auto network = neural_network->load_neural_network();
+        //if(network == nullptr) return;
+        //delete nn;
+        //nn = network;
     }
 
     Ref<NeuralNetworkParameters> get_neural_network() const

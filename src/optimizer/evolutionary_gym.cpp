@@ -1,8 +1,8 @@
-#include "gym.h"
+#include "evolutionary_gym.h"
 
 using namespace godot;
 
-void Gym::start_training()
+void EvolutionaryGym::start_training()
 {
     if (neural_network == nullptr)
     {
@@ -29,17 +29,17 @@ void Gym::start_training()
     genome_size = parameters[0] + parameters[1];
 
     // Initialize the evolutionary strategy
-    if (ea == nullptr)
+        if (ea == nullptr && neural_network->get_use_existing_network())
     {
-        ea = ea_params->get_evolutionary_algorithm(population_size, genome_size);
-
-        if (neural_network->get_use_existing_network())
+        auto params = EA::EvolutionaryAlgorithmState::from_json(neural_network->get_stored_network());
+        if (params != nullptr)
         {
-            auto params = neural_network->load_neural_network_from_file()->get_parameters();
-            if (params.size() == genome_size)
+            auto genome = params->genome;
+            if (genome.size() == genome_size)
             {
-                UtilityFunctions::print("Initializing population with pretrained-parameters");
-                ea->set_starting_point(Utils::array_to_vector_float(params));
+                ea = ea_params->get_evolutionary_algorithm(population_size, genome_size);
+                ea->set_starting_point(genome);
+                UtilityFunctions::print("Initializing population with pre-trained network");
             }
         }
     }
@@ -47,7 +47,7 @@ void Gym::start_training()
     EvolutionaryOptimizer::start_training();
 }
 
-void Gym::start_generation()
+void EvolutionaryGym::start_generation()
 {
     EvolutionaryOptimizer::start_generation();
     active_agent_count = population_size;
@@ -59,7 +59,7 @@ void Gym::start_generation()
     }
 }
 
-void Gym::on_agent_ended()
+void EvolutionaryGym::on_agent_ended()
 {
     std::lock_guard<std::mutex> lock(agent_ended_mutex);
 
@@ -70,7 +70,7 @@ void Gym::on_agent_ended()
     }
 }
 
-void Gym::end_generation()
+void EvolutionaryGym::end_generation()
 {
     for (Agent *agent : agent_vector_)
     {
@@ -79,9 +79,19 @@ void Gym::end_generation()
     EvolutionaryOptimizer::end_generation();
 }
 
-void Gym::end_training()
+void EvolutionaryGym::end_training()
 {
-    neural_network->save_neural_network_to_file(ea->get_best_individual());
+    //neural_network->save_neural_network_to_file(ea->get_best_individual());
+    auto genome = ea->get_best_individual();
+    
+    if (true && neural_network.is_valid())//(save_state)
+    {
+        auto state = EA::EvolutionaryAlgorithmState();
+        state.genome = genome;
+        state.layers = layers;
+        state.save_json(neural_network->get_stored_network());
+        UtilityFunctions::print("Saved State.");
+    }
 
     for (Agent *agent : agent_vector_)
     {

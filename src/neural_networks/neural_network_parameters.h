@@ -1,8 +1,8 @@
 #ifndef NEURAL_NETWORK_PARAMETERS_H
 #define NEURAL_NETWORK_PARAMETERS_H
 
-#include "json_utils.h"
 #include "neural_network.h"
+#include "evolutionary_algorithm_state.h"
 #include "utils.h"
 #include <godot_cpp/classes/os.hpp>
 #include <godot_cpp/classes/project_settings.hpp>
@@ -71,66 +71,66 @@ class NeuralNetworkParameters : public Resource
         return path.get_basename() + "_log.csv";
     }
 
-    NeuralNetwork *load_neural_network() const
-    {
-        auto ls = Utils::array_to_vector_int(layer_structure);
+    // NeuralNetwork *load_neural_network() const
+    // {
+    //     auto ls = Utils::array_to_vector_int(layer_structure);
 
-        if (!use_existing_network_)
-        {
-            return new NeuralNetwork(ls);
-        }
-        else
-            return load_neural_network_from_file();
-    }
+    //     if (!use_existing_network_)
+    //     {
+    //         return new NeuralNetwork(ls);
+    //     }
+    //     else
+    //         return load_neural_network_from_file();
+    // }
 
-    NeuralNetwork *load_neural_network_from_file() const
-    {
-        auto ls = Utils::array_to_vector_int(layer_structure);
+    // NeuralNetwork *load_neural_network_from_file() const
+    // {
+    //     auto ls = Utils::array_to_vector_int(layer_structure);
 
-        if (!stored_network.is_valid())
-        {
-            UtilityFunctions::printerr("No neural network stored in agent, loading empty network.");
-            return new NeuralNetwork(ls);
-        }
+    //     if (!stored_network.is_valid())
+    //     {
+    //         UtilityFunctions::printerr("No neural network stored in agent, loading empty network.");
+    //         return new NeuralNetwork(ls);
+    //     }
 
-        auto nn = JSONUtils::deserialize<NeuralNetwork>(stored_network->get_data());
+    //     auto state = JSONUtils::deserialize<EA::EvolutionaryAlgorithmState>(stored_network->get_data());
 
-        if (ls != nn->get_layers())
-        {
-            UtilityFunctions::printerr(
-                static_cast<String>("Error loading neural network, layers don't match saved layers."));
-            return new NeuralNetwork(ls);
-        }
+    //     if (ls != state->layers)
+    //     {
+    //         UtilityFunctions::printerr(
+    //             static_cast<String>("Error loading neural network, layers don't match saved layers."));
+    //         return new NeuralNetwork(ls);
+    //     }
 
-        return nn;
-    }
+    //     return new NeuralNetwork(state);
+    // }
 
-    void save_neural_network_to_file(const std::vector<float> &parameters)
-    {
-        auto nn = new NeuralNetwork();
-        nn->update(Utils::array_to_vector_int(layer_structure), parameters);
+    // void save_neural_network_to_file(const std::vector<float> &parameters)
+    // {
+    //     auto state = new EA::EvolutionaryAlgorithmState();
+    //     state->genome = parameters;
+    //     state->layers = Utils::array_to_vector_int(layer_structure);
 
-        String path = stored_network.is_valid() ? stored_network->get_path() : get_default_network_path();
-        if (!path.is_empty())
-        {
-            JSONUtils::save_to_file<NeuralNetwork>(*nn, path);
 
-            // Update the stored_network resource
-            Ref<JSON> json_resource = ResourceLoader::get_singleton()->load(path);
-            set_stored_network(json_resource);
+    //     String path = stored_network.is_valid() ? stored_network->get_path() : get_default_network_path();
+    //     if (!path.is_empty())
+    //     {
+    //         JSONUtils::save_to_file<EA::EvolutionaryAlgorithmState>(*state, path);
 
-            // Ensure the JSON data is correctly reported in the editor
-            ResourceSaver::get_singleton()->save(stored_network, path);
+    //         // Update the stored_network resource
+    //         Ref<JSON> json_resource = ResourceLoader::get_singleton()->load(path);
+    //         set_stored_network(json_resource);
 
-            UtilityFunctions::print("Saved neural network to: " + path);
-        }
-        else
-        {
-            UtilityFunctions::printerr("Cannot save neural network, the path is empty. (Make sure it's not built-in!)");
-        }
+    //         // Ensure the JSON data is correctly reported in the editor
+    //         ResourceSaver::get_singleton()->save(stored_network, path);
 
-        delete nn;
-    }
+    //         UtilityFunctions::print("Saved neural network to: " + path);
+    //     }
+    //     else
+    //     {
+    //         UtilityFunctions::printerr("Cannot save neural network, the path is empty. (Make sure it's not built-in!)");
+    //     }
+    // }
 
     bool get_use_existing_network() const
     {

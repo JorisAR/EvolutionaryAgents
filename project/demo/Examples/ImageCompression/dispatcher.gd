@@ -47,17 +47,23 @@ func get_settings_bytes() -> PackedByteArray:
 
 #endregion
 
-var SPLAT_COUNT := 100;
+var SPLAT_COUNT := 128;
 const SPLAT_FLOAT_COUNT := 5;
 const SPLAT_SIZE := SPLAT_FLOAT_COUNT * 4;
 
+
 @export_group("Settings")
+@export var render_period = 100;
 @export var _dataTexture : Texture2D
 @export var _renderResolution : Vector2i = Vector2i(512, 512);
 
 @export_group("Requirements")
 @export_file() var _computeShader : String
 @export var _renderer : TextureRect
+
+@export_group("Output", "output_")
+@export var output_store_images : bool;
+@export_dir var output_dir : String;
 
 var _rd : RenderingDevice
 
@@ -126,6 +132,7 @@ func create_pipeline() -> void:
 	
 func default_texture_format(size: Vector2i) -> RDTextureFormat:
 	var format := RDTextureFormat.new()
+	format.texture_type = RenderingDevice.TEXTURE_TYPE_2D
 	format.width = size.x
 	format.height = size.y
 	format.format = RenderingDevice.DATA_FORMAT_R8G8B8A8_UNORM
@@ -207,18 +214,37 @@ func update() -> void:
 	_rd.compute_list_dispatch(computeList, 32, 32, 1)
 	_rd.compute_list_end()
 	_rd.submit()
-	
+
+var gen = 0;
+var g = 0;
+var best_fitness = -1e9;
+var best_bytes;
 func render() -> float:
 	if _rd == null:
 		return 0.0
-	_rd.sync()
-	var bytes = _rd.texture_get_data(_outputTexture, 0)
-	_outputImage.set_data(_renderResolution.x, _renderResolution.y, false, Image.FORMAT_RGBA8, bytes)
-	_renderTexture.update(_outputImage)
+	gen += 1
+	g += 1
+	_rd.sync();
 	
 	var error_buffer = _rd.buffer_get_data(_errorStorageBuffer, 0, 4)
-	var error_value = error_buffer.decode_float(0)
-	return error_value
+	#take negative error, as we want to maximise. 
+	# (lower error is better, thus higher negative error is better)
+	var fitness = -error_buffer.decode_float(0) 
+	
+	if fitness > best_fitness:
+		best_bytes = _rd.texture_get_data(_outputTexture, 0)
+		best_fitness = fitness
+	
+	if gen >= render_period:
+		best_fitness = -1e9
+		_outputImage.set_data(_renderResolution.x, _renderResolution.y, false, Image.FORMAT_RGBA8, best_bytes)
+		_renderTexture.update(_outputImage)
+		gen = 0;
+		if output_store_images:
+			var file := output_dir + "/image_" + str(g) + ".png"
+			_renderTexture.get_image().save_png(file)
+
+	return fitness
 
 	
 func cleanup_gpu() -> void:

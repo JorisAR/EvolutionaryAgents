@@ -11,7 +11,6 @@
 
 #include "Agent.h"
 #include "evolutionary_algorithm_parameters.h"
-#include "json_utils.h"
 #include "logger.h"
 #include "neural_network_parameters.h"
 #include "utils.h"
@@ -20,29 +19,29 @@
 namespace godot
 {
 
-class Gym : public EvolutionaryOptimizer
+class EvolutionaryGym : public EvolutionaryOptimizer
 {
-    GDCLASS(Gym, EvolutionaryOptimizer)
+    GDCLASS(EvolutionaryGym, EvolutionaryOptimizer)
 
   public:
     static void _bind_methods()
     {
-        ClassDB::bind_method(D_METHOD("on_agent_ended"), &Gym::on_agent_ended);
-        ClassDB::bind_method(D_METHOD("set_agents", "agents"), &Gym::set_agents);
-        ClassDB::bind_method(D_METHOD("get_agents"), &Gym::get_agents);
+        ClassDB::bind_method(D_METHOD("on_agent_ended"), &EvolutionaryGym::on_agent_ended);
+        ClassDB::bind_method(D_METHOD("set_agents", "agents"), &EvolutionaryGym::set_agents);
+        ClassDB::bind_method(D_METHOD("get_agents"), &EvolutionaryGym::get_agents);
 
-        ClassDB::bind_method(D_METHOD("set_neural_network", "neural network"), &Gym::set_neural_network);
-        ClassDB::bind_method(D_METHOD("get_neural_network"), &Gym::get_neural_network);
+        ClassDB::bind_method(D_METHOD("set_neural_network", "neural network"), &EvolutionaryGym::set_neural_network);
+        ClassDB::bind_method(D_METHOD("get_neural_network"), &EvolutionaryGym::get_neural_network);
 
-        ClassDB::bind_method(D_METHOD("get_physics_ticks_per_second"), &Gym::get_physics_ticks_per_second);
+        ClassDB::bind_method(D_METHOD("get_physics_ticks_per_second"), &EvolutionaryGym::get_physics_ticks_per_second);
         ClassDB::bind_method(D_METHOD("set_physics_ticks_per_second", "value"),
-                             &Gym::set_physics_ticks_per_second);
+                             &EvolutionaryGym::set_physics_ticks_per_second);
 
-        ClassDB::bind_method(D_METHOD("get_max_fps"), &Gym::get_max_fps);
-        ClassDB::bind_method(D_METHOD("set_max_fps", "value"), &Gym::set_max_fps);
+        ClassDB::bind_method(D_METHOD("get_max_fps"), &EvolutionaryGym::get_max_fps);
+        ClassDB::bind_method(D_METHOD("set_max_fps", "value"), &EvolutionaryGym::set_max_fps);
 
-        ClassDB::bind_method(D_METHOD("get_time_scale"), &Gym::get_time_scale);
-        ClassDB::bind_method(D_METHOD("set_time_scale", "value"), &Gym::set_time_scale);
+        ClassDB::bind_method(D_METHOD("get_time_scale"), &EvolutionaryGym::get_time_scale);
+        ClassDB::bind_method(D_METHOD("set_time_scale", "value"), &EvolutionaryGym::set_time_scale);
 
         ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "agents", PROPERTY_HINT_TYPE_STRING,
                                   String::num(Variant::OBJECT) + "/" + String::num(PROPERTY_HINT_NODE_TYPE) + ":Agent"),
@@ -59,7 +58,7 @@ class Gym : public EvolutionaryOptimizer
         ADD_PROPERTY(PropertyInfo(Variant::INT, "time_scale"), "set_time_scale", "get_time_scale");
     }
 
-    Gym() : EvolutionaryOptimizer()
+    EvolutionaryGym() : EvolutionaryOptimizer()
     {
     }
 

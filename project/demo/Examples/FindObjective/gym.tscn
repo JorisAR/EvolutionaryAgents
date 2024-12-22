@@ -17,7 +17,7 @@ sky = SubResource("Sky_qs5i4")
 
 [node name="Gym" type="Node3D"]
 
-[node name="corridor_gym" type="Gym" parent="."]
+[node name="corridor_gym" type="EvolutionaryGym" parent="."]
 neural_network_parameters = ExtResource("1_tmt5w")
 time_scale = 1000
 evolutionary_algorithm_parameters = ExtResource("1_yb5b5")

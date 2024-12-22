@@ -1,4 +1,8 @@
 [gd_resource type="GeneticAlgorithmParameters" format=3 uid="uid://x422wi5rb0as"]
 
 [resource]
-lower_bound = 2.67466e-41
+mutation_mode = 1
+mutation_rate = 0.025
+mutation_radius = 0.01
+crossover_mode = 3
+bound_enabled = true

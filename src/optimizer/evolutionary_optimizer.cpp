@@ -140,7 +140,7 @@ void EvolutionaryOptimizer::_notification(int p_what)
     }
     switch (p_what)
     {
-    case NOTIFICATION_ENTER_TREE: {
+    case NOTIFICATION_READY: {
         call_deferred("start_training");
         break;
     }
@@ -240,8 +240,6 @@ void EvolutionaryOptimizer::end_training()
     }
     training = false;
     UtilityFunctions::print("Training finished!");
-    auto genome = ea->get_best_individual();
-    UtilityFunctions::print(static_cast<String>("Final genome: " + Utils::vector_to_string_float(genome)));
 
     if (log && logger != nullptr)
     {

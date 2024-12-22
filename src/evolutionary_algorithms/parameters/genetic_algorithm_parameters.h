@@ -12,81 +12,149 @@ class GeneticAlgorithmParameters : public EvolutionaryAlgorithmParameters
 {
     GDCLASS(GeneticAlgorithmParameters, EvolutionaryAlgorithmParameters)
 
-public:
+  public:
     static void _bind_methods()
     {
         ClassDB::bind_method(D_METHOD("get_is_binary"), &GeneticAlgorithmParameters::get_is_binary);
         ClassDB::bind_method(D_METHOD("set_is_binary", "is_binary"), &GeneticAlgorithmParameters::set_is_binary);
-        ClassDB::bind_method(D_METHOD("get_lower_bound"), &GeneticAlgorithmParameters::get_lower_bound);
-        ClassDB::bind_method(D_METHOD("set_lower_bound", "lower_bound"), &GeneticAlgorithmParameters::set_lower_bound);
-        ClassDB::bind_method(D_METHOD("get_upper_bound"), &GeneticAlgorithmParameters::get_upper_bound);
-        ClassDB::bind_method(D_METHOD("set_upper_bound", "upper_bound"), &GeneticAlgorithmParameters::set_upper_bound);
+
+        // mutation
         ClassDB::bind_method(D_METHOD("get_mutation_rate"), &GeneticAlgorithmParameters::get_mutation_rate);
-        ClassDB::bind_method(D_METHOD("set_mutation_rate", "mutation_rate"), &GeneticAlgorithmParameters::set_mutation_rate);
+        ClassDB::bind_method(D_METHOD("set_mutation_rate", "mutation_rate"),
+                             &GeneticAlgorithmParameters::set_mutation_rate);
+        ClassDB::bind_method(D_METHOD("get_mutation_radius"), &GeneticAlgorithmParameters::get_mutation_radius);
+        ClassDB::bind_method(D_METHOD("set_mutation_radius", "mutation_radius"),
+                             &GeneticAlgorithmParameters::set_mutation_radius);
+        ClassDB::bind_method(D_METHOD("get_mutation_mode"), &GeneticAlgorithmParameters::get_mutation_mode);
+        ClassDB::bind_method(D_METHOD("set_mutation_mode", "mutation_mode"),
+                             &GeneticAlgorithmParameters::set_mutation_mode);
+
+        // selection
         ClassDB::bind_method(D_METHOD("get_selection_rate"), &GeneticAlgorithmParameters::get_selection_rate);
-        ClassDB::bind_method(D_METHOD("set_selection_rate", "selection_rate"), &GeneticAlgorithmParameters::set_selection_rate);
+        ClassDB::bind_method(D_METHOD("set_selection_rate", "selection_rate"),
+                             &GeneticAlgorithmParameters::set_selection_rate);
         ClassDB::bind_method(D_METHOD("get_crossover_mode"), &GeneticAlgorithmParameters::get_crossover_mode);
-        ClassDB::bind_method(D_METHOD("set_crossover_mode", "crossover_mode"), &GeneticAlgorithmParameters::set_crossover_mode);
+        ClassDB::bind_method(D_METHOD("set_crossover_mode", "crossover_mode"),
+                             &GeneticAlgorithmParameters::set_crossover_mode);
 
         ADD_PROPERTY(PropertyInfo(Variant::BOOL, "is_binary"), "set_is_binary", "get_is_binary");
-        ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "lower_bound"), "set_lower_bound", "get_lower_bound");
-        ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "upper_bound"), "set_upper_bound", "get_upper_bound");
-        ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "mutation_rate"), "set_mutation_rate", "get_mutation_rate");
-        ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "selection_rate"), "set_selection_rate", "get_selection_rate");
-        ADD_PROPERTY(PropertyInfo(Variant::INT, "key", PROPERTY_HINT_ENUM, "OnePoint,TwoPoint,Uniform,None", PROPERTY_USAGE_DEFAULT), "set_crossover_mode", "get_crossover_mode");
 
-        BIND_ENUM_CONSTANT(EA::GeneticAlgorithm::CrossoverMode::NONE);
-        BIND_ENUM_CONSTANT(EA::GeneticAlgorithm::CrossoverMode::ONE_POINT);
-        BIND_ENUM_CONSTANT(EA::GeneticAlgorithm::CrossoverMode::TWO_POINT);
-        BIND_ENUM_CONSTANT(EA::GeneticAlgorithm::CrossoverMode::UNIFORM);
+        ADD_GROUP("Mutation", "mutation_");
+        ADD_PROPERTY(
+            PropertyInfo(Variant::INT, "mutation_mode", PROPERTY_HINT_ENUM, "Uniform,Gaussian,None", PROPERTY_USAGE_DEFAULT),
+            "set_mutation_mode", "get_mutation_mode");
+        BIND_ENUM_CONSTANT(EA::GeneticAlgorithm::MUTATION_UNIFORM);
+        BIND_ENUM_CONSTANT(EA::GeneticAlgorithm::MUTATION_GAUSSIAN);
+        BIND_ENUM_CONSTANT(EA::GeneticAlgorithm::MUTATION_NONE);
+        ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "mutation_rate"), "set_mutation_rate", "get_mutation_rate");
+        ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "mutation_radius"), "set_mutation_radius", "get_mutation_radius");
+
+        ADD_GROUP("Selection", "");
+        ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "selection_rate"), "set_selection_rate", "get_selection_rate");
+        ADD_PROPERTY(PropertyInfo(Variant::INT, "crossover_mode", PROPERTY_HINT_ENUM, "OnePoint,TwoPoint,Uniform,None",
+                                  PROPERTY_USAGE_DEFAULT),
+                     "set_crossover_mode", "get_crossover_mode");
+
+        BIND_ENUM_CONSTANT(EA::GeneticAlgorithm::CROSSOVER_ONE_POINT);
+        BIND_ENUM_CONSTANT(EA::GeneticAlgorithm::CROSSOVER_TWO_POINT);
+        BIND_ENUM_CONSTANT(EA::GeneticAlgorithm::CROSSOVER_UNIFORM);
+        BIND_ENUM_CONSTANT(EA::GeneticAlgorithm::CROSSOVER_NONE);
     }
 
-    GeneticAlgorithmParameters() {}
-    ~GeneticAlgorithmParameters() {}
+    GeneticAlgorithmParameters()
+    {
+    }
+    ~GeneticAlgorithmParameters()
+    {
+    }
 
     void _init()
     {
-        is_binary_ = false;
-        lower_bound_ = 0.0f;
-        upper_bound_ = 1.0f;
-        mutation_rate_ = 0.05f;
-        selection_rate_ = 0.5f;
-        crossover_mode_ = EA::GeneticAlgorithm::ONE_POINT;
+        is_binary = false;
+
+        mutation_rate = 0.05f;
+        mutation_radius = 0.5f;
+        selection_rate = 0.5f;
+        crossover_mode = EA::GeneticAlgorithm::CROSSOVER_ONE_POINT;
+        mutation_mode = EA::GeneticAlgorithm::MUTATION_UNIFORM;
     }
 
-    bool get_is_binary() const { return is_binary_; }
-    void set_is_binary(bool is_binary) { is_binary_ = is_binary; }
+    bool get_is_binary() const
+    {
+        return is_binary;
+    }
+    void set_is_binary(bool value)
+    {
+        is_binary = value;
+    }
 
-    float get_lower_bound() const { return lower_bound_; }
-    void set_lower_bound(float lower_bound) { lower_bound_ = lower_bound; }
+    float get_selection_rate() const
+    {
+        return selection_rate;
+    }
+    void set_selection_rate(float value)
+    {
+        selection_rate = value;
+    }
 
-    float get_upper_bound() const { return upper_bound_; }
-    void set_upper_bound(float upper_bound) { upper_bound_ = upper_bound; }
+    int get_crossover_mode() const
+    {
+        return static_cast<int>(crossover_mode);
+    }
+    void set_crossover_mode(int value)
+    {
+        this->crossover_mode = static_cast<EA::GeneticAlgorithm::CrossoverMode>(value);
+    }
 
-    float get_mutation_rate() const { return mutation_rate_; }
-    void set_mutation_rate(float mutation_rate) { mutation_rate_ = mutation_rate; }
+    int get_mutation_mode() const
+    {
+        return static_cast<int>(mutation_mode);
+    }
+    void set_mutation_mode(int value)
+    {
+        this->mutation_mode = static_cast<EA::GeneticAlgorithm::MutationMode>(value);
+    }
 
-    float get_selection_rate() const { return selection_rate_; }
-    void set_selection_rate(float selection_rate) { selection_rate_ = selection_rate; }
+    float get_mutation_rate() const
+    {
+        return mutation_rate;
+    }
+    void set_mutation_rate(float value)
+    {
+        mutation_rate = value;
+    }
 
-    int get_crossover_mode() const { return static_cast<int>(crossover_mode_); }
-    void set_crossover_mode(int crossover_mode) { crossover_mode_ = static_cast<EA::GeneticAlgorithm::CrossoverMode>(crossover_mode); }
+    float get_mutation_radius() const
+    {
+        return mutation_radius;
+    }
+    void set_mutation_radius(float value)
+    {
+        mutation_radius = value;
+    }
 
     EA::EvolutionaryAlgorithm *get_evolutionary_algorithm(int population_size, int individual_size) override
     {
-        return new EA::GeneticAlgorithm(population_size, individual_size, is_binary_, lower_bound_, upper_bound_, mutation_rate_, selection_rate_, crossover_mode_);
+        auto ea =
+            new EA::GeneticAlgorithm(population_size, individual_size, is_binary, get_lower_bound(), get_upper_bound(),
+                                     mutation_rate, selection_rate, crossover_mode, mutation_mode, mutation_radius);
+        if (get_use_bound())
+            ea->set_bounds(get_lower_bound(), get_upper_bound());
+        return ea;
     }
 
-private:
-    bool is_binary_ = false;
-    float lower_bound_ = 0.0f;
-    float upper_bound_ = 1.0f;
-    float mutation_rate_ = 0.05f;
-    float selection_rate_ = 0.5f;
-    EA::GeneticAlgorithm::CrossoverMode crossover_mode_ = EA::GeneticAlgorithm::ONE_POINT;
+  private:
+    bool is_binary = false;
+
+    float mutation_rate = 0.05f;
+    float mutation_radius = 0.5f;
+    float selection_rate = 0.5f;
+    EA::GeneticAlgorithm::CrossoverMode crossover_mode = EA::GeneticAlgorithm::CROSSOVER_ONE_POINT;
+    EA::GeneticAlgorithm::MutationMode mutation_mode = EA::GeneticAlgorithm::MUTATION_UNIFORM;
 };
 } // namespace godot
 
 VARIANT_ENUM_CAST(EA::GeneticAlgorithm::CrossoverMode);
+VARIANT_ENUM_CAST(EA::GeneticAlgorithm::MutationMode);
 
 #endif

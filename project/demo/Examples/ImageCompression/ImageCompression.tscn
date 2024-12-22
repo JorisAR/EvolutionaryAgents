@@ -1,23 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://6rb6dcomjc1o"]
+[gd_scene load_steps=7 format=3 uid="uid://6rb6dcomjc1o"]
 
+[ext_resource type="JSON" path="res://demo/Examples/ImageCompression/image_state.json" id="1_2pcgb"]
 [ext_resource type="Script" path="res://demo/Examples/ImageCompression/dispatcher.gd" id="1_2t3dg"]
 [ext_resource type="Texture2D" uid="uid://dk5cgcy62h65t" path="res://icon.svg" id="2_epqur"]
+[ext_resource type="GeneticAlgorithmParameters" uid="uid://x422wi5rb0as" path="res://demo/Examples/ImageCompression/GAParams.tres" id="2_faspe"]
 [ext_resource type="Script" path="res://demo/Examples/ImageCompression/CompressorHandler.gd" id="3_cy0ge"]
 [ext_resource type="Texture2D" uid="uid://nnkmjjwiikrf" path="res://demo/Examples/ImageCompression/jar_half.png" id="4_mamvo"]
 
-[sub_resource type="StochasticAscentGAParameters" id="StochasticAscentGAParameters_tksbw"]
-mutation_rate = 0.2
-block_sizes = PackedInt32Array(2, 3)
-
 [node name="ImageCompression" type="ProblemOptimizer" node_paths=PackedStringArray("problem")]
 problem = NodePath("OptimizableProblem")
-population_size = 50
-evolutionary_algorithm_parameters = SubResource("StochasticAscentGAParameters_tksbw")
+population_size = 20
+stored_state = ExtResource("1_2pcgb")
+evolutionary_algorithm_parameters = ExtResource("2_faspe")
 debug_verbose = true
 debug_log_csv = true
 
 [node name="OptimizableProblem" type="OptimizableProblem" parent="." node_paths=PackedStringArray("dispatcher", "optimizer")]
-genome_size = 900
+genome_size = 640
 script = ExtResource("3_cy0ge")
 dispatcher = NodePath("../SplatRenderer")
 optimizer = NodePath("..")
@@ -27,6 +26,7 @@ script = ExtResource("1_2t3dg")
 _dataTexture = ExtResource("4_mamvo")
 _computeShader = "res://demo/Examples/ImageCompression/voronoi_renderer.glsl"
 _renderer = NodePath("../AspectRatioContainer/TextureRect")
+output_dir = "res://demo/Examples/ImageCompression/out"
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 anchors_preset = 15

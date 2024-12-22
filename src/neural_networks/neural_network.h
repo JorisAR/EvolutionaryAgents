@@ -5,12 +5,14 @@
 #include <godot_cpp/classes/object.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
 #include "i_serializable.h"
+#include "evolutionary_algorithm_state.h"
 
-class NeuralNetwork : public ISerializable<NeuralNetwork>
+class NeuralNetwork
 {
 public:
     NeuralNetwork() = default;
     NeuralNetwork(const std::vector<int> &layers);
+    NeuralNetwork(const EA::EvolutionaryAlgorithmState *state);
 
     std::vector<float> infer(const std::vector<float> &inputs);
     std::vector<float> get_zero_out();
@@ -23,8 +25,6 @@ public:
     
 
     godot::PackedFloat32Array get_parameters() const;
-    godot::Dictionary to_dict() const override;
-    void deserialize_from_dict(const godot::Dictionary &dict) override;
 
     static std::vector<int> calculate_total_parameters(const std::vector<int> &layers);
     std::vector<int> get_layers() { return layers; }

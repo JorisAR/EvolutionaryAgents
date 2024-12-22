@@ -6,7 +6,7 @@
 
 [sub_resource type="SepCMAESParameters" id="SepCMAESParameters_emnqm"]
 
-[node name="Gym" type="Gym"]
+[node name="Gym" type="EvolutionaryGym"]
 neural_network_parameters = ExtResource("1_cc5kg")
 time_scale = 10000
 evolutionary_algorithm_parameters = SubResource("SepCMAESParameters_emnqm")

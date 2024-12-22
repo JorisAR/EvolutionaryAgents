@@ -16,4 +16,4 @@ position = Vector2(57.1369, 34.5649)
 texture = ExtResource("1_q8b6k")
 script = ExtResource("2_00d6i")
 
-[node name="Gym" type="Gym" parent="."]
+[node name="Gym" type="EvolutionaryGym" parent="."]

@@ -18,6 +18,19 @@ void EvolutionaryAlgorithm::initialize_population()
     population.resize(population_size, std::vector<float>(individual_size));
 }
 
+void EvolutionaryAlgorithm::clamp_population()
+{
+    if (!use_bound) return;
+
+    for (auto &individual : population)
+    {
+        for (auto &value : individual)
+        {
+            value = std::max(lower_bound, std::min(value, upper_bound));
+        }
+    }
+}
+
 void EvolutionaryAlgorithm::set_population(const std::vector<float> individual)
 {
     if (individual.size() == individual_size)
@@ -25,4 +38,12 @@ void EvolutionaryAlgorithm::set_population(const std::vector<float> individual)
         population.assign(population_size, individual);
     }
 }
+
+void EvolutionaryAlgorithm::set_bounds(const float lower_bound, const float upper_bound)
+{
+    use_bound = true;
+    this->lower_bound = lower_bound;
+    this->upper_bound = upper_bound;
+}
+
 } // namespace EA

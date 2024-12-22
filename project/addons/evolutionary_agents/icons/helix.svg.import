@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nnkmjjwiikrf"
-path="res://.godot/imported/jar_half.png-1717b240eaa5a4dd48e89a6205eb3c31.ctex"
+uid="uid://3d7hwscbfmem"
+path="res://.godot/imported/helix.svg-8599639f3f650894760e023735dac28f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://demo/Examples/ImageCompression/jar_half.png"
-dest_files=["res://.godot/imported/jar_half.png-1717b240eaa5a4dd48e89a6205eb3c31.ctex"]
+source_file="res://addons/evolutionary_agents/icons/helix.svg"
+dest_files=["res://.godot/imported/helix.svg-8599639f3f650894760e023735dac28f.ctex"]
 
 [params]
 
@@ -31,4 +31,7 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

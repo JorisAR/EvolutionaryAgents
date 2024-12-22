@@ -16,8 +16,8 @@ env.Append(CPPPATH=[
     "src/evolutionary_algorithms/", 
     "src/evolutionary_algorithms/parameters/", 
     "src/evolutionary_algorithms/test_application/",
-    "src/gym/sensors/",   
-    "src/gym/",
+    "src/optimizer/sensors/",   
+    "src/optimizer/",
 ])
 
 # Add main source files
@@ -42,7 +42,7 @@ optimizer_sources = [
     "src/optimizer/problem_optimizer.cpp",
     "src/optimizer/sensors/depth_sensor3d.cpp",
     "src/optimizer/agent.cpp",
-    "src/optimizer/gym.cpp"    
+    "src/optimizer/evolutionary_gym.cpp"    
 ]
 
 sources = sources + evolutionary_sources + neural_network_sources + optimizer_sources

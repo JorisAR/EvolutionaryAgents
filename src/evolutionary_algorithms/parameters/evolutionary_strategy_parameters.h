@@ -57,7 +57,10 @@ class EvolutionaryStrategyParameters : public EvolutionaryAlgorithmParameters
 
     EA::EvolutionaryAlgorithm *get_evolutionary_algorithm(int population_size, int individual_size) override
     {
-        return new EA::EvolutionaryStrategy(population_size, individual_size, sigma_, alpha_);
+        auto ea = new EA::EvolutionaryStrategy(population_size, individual_size, sigma_, alpha_);
+        if (get_use_bound())
+            ea->set_bounds(get_lower_bound(), get_upper_bound());
+        return ea;
     }
 
   private:
