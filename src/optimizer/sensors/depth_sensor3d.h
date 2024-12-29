@@ -2,7 +2,7 @@
 #define DEPTH_SENSOR3D_H
 
 #include "sensor3d.h"
-#include <godot_cpp/classes/World3D.hpp>
+#include <godot_cpp/classes/world3d.hpp>
 #include <godot_cpp/classes/array_mesh.hpp>
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/classes/node3d.hpp>
