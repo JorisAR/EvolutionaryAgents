@@ -27,8 +27,8 @@ The project includes logging functionality to track the training progress and to
 
 1. **Clone the repository**
    ```sh
-   git clone https://github.com/your-repo/your-project.git
-   cd your-project
+   git clone https://github.com/JorisAR/GDEvolutionaryAgents
+   cd GDEvolutionaryAgents
    ```
 
 2. **Install Python dependencies**

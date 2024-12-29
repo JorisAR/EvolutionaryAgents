@@ -1,4 +1,5 @@
 name: 🛠️ Builds
+
 on:
   push:
   pull_request:
@@ -12,23 +13,11 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - identifier: linux-debug
-            name: Linux Debug
-            runner: ubuntu-20.04
-            target: template_debug
-            platform: linux
-            arch: x86_64
           - identifier: linux-release
             name: Linux Release
             runner: ubuntu-20.04
             target: template_release
             platform: linux
-            arch: x86_64
-          - identifier: windows-debug
-            name: Windows Debug
-            runner: ubuntu-20.04
-            target: template_debug
-            platform: windows
             arch: x86_64
           - identifier: windows-release
             name: Windows Release
@@ -62,13 +51,6 @@ jobs:
       - name: (Android) Install Android SDK
         if: ${{ startsWith(matrix.identifier, 'android-') }}
         uses: android-actions/setup-android@v3
-
-      # From Godot docs, might not be necessary.
-      #- name: (Android) Install Android Tools
-      #  if: ${{ startsWith(matrix.identifier, 'android-') }}
-      #  shell: sh
-      #  run: |
-      #    "$ANDROID_SDK_ROOT"/cmdline-tools/latest/bin/sdkmanager --sdk_root="$ANDROID_SDK_ROOT" "platform-tools" "build-tools;30.0.3" "platforms;android-29" "cmdline-tools;latest" "cmake;3.10.2.4988404"
 
       - name: (Android) Install NDK r23c
         if: ${{ matrix.platform == 'android' }}
