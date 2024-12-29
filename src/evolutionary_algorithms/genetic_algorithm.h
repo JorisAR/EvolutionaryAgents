@@ -28,7 +28,7 @@ class GeneticAlgorithm : public EvolutionaryAlgorithm
 
     GeneticAlgorithm(int population_size, int individual_size, bool is_binary, float lower_bound, float upper_bound,
                      float mutation_rate, float selection_rate, CrossoverMode crossover_mode,
-                     MutationMode mutation_mode, float mutation_radius);
+                     MutationMode mutation_mode, float mutation_radius, float elitism_rate, int tournament_size);
     ~GeneticAlgorithm()
     {
     }
@@ -47,7 +47,9 @@ class GeneticAlgorithm : public EvolutionaryAlgorithm
     float mutation_radius;
 
     // selection
-    float selection_rate;
+    float selection_rate = 0.5;
+    float elitism_rate = 0.05;
+    int tournament_size = 4;
 
     // Random device and distributions
     std::random_device rd;
@@ -59,8 +61,9 @@ class GeneticAlgorithm : public EvolutionaryAlgorithm
     std::vector<float> best_individual;
 
     std::vector<std::vector<float>> generate_population();
-    void crossover(const std::vector<float> &parent1, const std::vector<float> &parent2, std::vector<float> &child);
+    void crossover(const std::vector<float> &parent1, const std::vector<float> &parent2, std::vector<float> &child1, std::vector<float> &child2);
     void mutate(std::vector<float> &child);
+    int tournament_selection(const std::vector<float> &fitness, const int selected_size, int tournament_size);
 };
 } // namespace EA
 

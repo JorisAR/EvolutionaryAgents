@@ -2,16 +2,18 @@
 
 [ext_resource type="JSON" path="res://demo/Examples/ImageCompression/image_state.json" id="1_2pcgb"]
 [ext_resource type="Script" path="res://demo/Examples/ImageCompression/dispatcher.gd" id="1_2t3dg"]
-[ext_resource type="Texture2D" uid="uid://dk5cgcy62h65t" path="res://icon.svg" id="2_epqur"]
-[ext_resource type="SepCMAESParameters" uid="uid://uv5n53k65hmw" path="res://demo/Examples/FindObjective/sep_cma_es.tres" id="2_vrpcf"]
 [ext_resource type="Script" path="res://demo/Examples/ImageCompression/CompressorHandler.gd" id="3_cy0ge"]
 [ext_resource type="Texture2D" uid="uid://nnkmjjwiikrf" path="res://demo/Examples/ImageCompression/jar_half.png" id="4_mamvo"]
+[ext_resource type="Texture2D" uid="uid://3d7hwscbfmem" path="res://addons/evolutionary_agents/icons/helix.svg" id="5_4ujxc"]
+
+[sub_resource type="SepCMAESParameters" id="SepCMAESParameters_ueuk0"]
+bound_enabled = true
 
 [node name="ImageCompression" type="ProblemOptimizer" node_paths=PackedStringArray("problem")]
 problem = NodePath("OptimizableProblem")
-population_size = 20
+population_size = 50
 stored_state = ExtResource("1_2pcgb")
-evolutionary_algorithm_parameters = ExtResource("2_vrpcf")
+evolutionary_algorithm_parameters = SubResource("SepCMAESParameters_ueuk0")
 debug_verbose = true
 debug_log_csv = true
 
@@ -36,7 +38,7 @@ grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="AspectRatioContainer"]
 layout_mode = 2
-texture = ExtResource("2_epqur")
+texture = ExtResource("5_4ujxc")
 
 [connection signal="generation_ended" from="." to="OptimizableProblem" method="_on_image_compression_generation_ended"]
 [connection signal="started" from="OptimizableProblem" to="OptimizableProblem" method="_on_started"]

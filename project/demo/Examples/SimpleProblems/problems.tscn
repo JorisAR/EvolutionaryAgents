@@ -1,22 +1,21 @@
 [gd_scene load_steps=3 format=3 uid="uid://c37yldhi151yx"]
 
-[ext_resource type="SepCMAESParameters" uid="uid://uv5n53k65hmw" path="res://demo/Examples/FindObjective/sep_cma_es.tres" id="1_qnf4g"]
-[ext_resource type="Script" path="res://demo/Examples/SimpleProblems/problems.gd" id="3_gc171"]
+[ext_resource type="GeneticAlgorithmParameters" uid="uid://dt7l7erv8s0rn" path="res://demo/Examples/SimpleProblems/simple_binary_ga.tres" id="1_yswet"]
+[ext_resource type="Script" path="res://demo/Examples/SimpleProblems/problems.gd" id="2_oe1fj"]
 
 [node name="Node" type="Node"]
 
 [node name="ProblemOptimizer" type="ProblemOptimizer" parent="." node_paths=PackedStringArray("problem")]
 problem = NodePath("OptimizableProblem")
-population_size = 50
-multithreading_enabled = true
-evolutionary_algorithm_parameters = ExtResource("1_qnf4g")
+population_size = 100
+evolutionary_algorithm_parameters = ExtResource("1_yswet")
 debug_verbose = true
 debug_log_csv = true
 termination_use_max_generation = true
 
 [node name="OptimizableProblem" type="OptimizableProblem" parent="ProblemOptimizer"]
-genome_size = 100
-script = ExtResource("3_gc171")
-problem_type = 2
+genome_size = 1000
+script = ExtResource("2_oe1fj")
+problem_type = 3
 
 [connection signal="started" from="ProblemOptimizer/OptimizableProblem" to="ProblemOptimizer/OptimizableProblem" method="_on_started"]

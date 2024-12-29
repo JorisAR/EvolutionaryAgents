@@ -20,6 +20,12 @@ struct VoronoiPoint {
     vec3 color;
 };
 
+float distSquared( vec3 A, vec3 B )
+{
+    vec3 C = A - B;
+    return dot( C, C );
+}
+
 // Function to decode a VoronoiPoint from pointData
 VoronoiPoint getPoint(int index) {
     VoronoiPoint point;
@@ -60,7 +66,7 @@ void main() {
     vec3 color = findClosestPointColor(normalized_pos);
 
     vec3 input_color = texture(inputSampler, normalized_pos).rgb; 
-    float local_error = pow(distance(color, input_color), 2.0); 
+    float local_error = distSquared(color, input_color); 
     // Use atomic add to accumulate the error 
     atomicAdd(error, local_error);
 

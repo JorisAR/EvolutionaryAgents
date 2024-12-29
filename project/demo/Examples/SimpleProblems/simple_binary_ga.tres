@@ -1,0 +1,6 @@
+[gd_resource type="GeneticAlgorithmParameters" format=3 uid="uid://dt7l7erv8s0rn"]
+
+[resource]
+is_binary = true
+selection_tournament_size = 8
+bound_enabled = true

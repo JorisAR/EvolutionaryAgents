@@ -33,6 +33,13 @@ class GeneticAlgorithmParameters : public EvolutionaryAlgorithmParameters
         ClassDB::bind_method(D_METHOD("get_selection_rate"), &GeneticAlgorithmParameters::get_selection_rate);
         ClassDB::bind_method(D_METHOD("set_selection_rate", "selection_rate"),
                              &GeneticAlgorithmParameters::set_selection_rate);
+        ClassDB::bind_method(D_METHOD("get_elitism_rate"), &GeneticAlgorithmParameters::get_elitism_rate);
+        ClassDB::bind_method(D_METHOD("set_elitism_rate", "elitism_rate"),
+                             &GeneticAlgorithmParameters::set_elitism_rate);
+        ClassDB::bind_method(D_METHOD("get_tournament_size"), &GeneticAlgorithmParameters::get_tournament_size);
+        ClassDB::bind_method(D_METHOD("set_tournament_size", "tournament_size"),
+                             &GeneticAlgorithmParameters::set_tournament_size);
+        // crossover
         ClassDB::bind_method(D_METHOD("get_crossover_mode"), &GeneticAlgorithmParameters::get_crossover_mode);
         ClassDB::bind_method(D_METHOD("set_crossover_mode", "crossover_mode"),
                              &GeneticAlgorithmParameters::set_crossover_mode);
@@ -40,17 +47,23 @@ class GeneticAlgorithmParameters : public EvolutionaryAlgorithmParameters
         ADD_PROPERTY(PropertyInfo(Variant::BOOL, "is_binary"), "set_is_binary", "get_is_binary");
 
         ADD_GROUP("Mutation", "mutation_");
-        ADD_PROPERTY(
-            PropertyInfo(Variant::INT, "mutation_mode", PROPERTY_HINT_ENUM, "Uniform,Gaussian,None", PROPERTY_USAGE_DEFAULT),
-            "set_mutation_mode", "get_mutation_mode");
+        ADD_PROPERTY(PropertyInfo(Variant::INT, "mutation_mode", PROPERTY_HINT_ENUM, "Uniform,Gaussian,None",
+                                  PROPERTY_USAGE_DEFAULT),
+                     "set_mutation_mode", "get_mutation_mode");
         BIND_ENUM_CONSTANT(EA::GeneticAlgorithm::MUTATION_UNIFORM);
         BIND_ENUM_CONSTANT(EA::GeneticAlgorithm::MUTATION_GAUSSIAN);
         BIND_ENUM_CONSTANT(EA::GeneticAlgorithm::MUTATION_NONE);
         ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "mutation_rate"), "set_mutation_rate", "get_mutation_rate");
         ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "mutation_radius"), "set_mutation_radius", "get_mutation_radius");
 
-        ADD_GROUP("Selection", "");
+        ADD_GROUP("Selection", "selection_");
         ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "selection_rate"), "set_selection_rate", "get_selection_rate");
+        ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "selection_elitism_rate"), "set_elitism_rate", "get_elitism_rate");
+
+        ADD_PROPERTY(PropertyInfo(Variant::INT, "selection_tournament_size"), "set_tournament_size",
+                     "get_tournament_size");
+
+        ADD_GROUP("Crossover", "crossover_");
         ADD_PROPERTY(PropertyInfo(Variant::INT, "crossover_mode", PROPERTY_HINT_ENUM, "OnePoint,TwoPoint,Uniform,None",
                                   PROPERTY_USAGE_DEFAULT),
                      "set_crossover_mode", "get_crossover_mode");
@@ -133,11 +146,29 @@ class GeneticAlgorithmParameters : public EvolutionaryAlgorithmParameters
         mutation_radius = value;
     }
 
+    float get_elitism_rate() const
+    {
+        return elitism_rate;
+    }
+    void set_elitism_rate(float value)
+    {
+        elitism_rate = value;
+    }
+
+    int get_tournament_size() const
+    {
+        return tournament_size;
+    }
+    void set_tournament_size(int value)
+    {
+        tournament_size = value;
+    }
+
     EA::EvolutionaryAlgorithm *get_evolutionary_algorithm(int population_size, int individual_size) override
     {
-        auto ea =
-            new EA::GeneticAlgorithm(population_size, individual_size, is_binary, get_lower_bound(), get_upper_bound(),
-                                     mutation_rate, selection_rate, crossover_mode, mutation_mode, mutation_radius);
+        auto ea = new EA::GeneticAlgorithm(population_size, individual_size, is_binary, get_lower_bound(),
+                                           get_upper_bound(), mutation_rate, selection_rate, crossover_mode,
+                                           mutation_mode, mutation_radius, elitism_rate, tournament_size);
         if (get_use_bound())
             ea->set_bounds(get_lower_bound(), get_upper_bound());
         return ea;
@@ -149,6 +180,8 @@ class GeneticAlgorithmParameters : public EvolutionaryAlgorithmParameters
     float mutation_rate = 0.05f;
     float mutation_radius = 0.5f;
     float selection_rate = 0.5f;
+    float elitism_rate = 0.05f;
+    int tournament_size = 4;
     EA::GeneticAlgorithm::CrossoverMode crossover_mode = EA::GeneticAlgorithm::CROSSOVER_ONE_POINT;
     EA::GeneticAlgorithm::MutationMode mutation_mode = EA::GeneticAlgorithm::MUTATION_UNIFORM;
 };

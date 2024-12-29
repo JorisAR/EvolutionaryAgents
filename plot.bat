@@ -1,0 +1,1 @@
+python fitness_plot.py project/log.csv
