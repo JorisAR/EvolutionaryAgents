@@ -9,7 +9,7 @@
 #include <mutex>
 #include <vector>
 
-#include "Agent.h"
+#include "agent.h"
 #include "evolutionary_algorithm_parameters.h"
 #include "logger.h"
 #include "neural_network_parameters.h"

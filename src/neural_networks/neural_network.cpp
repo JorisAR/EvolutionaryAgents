@@ -22,7 +22,8 @@ void NeuralNetwork::initialize_weights_and_biases()
 {
     if (layers.size() < 2)
     {
-        throw std::invalid_argument("The network must have at least 2 layers (input and output).");
+        godot::UtilityFunctions::printerr("The network must have at least 2 layers (input and output).");
+        return;
     }
 
     std::random_device rd;
@@ -107,7 +108,8 @@ void NeuralNetwork::set_weights_and_biases(const std::vector<float> &new_weights
 {
     if (get_weights_count() != new_weights.size() || get_biases_count() != new_biases.size())
     {
-        throw std::invalid_argument("The provided weights and biases do not match the network's size.");
+        godot::UtilityFunctions::printerr("The provided weights and biases do not match the network's size.");
+        return;
     }
 
     int offset = 0;
