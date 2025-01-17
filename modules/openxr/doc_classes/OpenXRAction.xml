@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="OpenXRAction" inherits="Resource" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<members>
+		<member name="action_type" type="int" setter="set_action_type" getter="get_action_type" enum="OpenXRAction.ActionType" default="1">
+		</member>
+		<member name="localized_name" type="String" setter="set_localized_name" getter="get_localized_name" default="&quot;&quot;">
+		</member>
+		<member name="toplevel_paths" type="PackedStringArray" setter="set_toplevel_paths" getter="get_toplevel_paths" default="PackedStringArray()">
+		</member>
+	</members>
+	<constants>
+		<constant name="OPENXR_ACTION_BOOL" value="0" enum="ActionType">
+		</constant>
+		<constant name="OPENXR_ACTION_FLOAT" value="1" enum="ActionType">
+		</constant>
+		<constant name="OPENXR_ACTION_VECTOR2" value="2" enum="ActionType">
+		</constant>
+		<constant name="OPENXR_ACTION_POSE" value="3" enum="ActionType">
+		</constant>
+	</constants>
+</class>

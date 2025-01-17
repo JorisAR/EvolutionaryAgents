@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="WebSocketMultiplayerPeer" inherits="MultiplayerPeer" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="create_client">
+			<return type="int" enum="Error" />
+			<param index="0" name="url" type="String" />
+			<param index="1" name="tls_client_options" type="TLSOptions" default="null" />
+			<description>
+			</description>
+		</method>
+		<method name="create_server">
+			<return type="int" enum="Error" />
+			<param index="0" name="port" type="int" />
+			<param index="1" name="bind_address" type="String" default="&quot;*&quot;" />
+			<param index="2" name="tls_server_options" type="TLSOptions" default="null" />
+			<description>
+			</description>
+		</method>
+		<method name="get_peer" qualifiers="const">
+			<return type="WebSocketPeer" />
+			<param index="0" name="peer_id" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_peer_address" qualifiers="const">
+			<return type="String" />
+			<param index="0" name="id" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_peer_port" qualifiers="const">
+			<return type="int" />
+			<param index="0" name="id" type="int" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="handshake_headers" type="PackedStringArray" setter="set_handshake_headers" getter="get_handshake_headers" default="PackedStringArray()">
+		</member>
+		<member name="handshake_timeout" type="float" setter="set_handshake_timeout" getter="get_handshake_timeout" default="3.0">
+		</member>
+		<member name="inbound_buffer_size" type="int" setter="set_inbound_buffer_size" getter="get_inbound_buffer_size" default="65535">
+		</member>
+		<member name="max_queued_packets" type="int" setter="set_max_queued_packets" getter="get_max_queued_packets" default="2048">
+		</member>
+		<member name="outbound_buffer_size" type="int" setter="set_outbound_buffer_size" getter="get_outbound_buffer_size" default="65535">
+		</member>
+		<member name="supported_protocols" type="PackedStringArray" setter="set_supported_protocols" getter="get_supported_protocols" default="PackedStringArray()">
+		</member>
+	</members>
+</class>

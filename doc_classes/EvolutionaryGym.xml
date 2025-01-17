@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="EvolutionaryGym" inherits="EvolutionaryOptimizer" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+		Environment used to train a neural network.
+	</brief_description>
+	<description>
+		It relies on a population of agents in the order of 10s to 100s, depending on problem difficulty.
+		Important, when the window is closed naturally (e.g., pressing the X in the top right of the window), the training is saved. It does not save when force stopped (e.g. F8, the stop button in the editor, task manager).
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="on_agent_ended">
+			<return type="void" />
+			<description>
+				
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="agents" type="EvolutionaryAgent[]" setter="set_agents" getter="get_agents" default="[]">
+			The agents used in training.
+		</member>
+		<member name="auto_start" type="bool" setter="set_auto_start" getter="get_auto_start" default="true">
+			If true, training starts automatically during ready. Classes that inherit from this have their ready called first, useful for preprocessing (e.g. gathering all agents)
+		</member>
+		<member name="max_fps" type="int" setter="set_max_fps" getter="get_max_fps" default="30">
+			Can be used to lower FPS during training.
+		</member>
+		<member name="neural_network_parameters" type="NeuralNetworkParameters" setter="set_neural_network" getter="get_neural_network">
+			The neural network that is being trained.
+		</member>
+		<member name="physics_ticks_per_second" type="int" setter="set_physics_ticks_per_second" getter="get_physics_ticks_per_second" default="20">
+			As training should be done in the physics update, this determines the physics ticks per second. Important to note, is that this is multiplied by time scale. E.g., timescale of 100 and physics_ticks_per_second of 20 leads to ideally 2000 actual physics ticks per wall-clock second.
+		</member>
+		<member name="run_once" type="bool" setter="set_run_once" getter="get_run_once" default="false">
+			If true, the gym does not train, but just runs all the agents. useful for quickly seeing progress.
+		</member>
+		<member name="time_scale" type="int" setter="set_time_scale" getter="get_time_scale" default="1">
+			Used to speed up the simulation. Probably best to set it as high as possible.
+		</member>
+	</members>
+</class>

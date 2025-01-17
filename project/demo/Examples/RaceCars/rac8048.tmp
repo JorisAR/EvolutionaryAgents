@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://d3r1vbucf1njc"]
+
+[ext_resource type="NeuralNetworkParameters" uid="uid://drhietm2fcnfu" path="res://demo/Examples/RaceCars/car_nn.tres" id="1_iwoml"]
+[ext_resource type="Script" path="res://demo/gym.gd" id="1_rfkmq"]
+[ext_resource type="PackedScene" uid="uid://df0jdtrfvtrxk" path="res://demo/Examples/RaceCars/car.tscn" id="1_sl5v5"]
+[ext_resource type="Script" path="res://demo/movable_camera.gd" id="1_xjcbb"]
+[ext_resource type="PackedScene" uid="uid://fle61c6dj2j7" path="res://demo/Examples/RaceCars/race_track.tscn" id="2_ttxyt"]
+
+[sub_resource type="SepCMAESParameters" id="SepCMAESParameters_31e77"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ljua4"]
+
+[sub_resource type="Sky" id="Sky_6ka3r"]
+sky_material = SubResource("ProceduralSkyMaterial_ljua4")
+
+[sub_resource type="Environment" id="Environment_kct5u"]
+background_mode = 2
+sky = SubResource("Sky_6ka3r")
+
+[node name="RacingGym" type="Node3D"]
+
+[node name="Gym" type="EvolutionaryGym" parent="."]
+neural_network_parameters = ExtResource("1_iwoml")
+time_scale = 1000
+evolutionary_algorithm_parameters = SubResource("SepCMAESParameters_31e77")
+debug_verbose = true
+script = ExtResource("1_rfkmq")
+
+[node name="Car" parent="Gym" instance=ExtResource("1_sl5v5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.193891, 0)
+
+[node name="Car2" parent="Gym" instance=ExtResource("1_sl5v5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.193891, 0)
+
+[node name="Car3" parent="Gym" instance=ExtResource("1_sl5v5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.192162, 0)
+
+[node name="Car4" parent="Gym" instance=ExtResource("1_sl5v5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.193891, 0)
+
+[node name="Car5" parent="Gym" instance=ExtResource("1_sl5v5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.193891, 0)
+
+[node name="Car6" parent="Gym" instance=ExtResource("1_sl5v5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.193891, 0)
+
+[node name="Car7" parent="Gym" instance=ExtResource("1_sl5v5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.193891, 0)
+
+[node name="Car8" parent="Gym" instance=ExtResource("1_sl5v5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.193891, 0)
+
+[node name="Car9" parent="Gym" instance=ExtResource("1_sl5v5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.193891, 0)
+
+[node name="Car10" parent="Gym" instance=ExtResource("1_sl5v5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.193891, 0)
+
+[node name="Car11" parent="Gym" instance=ExtResource("1_sl5v5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.193891, 0)
+
+[node name="Car12" parent="Gym" instance=ExtResource("1_sl5v5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.193891, 0)
+
+[node name="Car13" parent="Gym" instance=ExtResource("1_sl5v5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.193891, 0)
+
+[node name="Car14" parent="Gym" instance=ExtResource("1_sl5v5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.193891, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.999945, 0.0105007, 4.58999e-10, 0, -4.37114e-08, 0.999999, 0.0105007, -0.999944, -4.37089e-08, 0.703, 49.777, -33.059)
+environment = SubResource("Environment_kct5u")
+current = true
+script = ExtResource("1_xjcbb")
+
+[node name="RaceTrack" parent="." instance=ExtResource("2_ttxyt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.424882, -17.4477)

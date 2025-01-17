@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="EvolutionaryOptimizer" inherits="Node" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="end_generation">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="end_training">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="get_current_generation" qualifiers="const">
+			<return type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="start_generation">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="start_training">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="debug_generation_interval" type="int" setter="set_debug_generation_interval" getter="get_debug_generation_interval" default="100">
+		</member>
+		<member name="debug_log_csv" type="bool" setter="set_log" getter="get_log" default="false">
+		</member>
+		<member name="debug_log_path" type="String" setter="set_debug_log_path" getter="get_debug_log_path" default="&quot;res://log.csv&quot;">
+		</member>
+		<member name="debug_verbose" type="bool" setter="set_verbose" getter="get_verbose" default="false">
+		</member>
+		<member name="evolutionary_algorithm_parameters" type="EvolutionaryAlgorithmParameters" setter="set_ea_params" getter="get_ea_params">
+		</member>
+		<member name="termination_max_generation" type="int" setter="set_termination_max_generation" getter="get_termination_max_generation" default="1000">
+		</member>
+		<member name="termination_use_max_generation" type="bool" setter="set_termination_use_max_generation" getter="get_termination_use_max_generation" default="false">
+		</member>
+	</members>
+	<signals>
+		<signal name="generation_ended">
+			<description>
+			</description>
+		</signal>
+	</signals>
+</class>

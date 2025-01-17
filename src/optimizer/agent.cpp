@@ -2,22 +2,26 @@
 
 using namespace godot;
 
-void Agent::_bind_methods()
+void EvolutionaryAgent::_bind_methods()
 {
-    ClassDB::bind_method(D_METHOD("infer"), &Agent::infer);
+    ClassDB::bind_method(D_METHOD("infer"), &EvolutionaryAgent::infer);
+    ClassDB::bind_method(D_METHOD("start"), &EvolutionaryAgent::start);
 
-    ClassDB::bind_method(D_METHOD("set_fitness", "value"), &Agent::set_fitness);
-    ClassDB::bind_method(D_METHOD("get_fitness"), &Agent::get_fitness);
+    ClassDB::bind_method(D_METHOD("set_fitness", "value"), &EvolutionaryAgent::set_fitness);
+    ClassDB::bind_method(D_METHOD("get_fitness"), &EvolutionaryAgent::get_fitness);
     ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "fitness"), "set_fitness", "get_fitness");
 
-    ClassDB::bind_method(D_METHOD("set_neural_network", "value"), &Agent::set_neural_network);
-    ClassDB::bind_method(D_METHOD("get_neural_network"), &Agent::get_neural_network);
+    ClassDB::bind_method(D_METHOD("set_neural_network", "value"), &EvolutionaryAgent::set_neural_network);
+    ClassDB::bind_method(D_METHOD("get_neural_network"), &EvolutionaryAgent::get_neural_network);
 
-    ClassDB::bind_static_method("Agent", D_METHOD("get_max_element_index", "array"), &Agent::GetMaxElementIndex);
-    ClassDB::bind_static_method("Agent", D_METHOD("soft_max", "array"), &Agent::SoftMax);
-    ClassDB::bind_static_method("Agent", D_METHOD("sample_weighted_index", "array", "random_sample_unit_interval"),
-                                &Agent::SampleWeightedIndex);
-    ClassDB::bind_static_method("Agent", D_METHOD("sample_normal", "mean", "sigma"), &Agent::SampleNormal);
+    ClassDB::bind_static_method("EvolutionaryAgent", D_METHOD("get_max_element_index", "array"),
+                                &EvolutionaryAgent::GetMaxElementIndex);
+    ClassDB::bind_static_method("EvolutionaryAgent", D_METHOD("soft_max", "array"), &EvolutionaryAgent::SoftMax);
+    ClassDB::bind_static_method("EvolutionaryAgent",
+                                D_METHOD("sample_weighted_index", "array", "random_sample_unit_interval"),
+                                &EvolutionaryAgent::SampleWeightedIndex);
+    ClassDB::bind_static_method("EvolutionaryAgent", D_METHOD("sample_normal", "mean", "sigma"),
+                                &EvolutionaryAgent::SampleNormal);
     ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "neural_network_parameters", PROPERTY_HINT_RESOURCE_TYPE,
                               "NeuralNetworkParameters"),
                  "set_neural_network", "get_neural_network");
@@ -26,15 +30,16 @@ void Agent::_bind_methods()
     ADD_SIGNAL(MethodInfo("ended"));
 }
 
-Agent::Agent() : nn(new NeuralNetwork({1, 1}))
+EvolutionaryAgent::EvolutionaryAgent() : nn(nullptr)
 {
 }
-Agent::~Agent()
+EvolutionaryAgent::~EvolutionaryAgent()
 {
-    delete nn;
+    if (nn != nullptr)
+        delete nn;
 }
 
-int Agent::GetMaxElementIndex(const PackedFloat32Array &array)
+int EvolutionaryAgent::GetMaxElementIndex(const PackedFloat32Array &array)
 {
     int max_index = 0;
     float max_value = array[max_index];
@@ -51,7 +56,7 @@ int Agent::GetMaxElementIndex(const PackedFloat32Array &array)
     return max_index;
 }
 
-PackedFloat32Array Agent::SoftMax(const PackedFloat32Array &array)
+PackedFloat32Array EvolutionaryAgent::SoftMax(const PackedFloat32Array &array)
 {
     PackedFloat32Array exp_values;
     float sum_exp = 0.0f;
@@ -73,7 +78,7 @@ PackedFloat32Array Agent::SoftMax(const PackedFloat32Array &array)
     return exp_values;
 }
 
-float Agent::SampleNormal(const float mean, const float sigma)
+float EvolutionaryAgent::SampleNormal(const float mean, const float sigma)
 {
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -81,7 +86,8 @@ float Agent::SampleNormal(const float mean, const float sigma)
     return dist(gen);
 }
 
-int Agent::SampleWeightedIndex(const PackedFloat32Array &array, const float random_sample_unit_interval = -1)
+int EvolutionaryAgent::SampleWeightedIndex(const PackedFloat32Array &array,
+                                           const float random_sample_unit_interval = -1)
 {
     float random_value = random_sample_unit_interval;
     if (random_value > 1.0f || random_value < 0.0f)
@@ -109,7 +115,7 @@ int Agent::SampleWeightedIndex(const PackedFloat32Array &array, const float rand
     return array.size() - 1;
 }
 
-PackedFloat32Array Agent::infer(const PackedFloat32Array &state_vector)
+PackedFloat32Array EvolutionaryAgent::infer(const PackedFloat32Array &state_vector)
 {
     if (nn == nullptr)
     {
@@ -128,36 +134,49 @@ PackedFloat32Array Agent::infer(const PackedFloat32Array &state_vector)
     return action_vector;
 }
 
-void Agent::update(const std::vector<int> &new_layers, const std::vector<float> &parameters)
+void EvolutionaryAgent::update(const std::vector<int> &new_layers, const std::vector<float> &parameters)
 {
+    if (nn == nullptr)
+    {
+        nn = new NeuralNetwork(new_layers);
+    }
     nn->update(new_layers, parameters);
 }
 
-void Agent::start_game()
+void EvolutionaryAgent::start()
 {
+    if (nn == nullptr)
+    {
+        if (neural_network.is_null()){
+            UtilityFunctions::printerr("Agent does not have a neural network, start aborted.");
+            return;
+        }
+
+        auto state = EA::EvolutionaryAlgorithmState::from_json(neural_network->get_stored_network());
+        if (state != nullptr)
+        {
+            update(neural_network->get_layers(), state->genome);
+        }
+    }
+
     emit_signal("started");
 }
 
-    float Agent::get_fitness() const
-    {
-        return fitness;
-    }
-    void Agent::set_fitness(const float new_fitness)
-    {
-        fitness = new_fitness;
-    }
+float EvolutionaryAgent::get_fitness() const
+{
+    return fitness;
+}
+void EvolutionaryAgent::set_fitness(const float new_fitness)
+{
+    fitness = new_fitness;
+}
 
-    void Agent::set_neural_network(const Ref<NeuralNetworkParameters> value)
-    {
-        neural_network = value;
-        if(neural_network == nullptr) return;
-        //auto network = neural_network->load_neural_network();
-        //if(network == nullptr) return;
-        //delete nn;
-        //nn = network;
-    }
+void EvolutionaryAgent::set_neural_network(const Ref<NeuralNetworkParameters> value)
+{
+    neural_network = value;
+}
 
-    Ref<NeuralNetworkParameters> Agent::get_neural_network() const
-    {
-        return neural_network;
-    }
+Ref<NeuralNetworkParameters> EvolutionaryAgent::get_neural_network() const
+{
+    return neural_network;
+}

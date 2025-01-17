@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="EditorExportPlatformAndroid" inherits="EditorExportPlatform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<members>
+		<member name="apk_expansion/SALT" type="String" setter="" getter="">
+		</member>
+		<member name="apk_expansion/enable" type="bool" setter="" getter="">
+		</member>
+		<member name="apk_expansion/public_key" type="String" setter="" getter="">
+		</member>
+		<member name="architectures/arm64-v8a" type="bool" setter="" getter="">
+		</member>
+		<member name="architectures/armeabi-v7a" type="bool" setter="" getter="">
+		</member>
+		<member name="architectures/x86" type="bool" setter="" getter="">
+		</member>
+		<member name="architectures/x86_64" type="bool" setter="" getter="">
+		</member>
+		<member name="command_line/extra_args" type="String" setter="" getter="">
+		</member>
+		<member name="custom_template/debug" type="String" setter="" getter="">
+		</member>
+		<member name="custom_template/release" type="String" setter="" getter="">
+		</member>
+		<member name="gradle_build/android_source_template" type="String" setter="" getter="">
+		</member>
+		<member name="gradle_build/compress_native_libraries" type="bool" setter="" getter="">
+		</member>
+		<member name="gradle_build/export_format" type="int" setter="" getter="">
+		</member>
+		<member name="gradle_build/gradle_build_directory" type="String" setter="" getter="">
+		</member>
+		<member name="gradle_build/min_sdk" type="String" setter="" getter="">
+		</member>
+		<member name="gradle_build/target_sdk" type="String" setter="" getter="">
+		</member>
+		<member name="gradle_build/use_gradle_build" type="bool" setter="" getter="">
+		</member>
+		<member name="graphics/opengl_debug" type="bool" setter="" getter="">
+		</member>
+		<member name="keystore/debug" type="String" setter="" getter="">
+		</member>
+		<member name="keystore/debug_password" type="String" setter="" getter="">
+		</member>
+		<member name="keystore/debug_user" type="String" setter="" getter="">
+		</member>
+		<member name="keystore/release" type="String" setter="" getter="">
+		</member>
+		<member name="keystore/release_password" type="String" setter="" getter="">
+		</member>
+		<member name="keystore/release_user" type="String" setter="" getter="">
+		</member>
+		<member name="launcher_icons/adaptive_background_432x432" type="String" setter="" getter="">
+		</member>
+		<member name="launcher_icons/adaptive_foreground_432x432" type="String" setter="" getter="">
+		</member>
+		<member name="launcher_icons/main_192x192" type="String" setter="" getter="">
+		</member>
+		<member name="package/app_category" type="int" setter="" getter="">
+		</member>
+		<member name="package/exclude_from_recents" type="bool" setter="" getter="">
+		</member>
+		<member name="package/name" type="String" setter="" getter="">
+		</member>
+		<member name="package/retain_data_on_uninstall" type="bool" setter="" getter="">
+		</member>
+		<member name="package/show_as_launcher_app" type="bool" setter="" getter="">
+		</member>
+		<member name="package/show_in_android_tv" type="bool" setter="" getter="">
+		</member>
+		<member name="package/show_in_app_library" type="bool" setter="" getter="">
+		</member>
+		<member name="package/signed" type="bool" setter="" getter="">
+		</member>
+		<member name="package/unique_name" type="String" setter="" getter="">
+		</member>
+		<member name="permissions/access_checkin_properties" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/access_coarse_location" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/access_fine_location" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/access_location_extra_commands" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/access_mock_location" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/access_network_state" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/access_surface_flinger" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/access_wifi_state" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/account_manager" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/add_voicemail" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/authenticate_accounts" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/battery_stats" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/bind_accessibility_service" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/bind_appwidget" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/bind_device_admin" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/bind_input_method" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/bind_nfc_service" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/bind_notification_listener_service" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/bind_print_service" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/bind_remoteviews" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/bind_text_service" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/bind_vpn_service" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/bind_wallpaper" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/bluetooth" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/bluetooth_admin" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/bluetooth_privileged" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/brick" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/broadcast_package_removed" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/broadcast_sms" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/broadcast_sticky" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/broadcast_wap_push" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/call_phone" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/call_privileged" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/camera" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/capture_audio_output" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/capture_secure_video_output" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/capture_video_output" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/change_component_enabled_state" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/change_configuration" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/change_network_state" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/change_wifi_multicast_state" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/change_wifi_state" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/clear_app_cache" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/clear_app_user_data" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/control_location_updates" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/custom_permissions" type="PackedStringArray" setter="" getter="">
+		</member>
+		<member name="permissions/delete_cache_files" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/delete_packages" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/device_power" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/diagnostic" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/disable_keyguard" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/dump" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/expand_status_bar" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/factory_test" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/flashlight" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/force_back" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/get_accounts" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/get_package_size" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/get_tasks" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/get_top_activity_info" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/global_search" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/hardware_test" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/inject_events" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/install_location_provider" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/install_packages" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/install_shortcut" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/internal_system_window" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/internet" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/kill_background_processes" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/location_hardware" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/manage_accounts" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/manage_app_tokens" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/manage_documents" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/manage_external_storage" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/master_clear" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/media_content_control" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/modify_audio_settings" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/modify_phone_state" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/mount_format_filesystems" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/mount_unmount_filesystems" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/nfc" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/persistent_activity" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/post_notifications" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/process_outgoing_calls" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/read_calendar" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/read_call_log" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/read_contacts" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/read_external_storage" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/read_frame_buffer" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/read_history_bookmarks" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/read_input_state" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/read_logs" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/read_phone_state" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/read_profile" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/read_sms" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/read_social_stream" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/read_sync_settings" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/read_sync_stats" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/read_user_dictionary" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/reboot" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/receive_boot_completed" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/receive_mms" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/receive_sms" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/receive_wap_push" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/record_audio" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/reorder_tasks" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/restart_packages" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/send_respond_via_message" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/send_sms" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/set_activity_watcher" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/set_alarm" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/set_always_finish" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/set_animation_scale" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/set_debug_app" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/set_orientation" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/set_pointer_speed" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/set_preferred_applications" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/set_process_limit" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/set_time" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/set_time_zone" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/set_wallpaper" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/set_wallpaper_hints" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/signal_persistent_processes" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/status_bar" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/subscribed_feeds_read" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/subscribed_feeds_write" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/system_alert_window" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/transmit_ir" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/uninstall_shortcut" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/update_device_stats" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/use_credentials" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/use_sip" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/vibrate" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/wake_lock" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/write_apn_settings" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/write_calendar" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/write_call_log" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/write_contacts" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/write_external_storage" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/write_gservices" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/write_history_bookmarks" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/write_profile" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/write_secure_settings" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/write_settings" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/write_sms" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/write_social_stream" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/write_sync_settings" type="bool" setter="" getter="">
+		</member>
+		<member name="permissions/write_user_dictionary" type="bool" setter="" getter="">
+		</member>
+		<member name="screen/immersive_mode" type="bool" setter="" getter="">
+		</member>
+		<member name="screen/support_large" type="bool" setter="" getter="">
+		</member>
+		<member name="screen/support_normal" type="bool" setter="" getter="">
+		</member>
+		<member name="screen/support_small" type="bool" setter="" getter="">
+		</member>
+		<member name="screen/support_xlarge" type="bool" setter="" getter="">
+		</member>
+		<member name="user_data_backup/allow" type="bool" setter="" getter="">
+		</member>
+		<member name="version/code" type="int" setter="" getter="">
+		</member>
+		<member name="version/name" type="String" setter="" getter="">
+		</member>
+		<member name="xr_features/xr_mode" type="int" setter="" getter="">
+		</member>
+	</members>
+</class>

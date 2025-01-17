@@ -11,6 +11,8 @@ func _ready() -> void:
 	print(agents.size(), " agents found")
 	set_agents(agents);
 	toggle_time_scale();
+	if(run_once):
+		set_time_scale(1)
 
 var is_fast_time = false;
 func toggle_time_scale():

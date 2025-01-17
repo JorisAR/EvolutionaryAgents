@@ -32,7 +32,7 @@ void initialize_evolutionary_agents_module(ModuleInitializationLevel p_level)
         GDREGISTER_CLASS(StochasticAscentGAParameters);
 
         // Gym
-        GDREGISTER_CLASS(Agent);
+        GDREGISTER_CLASS(EvolutionaryAgent);
         GDREGISTER_CLASS(EvolutionaryGym);
 
         // Sensors

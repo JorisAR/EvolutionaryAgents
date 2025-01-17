@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="ENetPacketPeer" inherits="PacketPeer" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="get_channels" qualifiers="const">
+			<return type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_remote_address" qualifiers="const">
+			<return type="String" />
+			<description>
+			</description>
+		</method>
+		<method name="get_remote_port" qualifiers="const">
+			<return type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_state" qualifiers="const">
+			<return type="int" enum="ENetPacketPeer.PeerState" />
+			<description>
+			</description>
+		</method>
+		<method name="get_statistic">
+			<return type="float" />
+			<param index="0" name="statistic" type="int" enum="ENetPacketPeer.PeerStatistic" />
+			<description>
+			</description>
+		</method>
+		<method name="is_active" qualifiers="const">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="peer_disconnect">
+			<return type="void" />
+			<param index="0" name="data" type="int" default="0" />
+			<description>
+			</description>
+		</method>
+		<method name="peer_disconnect_later">
+			<return type="void" />
+			<param index="0" name="data" type="int" default="0" />
+			<description>
+			</description>
+		</method>
+		<method name="peer_disconnect_now">
+			<return type="void" />
+			<param index="0" name="data" type="int" default="0" />
+			<description>
+			</description>
+		</method>
+		<method name="ping">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="ping_interval">
+			<return type="void" />
+			<param index="0" name="ping_interval" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="reset">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="send">
+			<return type="int" enum="Error" />
+			<param index="0" name="channel" type="int" />
+			<param index="1" name="packet" type="PackedByteArray" />
+			<param index="2" name="flags" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="set_timeout">
+			<return type="void" />
+			<param index="0" name="timeout" type="int" />
+			<param index="1" name="timeout_min" type="int" />
+			<param index="2" name="timeout_max" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="throttle_configure">
+			<return type="void" />
+			<param index="0" name="interval" type="int" />
+			<param index="1" name="acceleration" type="int" />
+			<param index="2" name="deceleration" type="int" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<constants>
+		<constant name="STATE_DISCONNECTED" value="0" enum="PeerState">
+		</constant>
+		<constant name="STATE_CONNECTING" value="1" enum="PeerState">
+		</constant>
+		<constant name="STATE_ACKNOWLEDGING_CONNECT" value="2" enum="PeerState">
+		</constant>
+		<constant name="STATE_CONNECTION_PENDING" value="3" enum="PeerState">
+		</constant>
+		<constant name="STATE_CONNECTION_SUCCEEDED" value="4" enum="PeerState">
+		</constant>
+		<constant name="STATE_CONNECTED" value="5" enum="PeerState">
+		</constant>
+		<constant name="STATE_DISCONNECT_LATER" value="6" enum="PeerState">
+		</constant>
+		<constant name="STATE_DISCONNECTING" value="7" enum="PeerState">
+		</constant>
+		<constant name="STATE_ACKNOWLEDGING_DISCONNECT" value="8" enum="PeerState">
+		</constant>
+		<constant name="STATE_ZOMBIE" value="9" enum="PeerState">
+		</constant>
+		<constant name="PEER_PACKET_LOSS" value="0" enum="PeerStatistic">
+		</constant>
+		<constant name="PEER_PACKET_LOSS_VARIANCE" value="1" enum="PeerStatistic">
+		</constant>
+		<constant name="PEER_PACKET_LOSS_EPOCH" value="2" enum="PeerStatistic">
+		</constant>
+		<constant name="PEER_ROUND_TRIP_TIME" value="3" enum="PeerStatistic">
+		</constant>
+		<constant name="PEER_ROUND_TRIP_TIME_VARIANCE" value="4" enum="PeerStatistic">
+		</constant>
+		<constant name="PEER_LAST_ROUND_TRIP_TIME" value="5" enum="PeerStatistic">
+		</constant>
+		<constant name="PEER_LAST_ROUND_TRIP_TIME_VARIANCE" value="6" enum="PeerStatistic">
+		</constant>
+		<constant name="PEER_PACKET_THROTTLE" value="7" enum="PeerStatistic">
+		</constant>
+		<constant name="PEER_PACKET_THROTTLE_LIMIT" value="8" enum="PeerStatistic">
+		</constant>
+		<constant name="PEER_PACKET_THROTTLE_COUNTER" value="9" enum="PeerStatistic">
+		</constant>
+		<constant name="PEER_PACKET_THROTTLE_EPOCH" value="10" enum="PeerStatistic">
+		</constant>
+		<constant name="PEER_PACKET_THROTTLE_ACCELERATION" value="11" enum="PeerStatistic">
+		</constant>
+		<constant name="PEER_PACKET_THROTTLE_DECELERATION" value="12" enum="PeerStatistic">
+		</constant>
+		<constant name="PEER_PACKET_THROTTLE_INTERVAL" value="13" enum="PeerStatistic">
+		</constant>
+		<constant name="PACKET_LOSS_SCALE" value="65536">
+		</constant>
+		<constant name="PACKET_THROTTLE_SCALE" value="32">
+		</constant>
+		<constant name="FLAG_RELIABLE" value="1">
+		</constant>
+		<constant name="FLAG_UNSEQUENCED" value="2">
+		</constant>
+		<constant name="FLAG_UNRELIABLE_FRAGMENT" value="8">
+		</constant>
+	</constants>
+</class>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="StochasticAscentGAParameters" inherits="EvolutionaryAlgorithmParameters" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+		Experimental, you should prefer to use other options.
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<members>
+		<member name="block_sizes" type="PackedInt32Array" setter="set_block_sizes" getter="get_block_sizes" default="PackedInt32Array(1)">
+		</member>
+		<member name="lower_bound" type="float" setter="set_lower_bound" getter="get_lower_bound" default="0.0">
+		</member>
+		<member name="mutation_rate" type="float" setter="set_mutation_rate" getter="get_mutation_rate" default="1.0">
+		</member>
+		<member name="stagnation_count" type="int" setter="set_stagnation_count" getter="get_stagnation_count" default="10">
+		</member>
+		<member name="upper_bound" type="float" setter="set_upper_bound" getter="get_upper_bound" default="1.0">
+		</member>
+	</members>
+</class>

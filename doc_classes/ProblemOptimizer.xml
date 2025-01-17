@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="ProblemOptimizer" inherits="EvolutionaryOptimizer" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="on_individual_ended">
+			<return type="void" />
+			<param index="0" name="fitness" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="run_individual">
+			<return type="void" />
+			<param index="0" name="_unnamed_arg0" type="int" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="multithreading_enabled" type="bool" setter="set_multithreading" getter="get_multithreading" default="false">
+		</member>
+		<member name="population_size" type="int" setter="set_population_size" getter="get_population_size" default="25">
+		</member>
+		<member name="problem" type="OptimizableProblem" setter="set_problem" getter="get_problem">
+		</member>
+		<member name="stored_save_state" type="bool" setter="set_save_state" getter="get_save_state" default="false">
+		</member>
+		<member name="stored_state" type="JSON" setter="set_stored_state" getter="get_stored_state">
+		</member>
+		<member name="stored_use_existing" type="bool" setter="set_use_existing_state" getter="get_use_existing_state" default="false">
+		</member>
+	</members>
+</class>

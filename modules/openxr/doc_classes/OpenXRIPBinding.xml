@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="OpenXRIPBinding" inherits="Resource" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="add_path">
+			<return type="void" />
+			<param index="0" name="path" type="String" />
+			<description>
+			</description>
+		</method>
+		<method name="get_path_count" qualifiers="const">
+			<return type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="has_path" qualifiers="const">
+			<return type="bool" />
+			<param index="0" name="path" type="String" />
+			<description>
+			</description>
+		</method>
+		<method name="remove_path">
+			<return type="void" />
+			<param index="0" name="path" type="String" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="action" type="OpenXRAction" setter="set_action" getter="get_action">
+		</member>
+		<member name="paths" type="PackedStringArray" setter="set_paths" getter="get_paths" default="PackedStringArray()">
+		</member>
+	</members>
+</class>

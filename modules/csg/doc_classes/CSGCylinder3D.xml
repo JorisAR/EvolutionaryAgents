@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="CSGCylinder3D" inherits="CSGPrimitive3D" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<members>
+		<member name="cone" type="bool" setter="set_cone" getter="is_cone" default="false">
+		</member>
+		<member name="height" type="float" setter="set_height" getter="get_height" default="2.0">
+		</member>
+		<member name="material" type="Material" setter="set_material" getter="get_material">
+		</member>
+		<member name="radius" type="float" setter="set_radius" getter="get_radius" default="0.5">
+		</member>
+		<member name="sides" type="int" setter="set_sides" getter="get_sides" default="8">
+		</member>
+		<member name="smooth_faces" type="bool" setter="set_smooth_faces" getter="get_smooth_faces" default="true">
+		</member>
+	</members>
+</class>

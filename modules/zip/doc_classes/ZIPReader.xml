@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="ZIPReader" inherits="RefCounted" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="close">
+			<return type="int" enum="Error" />
+			<description>
+			</description>
+		</method>
+		<method name="file_exists">
+			<return type="bool" />
+			<param index="0" name="path" type="String" />
+			<param index="1" name="case_sensitive" type="bool" default="true" />
+			<description>
+			</description>
+		</method>
+		<method name="get_files">
+			<return type="PackedStringArray" />
+			<description>
+			</description>
+		</method>
+		<method name="open">
+			<return type="int" enum="Error" />
+			<param index="0" name="path" type="String" />
+			<description>
+			</description>
+		</method>
+		<method name="read_file">
+			<return type="PackedByteArray" />
+			<param index="0" name="path" type="String" />
+			<param index="1" name="case_sensitive" type="bool" default="true" />
+			<description>
+			</description>
+		</method>
+	</methods>
+</class>

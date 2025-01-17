@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="UPNP" inherits="RefCounted" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="add_device">
+			<return type="void" />
+			<param index="0" name="device" type="UPNPDevice" />
+			<description>
+			</description>
+		</method>
+		<method name="add_port_mapping" qualifiers="const">
+			<return type="int" />
+			<param index="0" name="port" type="int" />
+			<param index="1" name="port_internal" type="int" default="0" />
+			<param index="2" name="desc" type="String" default="&quot;&quot;" />
+			<param index="3" name="proto" type="String" default="&quot;UDP&quot;" />
+			<param index="4" name="duration" type="int" default="0" />
+			<description>
+			</description>
+		</method>
+		<method name="clear_devices">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="delete_port_mapping" qualifiers="const">
+			<return type="int" />
+			<param index="0" name="port" type="int" />
+			<param index="1" name="proto" type="String" default="&quot;UDP&quot;" />
+			<description>
+			</description>
+		</method>
+		<method name="discover">
+			<return type="int" />
+			<param index="0" name="timeout" type="int" default="2000" />
+			<param index="1" name="ttl" type="int" default="2" />
+			<param index="2" name="device_filter" type="String" default="&quot;InternetGatewayDevice&quot;" />
+			<description>
+			</description>
+		</method>
+		<method name="get_device" qualifiers="const">
+			<return type="UPNPDevice" />
+			<param index="0" name="index" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_device_count" qualifiers="const">
+			<return type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_gateway" qualifiers="const">
+			<return type="UPNPDevice" />
+			<description>
+			</description>
+		</method>
+		<method name="query_external_address" qualifiers="const">
+			<return type="String" />
+			<description>
+			</description>
+		</method>
+		<method name="remove_device">
+			<return type="void" />
+			<param index="0" name="index" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="set_device">
+			<return type="void" />
+			<param index="0" name="index" type="int" />
+			<param index="1" name="device" type="UPNPDevice" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="discover_ipv6" type="bool" setter="set_discover_ipv6" getter="is_discover_ipv6" default="false">
+		</member>
+		<member name="discover_local_port" type="int" setter="set_discover_local_port" getter="get_discover_local_port" default="0">
+		</member>
+		<member name="discover_multicast_if" type="String" setter="set_discover_multicast_if" getter="get_discover_multicast_if" default="&quot;&quot;">
+		</member>
+	</members>
+	<constants>
+		<constant name="UPNP_RESULT_SUCCESS" value="0" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_NOT_AUTHORIZED" value="1" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_PORT_MAPPING_NOT_FOUND" value="2" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_INCONSISTENT_PARAMETERS" value="3" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_NO_SUCH_ENTRY_IN_ARRAY" value="4" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_ACTION_FAILED" value="5" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_SRC_IP_WILDCARD_NOT_PERMITTED" value="6" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_EXT_PORT_WILDCARD_NOT_PERMITTED" value="7" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_INT_PORT_WILDCARD_NOT_PERMITTED" value="8" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_REMOTE_HOST_MUST_BE_WILDCARD" value="9" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_EXT_PORT_MUST_BE_WILDCARD" value="10" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_NO_PORT_MAPS_AVAILABLE" value="11" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_CONFLICT_WITH_OTHER_MECHANISM" value="12" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_CONFLICT_WITH_OTHER_MAPPING" value="13" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_SAME_PORT_VALUES_REQUIRED" value="14" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_ONLY_PERMANENT_LEASE_SUPPORTED" value="15" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_INVALID_GATEWAY" value="16" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_INVALID_PORT" value="17" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_INVALID_PROTOCOL" value="18" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_INVALID_DURATION" value="19" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_INVALID_ARGS" value="20" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_INVALID_RESPONSE" value="21" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_INVALID_PARAM" value="22" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_HTTP_ERROR" value="23" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_SOCKET_ERROR" value="24" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_MEM_ALLOC_ERROR" value="25" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_NO_GATEWAY" value="26" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_NO_DEVICES" value="27" enum="UPNPResult">
+		</constant>
+		<constant name="UPNP_RESULT_UNKNOWN_ERROR" value="28" enum="UPNPResult">
+		</constant>
+	</constants>
+</class>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="OpenXRActionSet" inherits="Resource" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="add_action">
+			<return type="void" />
+			<param index="0" name="action" type="OpenXRAction" />
+			<description>
+			</description>
+		</method>
+		<method name="get_action_count" qualifiers="const">
+			<return type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="remove_action">
+			<return type="void" />
+			<param index="0" name="action" type="OpenXRAction" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="actions" type="Array" setter="set_actions" getter="get_actions" default="[]">
+		</member>
+		<member name="localized_name" type="String" setter="set_localized_name" getter="get_localized_name" default="&quot;&quot;">
+		</member>
+		<member name="priority" type="int" setter="set_priority" getter="get_priority" default="0">
+		</member>
+	</members>
+</class>

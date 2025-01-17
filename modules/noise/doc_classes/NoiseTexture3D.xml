@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="NoiseTexture3D" inherits="Texture3D" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<members>
+		<member name="color_ramp" type="Gradient" setter="set_color_ramp" getter="get_color_ramp">
+		</member>
+		<member name="depth" type="int" setter="set_depth" getter="get_depth" default="64">
+		</member>
+		<member name="height" type="int" setter="set_height" getter="get_height" default="64">
+		</member>
+		<member name="invert" type="bool" setter="set_invert" getter="get_invert" default="false">
+		</member>
+		<member name="noise" type="Noise" setter="set_noise" getter="get_noise">
+		</member>
+		<member name="normalize" type="bool" setter="set_normalize" getter="is_normalized" default="true">
+		</member>
+		<member name="seamless" type="bool" setter="set_seamless" getter="get_seamless" default="false">
+		</member>
+		<member name="seamless_blend_skirt" type="float" setter="set_seamless_blend_skirt" getter="get_seamless_blend_skirt" default="0.1">
+		</member>
+		<member name="width" type="int" setter="set_width" getter="get_width" default="64">
+		</member>
+	</members>
+</class>

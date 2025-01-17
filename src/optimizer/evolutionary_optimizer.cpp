@@ -77,8 +77,8 @@ void EvolutionaryOptimizer::_bind_methods()
 
     ClassDB::bind_method(D_METHOD("start_training"), &EvolutionaryOptimizer::start_training);
     ClassDB::bind_method(D_METHOD("end_training"), &EvolutionaryOptimizer::end_training);
-    ClassDB::bind_method(D_METHOD("start_generation"), &EvolutionaryOptimizer::start_generation);
-    ClassDB::bind_method(D_METHOD("end_generation"), &EvolutionaryOptimizer::end_generation);
+    // ClassDB::bind_method(D_METHOD("start_generation"), &EvolutionaryOptimizer::start_generation);
+    // ClassDB::bind_method(D_METHOD("end_generation"), &EvolutionaryOptimizer::end_generation);
 
     ClassDB::bind_method(D_METHOD("set_verbose", "verbose"), &EvolutionaryOptimizer::set_verbose);
     ClassDB::bind_method(D_METHOD("get_verbose"), &EvolutionaryOptimizer::get_verbose);

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="OpenXRActionMap" inherits="Resource" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="add_action_set">
+			<return type="void" />
+			<param index="0" name="action_set" type="OpenXRActionSet" />
+			<description>
+			</description>
+		</method>
+		<method name="add_interaction_profile">
+			<return type="void" />
+			<param index="0" name="interaction_profile" type="OpenXRInteractionProfile" />
+			<description>
+			</description>
+		</method>
+		<method name="create_default_action_sets">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="find_action_set" qualifiers="const">
+			<return type="OpenXRActionSet" />
+			<param index="0" name="name" type="String" />
+			<description>
+			</description>
+		</method>
+		<method name="find_interaction_profile" qualifiers="const">
+			<return type="OpenXRInteractionProfile" />
+			<param index="0" name="name" type="String" />
+			<description>
+			</description>
+		</method>
+		<method name="get_action_set" qualifiers="const">
+			<return type="OpenXRActionSet" />
+			<param index="0" name="idx" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_action_set_count" qualifiers="const">
+			<return type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_interaction_profile" qualifiers="const">
+			<return type="OpenXRInteractionProfile" />
+			<param index="0" name="idx" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_interaction_profile_count" qualifiers="const">
+			<return type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="remove_action_set">
+			<return type="void" />
+			<param index="0" name="action_set" type="OpenXRActionSet" />
+			<description>
+			</description>
+		</method>
+		<method name="remove_interaction_profile">
+			<return type="void" />
+			<param index="0" name="interaction_profile" type="OpenXRInteractionProfile" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="action_sets" type="Array" setter="set_action_sets" getter="get_action_sets" default="[]">
+		</member>
+		<member name="interaction_profiles" type="Array" setter="set_interaction_profiles" getter="get_interaction_profiles" default="[]">
+		</member>
+	</members>
+</class>

@@ -34,11 +34,15 @@ class EvolutionaryGym : public EvolutionaryOptimizer
     virtual void end_generation() override;
     void on_agent_ended();
 
-    void set_agents(const TypedArray<Agent> value);
-    TypedArray<Agent> get_agents() const;
+    void set_agents(const TypedArray<EvolutionaryAgent> value);
+    TypedArray<EvolutionaryAgent> get_agents() const;
 
-    bool get_training() const;
-    void set_training(const bool value);
+    bool get_auto_start() const;
+    void set_auto_start(const bool value);
+
+    
+    bool get_run_once() const;
+    void set_run_once(const bool value);
 
     void set_neural_network(Ref<NeuralNetworkParameters> value);
     Ref<NeuralNetworkParameters> get_neural_network() const;
@@ -57,8 +61,8 @@ class EvolutionaryGym : public EvolutionaryOptimizer
     void update_engine_settings();
 
   private:
-    TypedArray<Agent> agents;
-    std::vector<Agent *> agent_vector_;
+    TypedArray<EvolutionaryAgent> agents; //todo maybe implement a better way  
+    std::vector<EvolutionaryAgent *> agent_vector_;
     int active_agent_count = 0;
     int agent_count = 0;
 
@@ -70,6 +74,9 @@ class EvolutionaryGym : public EvolutionaryOptimizer
     int physics_ticks_per_second = 20;
     int max_fps = 30;
     int time_scale = 1;
+
+    bool auto_start = true;
+    bool run_once = false;
 };
 
 } // namespace godot

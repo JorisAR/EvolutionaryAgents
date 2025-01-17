@@ -1,11 +1,11 @@
 extends Node3D
 
-@export var agent: Agent;
+@export var agent: EvolutionaryAgent;
 @export var character: CharacterBody3D;
 @export var movement_speed = 5;
 var active: bool = false;
 
-func get_agent() -> Agent:
+func get_agent() -> EvolutionaryAgent:
 	return agent;
 	
 var _character_pos : Vector3;
@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 	var action = Array(agent.infer(PackedFloat32Array(state)));
 	var dir = Vector3.ZERO;
 	
-	match Agent.get_max_element_index(action):
+	match EvolutionaryAgent.get_max_element_index(action):
 		0:
 			dir = Vector3(1, 0, 0);
 		1:
@@ -54,15 +54,19 @@ func _on_round_end() -> void:
 	agent.ended.emit();
 	
 	
+#called when colliding with a large reward
 func _on_big_body_entered(_body: Node3D) -> void:
 	agent.fitness += 50;
 	_on_round_end();
-
+	
+#called when colliding with a small reward
 func _on_small_body_entered(_body: Node3D) -> void:
 	agent.fitness += 5;
 	_on_round_end();
-
+	
+#called by the agents start signal
 func _on_agent_started() -> void:
+	print("yo!")
 	time = 0;
 	agent.fitness = 0;
 	active = true;

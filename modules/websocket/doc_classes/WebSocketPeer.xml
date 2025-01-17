@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="WebSocketPeer" inherits="PacketPeer" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="accept_stream">
+			<return type="int" enum="Error" />
+			<param index="0" name="stream" type="StreamPeer" />
+			<description>
+			</description>
+		</method>
+		<method name="close">
+			<return type="void" />
+			<param index="0" name="code" type="int" default="1000" />
+			<param index="1" name="reason" type="String" default="&quot;&quot;" />
+			<description>
+			</description>
+		</method>
+		<method name="connect_to_url">
+			<return type="int" enum="Error" />
+			<param index="0" name="url" type="String" />
+			<param index="1" name="tls_client_options" type="TLSOptions" default="null" />
+			<description>
+			</description>
+		</method>
+		<method name="get_close_code" qualifiers="const">
+			<return type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_close_reason" qualifiers="const">
+			<return type="String" />
+			<description>
+			</description>
+		</method>
+		<method name="get_connected_host" qualifiers="const">
+			<return type="String" />
+			<description>
+			</description>
+		</method>
+		<method name="get_connected_port" qualifiers="const">
+			<return type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_current_outbound_buffered_amount" qualifiers="const">
+			<return type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_ready_state" qualifiers="const">
+			<return type="int" enum="WebSocketPeer.State" />
+			<description>
+			</description>
+		</method>
+		<method name="get_requested_url" qualifiers="const">
+			<return type="String" />
+			<description>
+			</description>
+		</method>
+		<method name="get_selected_protocol" qualifiers="const">
+			<return type="String" />
+			<description>
+			</description>
+		</method>
+		<method name="poll">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="send">
+			<return type="int" enum="Error" />
+			<param index="0" name="message" type="PackedByteArray" />
+			<param index="1" name="write_mode" type="int" enum="WebSocketPeer.WriteMode" default="1" />
+			<description>
+			</description>
+		</method>
+		<method name="send_text">
+			<return type="int" enum="Error" />
+			<param index="0" name="message" type="String" />
+			<description>
+			</description>
+		</method>
+		<method name="set_no_delay">
+			<return type="void" />
+			<param index="0" name="enabled" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="was_string_packet" qualifiers="const">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="handshake_headers" type="PackedStringArray" setter="set_handshake_headers" getter="get_handshake_headers" default="PackedStringArray()">
+		</member>
+		<member name="inbound_buffer_size" type="int" setter="set_inbound_buffer_size" getter="get_inbound_buffer_size" default="65535">
+		</member>
+		<member name="max_queued_packets" type="int" setter="set_max_queued_packets" getter="get_max_queued_packets" default="2048">
+		</member>
+		<member name="outbound_buffer_size" type="int" setter="set_outbound_buffer_size" getter="get_outbound_buffer_size" default="65535">
+		</member>
+		<member name="supported_protocols" type="PackedStringArray" setter="set_supported_protocols" getter="get_supported_protocols" default="PackedStringArray()">
+		</member>
+	</members>
+	<constants>
+		<constant name="WRITE_MODE_TEXT" value="0" enum="WriteMode">
+		</constant>
+		<constant name="WRITE_MODE_BINARY" value="1" enum="WriteMode">
+		</constant>
+		<constant name="STATE_CONNECTING" value="0" enum="State">
+		</constant>
+		<constant name="STATE_OPEN" value="1" enum="State">
+		</constant>
+		<constant name="STATE_CLOSING" value="2" enum="State">
+		</constant>
+		<constant name="STATE_CLOSED" value="3" enum="State">
+		</constant>
+	</constants>
+</class>

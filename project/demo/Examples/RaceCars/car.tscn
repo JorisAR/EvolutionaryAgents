@@ -19,7 +19,7 @@ script = ExtResource("1_1vfak")
 agent = NodePath("Agent")
 sensors = [NodePath("Sensors/DepthSensor3D"), NodePath("Sensors/DepthSensor3D2"), NodePath("Sensors/DepthSensor3D3"), NodePath("Sensors/DepthSensor3D4"), NodePath("Sensors/DepthSensor3D5")]
 
-[node name="Agent" type="Agent" parent="."]
+[node name="Agent" type="EvolutionaryAgent" parent="."]
 neural_network_parameters = ExtResource("2_15spc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

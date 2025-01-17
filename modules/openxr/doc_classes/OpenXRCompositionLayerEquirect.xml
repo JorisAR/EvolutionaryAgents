@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="OpenXRCompositionLayerEquirect" inherits="OpenXRCompositionLayer" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<members>
+		<member name="central_horizontal_angle" type="float" setter="set_central_horizontal_angle" getter="get_central_horizontal_angle" default="1.5708">
+		</member>
+		<member name="fallback_segments" type="int" setter="set_fallback_segments" getter="get_fallback_segments" default="10">
+		</member>
+		<member name="lower_vertical_angle" type="float" setter="set_lower_vertical_angle" getter="get_lower_vertical_angle" default="0.785398">
+		</member>
+		<member name="radius" type="float" setter="set_radius" getter="get_radius" default="1.0">
+		</member>
+		<member name="upper_vertical_angle" type="float" setter="set_upper_vertical_angle" getter="get_upper_vertical_angle" default="0.785398">
+		</member>
+	</members>
+</class>

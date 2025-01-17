@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="EvolutionaryAgent" inherits="Node" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+		Simple agent that uses a neural network to predict what action to take based on a state vector.
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="get_max_element_index" qualifiers="static">
+			<return type="int" />
+			<param index="0" name="array" type="PackedFloat32Array" />
+			<description>
+			</description>
+		</method>
+		<method name="infer">
+			<return type="PackedFloat32Array" />
+			<param index="0" name="_unnamed_arg0" type="PackedFloat32Array" />
+			<description>
+				Given a state vector, returns an action vector. For instance, state vector can be the agent's position, whereas the action vector can indicate where to move next.
+			</description>
+		</method>
+		<method name="sample_normal" qualifiers="static">
+			<return type="float" />
+			<param index="0" name="mean" type="float" />
+			<param index="1" name="sigma" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="sample_weighted_index" qualifiers="static">
+			<return type="int" />
+			<param index="0" name="array" type="PackedFloat32Array" />
+			<param index="1" name="random_sample_unit_interval" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="soft_max" qualifiers="static">
+			<return type="PackedFloat32Array" />
+			<param index="0" name="array" type="PackedFloat32Array" />
+			<description>
+				Soft max implementation
+			</description>
+		</method>
+		<method name="start">
+			<return type="void" />
+			<description>
+				Force starts the agent, only call if not in a gym context. May be useful during non-training scenarios.
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="fitness" type="float" setter="set_fitness" getter="get_fitness" default="0.0">
+		The fitness or accumulated reward of the agent. Update this during a run depending on the outcomes of actions. You likely want to initialize this to 0 upon reset.
+		</member>
+		<member name="neural_network_parameters" type="NeuralNetworkParameters" setter="set_neural_network" getter="get_neural_network">
+		</member>
+	</members>
+	<signals>
+		<signal name="ended">
+			<description>
+				The agent should call this once it is done, e.g. when time ran out, or when the agent crashes into a wall.
+			</description>
+		</signal>
+		<signal name="started">
+			<description>
+				Called when the agent should start.  
+			</description>
+		</signal>
+	</signals>
+</class>

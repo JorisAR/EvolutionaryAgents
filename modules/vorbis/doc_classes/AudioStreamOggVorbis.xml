@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="AudioStreamOggVorbis" inherits="AudioStream" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="load_from_buffer" qualifiers="static">
+			<return type="AudioStreamOggVorbis" />
+			<param index="0" name="buffer" type="PackedByteArray" />
+			<description>
+			</description>
+		</method>
+		<method name="load_from_file" qualifiers="static">
+			<return type="AudioStreamOggVorbis" />
+			<param index="0" name="path" type="String" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="bar_beats" type="int" setter="set_bar_beats" getter="get_bar_beats" default="4">
+		</member>
+		<member name="beat_count" type="int" setter="set_beat_count" getter="get_beat_count" default="0">
+		</member>
+		<member name="bpm" type="float" setter="set_bpm" getter="get_bpm" default="0.0">
+		</member>
+		<member name="loop" type="bool" setter="set_loop" getter="has_loop" default="false">
+		</member>
+		<member name="loop_offset" type="float" setter="set_loop_offset" getter="get_loop_offset" default="0.0">
+		</member>
+		<member name="packet_sequence" type="OggPacketSequence" setter="set_packet_sequence" getter="get_packet_sequence">
+		</member>
+	</members>
+</class>

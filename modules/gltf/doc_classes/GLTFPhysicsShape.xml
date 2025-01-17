@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="GLTFPhysicsShape" inherits="Resource" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="from_dictionary" qualifiers="static">
+			<return type="GLTFPhysicsShape" />
+			<param index="0" name="dictionary" type="Dictionary" />
+			<description>
+			</description>
+		</method>
+		<method name="from_node" qualifiers="static">
+			<return type="GLTFPhysicsShape" />
+			<param index="0" name="shape_node" type="CollisionShape3D" />
+			<description>
+			</description>
+		</method>
+		<method name="from_resource" qualifiers="static">
+			<return type="GLTFPhysicsShape" />
+			<param index="0" name="shape_resource" type="Shape3D" />
+			<description>
+			</description>
+		</method>
+		<method name="to_dictionary" qualifiers="const">
+			<return type="Dictionary" />
+			<description>
+			</description>
+		</method>
+		<method name="to_node">
+			<return type="CollisionShape3D" />
+			<param index="0" name="cache_shapes" type="bool" default="false" />
+			<description>
+			</description>
+		</method>
+		<method name="to_resource">
+			<return type="Shape3D" />
+			<param index="0" name="cache_shapes" type="bool" default="false" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="height" type="float" setter="set_height" getter="get_height" default="2.0">
+		</member>
+		<member name="importer_mesh" type="ImporterMesh" setter="set_importer_mesh" getter="get_importer_mesh">
+		</member>
+		<member name="is_trigger" type="bool" setter="set_is_trigger" getter="get_is_trigger" default="false">
+		</member>
+		<member name="mesh_index" type="int" setter="set_mesh_index" getter="get_mesh_index" default="-1">
+		</member>
+		<member name="radius" type="float" setter="set_radius" getter="get_radius" default="0.5">
+		</member>
+		<member name="shape_type" type="String" setter="set_shape_type" getter="get_shape_type" default="&quot;&quot;">
+		</member>
+		<member name="size" type="Vector3" setter="set_size" getter="get_size" default="Vector3(1, 1, 1)">
+		</member>
+	</members>
+</class>

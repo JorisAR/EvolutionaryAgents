@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="OpenXRInterface" inherits="XRInterface" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="get_action_sets" qualifiers="const">
+			<return type="Array" />
+			<description>
+			</description>
+		</method>
+		<method name="get_available_display_refresh_rates" qualifiers="const">
+			<return type="Array" />
+			<description>
+			</description>
+		</method>
+		<method name="get_hand_joint_angular_velocity" qualifiers="const">
+			<return type="Vector3" />
+			<param index="0" name="hand" type="int" enum="OpenXRInterface.Hand" />
+			<param index="1" name="joint" type="int" enum="OpenXRInterface.HandJoints" />
+			<description>
+			</description>
+		</method>
+		<method name="get_hand_joint_flags" qualifiers="const">
+			<return type="int" enum="OpenXRInterface.HandJointFlags" is_bitfield="true" />
+			<param index="0" name="hand" type="int" enum="OpenXRInterface.Hand" />
+			<param index="1" name="joint" type="int" enum="OpenXRInterface.HandJoints" />
+			<description>
+			</description>
+		</method>
+		<method name="get_hand_joint_linear_velocity" qualifiers="const">
+			<return type="Vector3" />
+			<param index="0" name="hand" type="int" enum="OpenXRInterface.Hand" />
+			<param index="1" name="joint" type="int" enum="OpenXRInterface.HandJoints" />
+			<description>
+			</description>
+		</method>
+		<method name="get_hand_joint_position" qualifiers="const">
+			<return type="Vector3" />
+			<param index="0" name="hand" type="int" enum="OpenXRInterface.Hand" />
+			<param index="1" name="joint" type="int" enum="OpenXRInterface.HandJoints" />
+			<description>
+			</description>
+		</method>
+		<method name="get_hand_joint_radius" qualifiers="const">
+			<return type="float" />
+			<param index="0" name="hand" type="int" enum="OpenXRInterface.Hand" />
+			<param index="1" name="joint" type="int" enum="OpenXRInterface.HandJoints" />
+			<description>
+			</description>
+		</method>
+		<method name="get_hand_joint_rotation" qualifiers="const">
+			<return type="Quaternion" />
+			<param index="0" name="hand" type="int" enum="OpenXRInterface.Hand" />
+			<param index="1" name="joint" type="int" enum="OpenXRInterface.HandJoints" />
+			<description>
+			</description>
+		</method>
+		<method name="get_hand_tracking_source" qualifiers="const">
+			<return type="int" enum="OpenXRInterface.HandTrackedSource" />
+			<param index="0" name="hand" type="int" enum="OpenXRInterface.Hand" />
+			<description>
+			</description>
+		</method>
+		<method name="get_motion_range" qualifiers="const">
+			<return type="int" enum="OpenXRInterface.HandMotionRange" />
+			<param index="0" name="hand" type="int" enum="OpenXRInterface.Hand" />
+			<description>
+			</description>
+		</method>
+		<method name="is_action_set_active" qualifiers="const">
+			<return type="bool" />
+			<param index="0" name="name" type="String" />
+			<description>
+			</description>
+		</method>
+		<method name="is_eye_gaze_interaction_supported">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="is_foveation_supported" qualifiers="const">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="is_hand_interaction_supported" qualifiers="const">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="is_hand_tracking_supported">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_action_set_active">
+			<return type="void" />
+			<param index="0" name="name" type="String" />
+			<param index="1" name="active" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_motion_range">
+			<return type="void" />
+			<param index="0" name="hand" type="int" enum="OpenXRInterface.Hand" />
+			<param index="1" name="motion_range" type="int" enum="OpenXRInterface.HandMotionRange" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="display_refresh_rate" type="float" setter="set_display_refresh_rate" getter="get_display_refresh_rate" default="0.0">
+		</member>
+		<member name="foveation_dynamic" type="bool" setter="set_foveation_dynamic" getter="get_foveation_dynamic" default="false">
+		</member>
+		<member name="foveation_level" type="int" setter="set_foveation_level" getter="get_foveation_level" default="0">
+		</member>
+		<member name="render_target_size_multiplier" type="float" setter="set_render_target_size_multiplier" getter="get_render_target_size_multiplier" default="1.0">
+		</member>
+		<member name="vrs_min_radius" type="float" setter="set_vrs_min_radius" getter="get_vrs_min_radius" default="20.0">
+		</member>
+		<member name="vrs_strength" type="float" setter="set_vrs_strength" getter="get_vrs_strength" default="1.0">
+		</member>
+	</members>
+	<signals>
+		<signal name="instance_exiting">
+			<description>
+			</description>
+		</signal>
+		<signal name="pose_recentered">
+			<description>
+			</description>
+		</signal>
+		<signal name="refresh_rate_changed">
+			<param index="0" name="refresh_rate" type="float" />
+			<description>
+			</description>
+		</signal>
+		<signal name="session_begun">
+			<description>
+			</description>
+		</signal>
+		<signal name="session_focussed">
+			<description>
+			</description>
+		</signal>
+		<signal name="session_loss_pending">
+			<description>
+			</description>
+		</signal>
+		<signal name="session_stopping">
+			<description>
+			</description>
+		</signal>
+		<signal name="session_visible">
+			<description>
+			</description>
+		</signal>
+	</signals>
+	<constants>
+		<constant name="HAND_LEFT" value="0" enum="Hand">
+		</constant>
+		<constant name="HAND_RIGHT" value="1" enum="Hand">
+		</constant>
+		<constant name="HAND_MAX" value="2" enum="Hand">
+		</constant>
+		<constant name="HAND_MOTION_RANGE_UNOBSTRUCTED" value="0" enum="HandMotionRange">
+		</constant>
+		<constant name="HAND_MOTION_RANGE_CONFORM_TO_CONTROLLER" value="1" enum="HandMotionRange">
+		</constant>
+		<constant name="HAND_MOTION_RANGE_MAX" value="2" enum="HandMotionRange">
+		</constant>
+		<constant name="HAND_TRACKED_SOURCE_UNKNOWN" value="0" enum="HandTrackedSource">
+		</constant>
+		<constant name="HAND_TRACKED_SOURCE_UNOBSTRUCTED" value="1" enum="HandTrackedSource">
+		</constant>
+		<constant name="HAND_TRACKED_SOURCE_CONTROLLER" value="2" enum="HandTrackedSource">
+		</constant>
+		<constant name="HAND_TRACKED_SOURCE_MAX" value="3" enum="HandTrackedSource">
+		</constant>
+		<constant name="HAND_JOINT_PALM" value="0" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_WRIST" value="1" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_THUMB_METACARPAL" value="2" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_THUMB_PROXIMAL" value="3" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_THUMB_DISTAL" value="4" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_THUMB_TIP" value="5" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_INDEX_METACARPAL" value="6" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_INDEX_PROXIMAL" value="7" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_INDEX_INTERMEDIATE" value="8" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_INDEX_DISTAL" value="9" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_INDEX_TIP" value="10" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_MIDDLE_METACARPAL" value="11" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_MIDDLE_PROXIMAL" value="12" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_MIDDLE_INTERMEDIATE" value="13" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_MIDDLE_DISTAL" value="14" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_MIDDLE_TIP" value="15" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_RING_METACARPAL" value="16" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_RING_PROXIMAL" value="17" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_RING_INTERMEDIATE" value="18" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_RING_DISTAL" value="19" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_RING_TIP" value="20" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_LITTLE_METACARPAL" value="21" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_LITTLE_PROXIMAL" value="22" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_LITTLE_INTERMEDIATE" value="23" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_LITTLE_DISTAL" value="24" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_LITTLE_TIP" value="25" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_MAX" value="26" enum="HandJoints">
+		</constant>
+		<constant name="HAND_JOINT_NONE" value="0" enum="HandJointFlags" is_bitfield="true">
+		</constant>
+		<constant name="HAND_JOINT_ORIENTATION_VALID" value="1" enum="HandJointFlags" is_bitfield="true">
+		</constant>
+		<constant name="HAND_JOINT_ORIENTATION_TRACKED" value="2" enum="HandJointFlags" is_bitfield="true">
+		</constant>
+		<constant name="HAND_JOINT_POSITION_VALID" value="4" enum="HandJointFlags" is_bitfield="true">
+		</constant>
+		<constant name="HAND_JOINT_POSITION_TRACKED" value="8" enum="HandJointFlags" is_bitfield="true">
+		</constant>
+		<constant name="HAND_JOINT_LINEAR_VELOCITY_VALID" value="16" enum="HandJointFlags" is_bitfield="true">
+		</constant>
+		<constant name="HAND_JOINT_ANGULAR_VELOCITY_VALID" value="32" enum="HandJointFlags" is_bitfield="true">
+		</constant>
+	</constants>
+</class>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="OpenXRInteractionProfile" inherits="Resource" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="get_binding" qualifiers="const">
+			<return type="OpenXRIPBinding" />
+			<param index="0" name="index" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_binding_count" qualifiers="const">
+			<return type="int" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="bindings" type="Array" setter="set_bindings" getter="get_bindings" default="[]">
+		</member>
+		<member name="interaction_profile_path" type="String" setter="set_interaction_profile_path" getter="get_interaction_profile_path" default="&quot;&quot;">
+		</member>
+	</members>
+</class>

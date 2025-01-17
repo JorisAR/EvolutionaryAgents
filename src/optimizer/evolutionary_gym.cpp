@@ -4,6 +4,8 @@ using namespace godot;
 
 void EvolutionaryGym::start_training()
 {
+    if(!auto_start) return;
+
     if (neural_network == nullptr)
     {
         UtilityFunctions::printerr("No neural network selected, aborted training.");
@@ -18,7 +20,7 @@ void EvolutionaryGym::start_training()
     active_agent_count = 0;
     population_size = 0;
 
-    for (Agent *agent : agent_vector_)
+    for (EvolutionaryAgent *agent : agent_vector_)
     {
         population_size += 1;
         agent->connect("ended", Callable(this, "on_agent_ended"));
@@ -29,7 +31,7 @@ void EvolutionaryGym::start_training()
     genome_size = parameters[0] + parameters[1];
 
     // Initialize the evolutionary strategy
-        if (ea == nullptr && neural_network->get_use_existing_network())
+    if (ea == nullptr && neural_network->get_use_existing_network())
     {
         auto params = EA::EvolutionaryAlgorithmState::from_json(neural_network->get_stored_network());
         if (params != nullptr)
@@ -55,7 +57,7 @@ void EvolutionaryGym::start_generation()
     {
         auto agent = agent_vector_[i];
         agent->update(layers, population[i]);
-        agent->start_game();
+        agent->start();
     }
 }
 
@@ -64,7 +66,7 @@ void EvolutionaryGym::on_agent_ended()
     std::lock_guard<std::mutex> lock(agent_ended_mutex);
 
     active_agent_count--;
-    if (active_agent_count == 0 && training)
+    if (active_agent_count == 0 && training && !run_once)
     {
         end_generation();
     }
@@ -73,7 +75,7 @@ void EvolutionaryGym::on_agent_ended()
 void EvolutionaryGym::end_generation()
 {
     int i = 0;
-    for (Agent *agent : agent_vector_)
+    for (EvolutionaryAgent *agent : agent_vector_)
     {
         register_fitness(i++, agent->get_fitness());
     }
@@ -94,7 +96,7 @@ void EvolutionaryGym::end_training()
         UtilityFunctions::print("Saved State.");
     }
 
-    for (Agent *agent : agent_vector_)
+    for (EvolutionaryAgent *agent : agent_vector_)
     {
         agent->disconnect("ended", Callable(this, "on_agent_ended"));
     }
@@ -104,7 +106,7 @@ void EvolutionaryGym::end_training()
 
 void godot::EvolutionaryGym::_bind_methods()
 {
-    ClassDB::bind_method(D_METHOD("on_agent_ended"), &EvolutionaryGym::on_agent_ended);
+    // ClassDB::bind_method(D_METHOD("on_agent_ended"), &EvolutionaryGym::on_agent_ended);
     ClassDB::bind_method(D_METHOD("set_agents", "agents"), &EvolutionaryGym::set_agents);
     ClassDB::bind_method(D_METHOD("get_agents"), &EvolutionaryGym::get_agents);
 
@@ -120,8 +122,17 @@ void godot::EvolutionaryGym::_bind_methods()
     ClassDB::bind_method(D_METHOD("get_time_scale"), &EvolutionaryGym::get_time_scale);
     ClassDB::bind_method(D_METHOD("set_time_scale", "value"), &EvolutionaryGym::set_time_scale);
 
+    ClassDB::bind_method(D_METHOD("get_auto_start"), &EvolutionaryGym::get_auto_start);
+    ClassDB::bind_method(D_METHOD("set_auto_start", "value"), &EvolutionaryGym::set_auto_start);
+
+    ClassDB::bind_method(D_METHOD("get_run_once"), &EvolutionaryGym::get_run_once);
+    ClassDB::bind_method(D_METHOD("set_run_once", "value"), &EvolutionaryGym::set_run_once);
+
+    ADD_PROPERTY(PropertyInfo(Variant::BOOL, "auto_start"), "set_auto_start", "get_auto_start");
+    ADD_PROPERTY(PropertyInfo(Variant::BOOL, "run_once"), "set_run_once", "get_run_once");
+
     ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "agents", PROPERTY_HINT_TYPE_STRING,
-                              String::num(Variant::OBJECT) + "/" + String::num(PROPERTY_HINT_NODE_TYPE) + ":Agent"),
+                              String::num(Variant::OBJECT) + "/" + String::num(PROPERTY_HINT_NODE_TYPE) + ":EvolutionaryAgent"),
                  "set_agents", "get_agents");
     ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "neural_network_parameters", PROPERTY_HINT_RESOURCE_TYPE,
                               "NeuralNetworkParameters"),
@@ -138,13 +149,13 @@ godot::EvolutionaryGym::EvolutionaryGym() : EvolutionaryOptimizer()
 {
 }
 
-void godot::EvolutionaryGym::set_agents(const TypedArray<Agent> value)
+void godot::EvolutionaryGym::set_agents(const TypedArray<EvolutionaryAgent> value)
 {
     agents = value;
     agent_vector_.clear();
     for (size_t i = 0; i < agents.size(); i++)
     {
-        Agent *agent = Object::cast_to<Agent>(agents[i]);
+        EvolutionaryAgent *agent = Object::cast_to<EvolutionaryAgent>(agents[i]);
         if (agent)
         {
             agent_vector_.push_back(agent);
@@ -152,20 +163,31 @@ void godot::EvolutionaryGym::set_agents(const TypedArray<Agent> value)
     }
 }
 
-TypedArray<Agent> godot::EvolutionaryGym::get_agents() const
+TypedArray<EvolutionaryAgent> godot::EvolutionaryGym::get_agents() const
 {
     return agents;
 }
 
-bool godot::EvolutionaryGym::get_training() const
+bool godot::EvolutionaryGym::get_auto_start() const
 {
-    return training;
+    return auto_start;
 }
 
-void godot::EvolutionaryGym::set_training(const bool value)
+void godot::EvolutionaryGym::set_auto_start(const bool value)
 {
-    training = value;
+    auto_start = value;
 }
+
+bool godot::EvolutionaryGym::get_run_once() const
+{
+    return run_once;
+}
+
+void godot::EvolutionaryGym::set_run_once(const bool value)
+{
+    run_once = value;
+}
+
 
 void godot::EvolutionaryGym::set_neural_network(Ref<NeuralNetworkParameters> value)
 {

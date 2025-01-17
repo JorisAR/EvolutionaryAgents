@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="WebXRInterface" inherits="XRInterface" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="get_available_display_refresh_rates" qualifiers="const">
+			<return type="Array" />
+			<description>
+			</description>
+		</method>
+		<method name="get_display_refresh_rate" qualifiers="const">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_input_source_target_ray_mode" qualifiers="const">
+			<return type="int" enum="WebXRInterface.TargetRayMode" />
+			<param index="0" name="input_source_id" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_input_source_tracker" qualifiers="const">
+			<return type="XRControllerTracker" />
+			<param index="0" name="input_source_id" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="is_input_source_active" qualifiers="const">
+			<return type="bool" />
+			<param index="0" name="input_source_id" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="is_session_supported">
+			<return type="void" />
+			<param index="0" name="session_mode" type="String" />
+			<description>
+			</description>
+		</method>
+		<method name="set_display_refresh_rate">
+			<return type="void" />
+			<param index="0" name="refresh_rate" type="float" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="enabled_features" type="String" setter="" getter="get_enabled_features">
+		</member>
+		<member name="optional_features" type="String" setter="set_optional_features" getter="get_optional_features">
+		</member>
+		<member name="reference_space_type" type="String" setter="" getter="get_reference_space_type">
+		</member>
+		<member name="requested_reference_space_types" type="String" setter="set_requested_reference_space_types" getter="get_requested_reference_space_types">
+		</member>
+		<member name="required_features" type="String" setter="set_required_features" getter="get_required_features">
+		</member>
+		<member name="session_mode" type="String" setter="set_session_mode" getter="get_session_mode">
+		</member>
+		<member name="visibility_state" type="String" setter="" getter="get_visibility_state">
+		</member>
+	</members>
+	<signals>
+		<signal name="display_refresh_rate_changed">
+			<description>
+			</description>
+		</signal>
+		<signal name="reference_space_reset">
+			<description>
+			</description>
+		</signal>
+		<signal name="select">
+			<param index="0" name="input_source_id" type="int" />
+			<description>
+			</description>
+		</signal>
+		<signal name="selectend">
+			<param index="0" name="input_source_id" type="int" />
+			<description>
+			</description>
+		</signal>
+		<signal name="selectstart">
+			<param index="0" name="input_source_id" type="int" />
+			<description>
+			</description>
+		</signal>
+		<signal name="session_ended">
+			<description>
+			</description>
+		</signal>
+		<signal name="session_failed">
+			<param index="0" name="message" type="String" />
+			<description>
+			</description>
+		</signal>
+		<signal name="session_started">
+			<description>
+			</description>
+		</signal>
+		<signal name="session_supported">
+			<param index="0" name="session_mode" type="String" />
+			<param index="1" name="supported" type="bool" />
+			<description>
+			</description>
+		</signal>
+		<signal name="squeeze">
+			<param index="0" name="input_source_id" type="int" />
+			<description>
+			</description>
+		</signal>
+		<signal name="squeezeend">
+			<param index="0" name="input_source_id" type="int" />
+			<description>
+			</description>
+		</signal>
+		<signal name="squeezestart">
+			<param index="0" name="input_source_id" type="int" />
+			<description>
+			</description>
+		</signal>
+		<signal name="visibility_state_changed">
+			<description>
+			</description>
+		</signal>
+	</signals>
+	<constants>
+		<constant name="TARGET_RAY_MODE_UNKNOWN" value="0" enum="TargetRayMode">
+		</constant>
+		<constant name="TARGET_RAY_MODE_GAZE" value="1" enum="TargetRayMode">
+		</constant>
+		<constant name="TARGET_RAY_MODE_TRACKED_POINTER" value="2" enum="TargetRayMode">
+		</constant>
+		<constant name="TARGET_RAY_MODE_SCREEN" value="3" enum="TargetRayMode">
+		</constant>
+	</constants>
+</class>

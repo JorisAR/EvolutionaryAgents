@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="EvolutionaryStrategyParameters" inherits="EvolutionaryAlgorithmParameters" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+		Evolutionary algorithm based on OpenAI's ES implementation that proved useful for RL.
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<members>
+		<member name="alpha" type="float" setter="set_alpha" getter="get_alpha" default="0.01">
+			learning rate.
+		</member>
+		<member name="sigma" type="float" setter="set_sigma" getter="get_sigma" default="0.1">
+	search range.
+		</member>
+	</members>
+</class>

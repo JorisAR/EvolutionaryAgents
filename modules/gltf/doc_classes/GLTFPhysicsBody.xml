@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="GLTFPhysicsBody" inherits="Resource" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="from_dictionary" qualifiers="static">
+			<return type="GLTFPhysicsBody" />
+			<param index="0" name="dictionary" type="Dictionary" />
+			<description>
+			</description>
+		</method>
+		<method name="from_node" qualifiers="static">
+			<return type="GLTFPhysicsBody" />
+			<param index="0" name="body_node" type="CollisionObject3D" />
+			<description>
+			</description>
+		</method>
+		<method name="to_dictionary" qualifiers="const">
+			<return type="Dictionary" />
+			<description>
+			</description>
+		</method>
+		<method name="to_node" qualifiers="const">
+			<return type="CollisionObject3D" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="angular_velocity" type="Vector3" setter="set_angular_velocity" getter="get_angular_velocity" default="Vector3(0, 0, 0)">
+		</member>
+		<member name="body_type" type="String" setter="set_body_type" getter="get_body_type" default="&quot;rigid&quot;">
+		</member>
+		<member name="center_of_mass" type="Vector3" setter="set_center_of_mass" getter="get_center_of_mass" default="Vector3(0, 0, 0)">
+		</member>
+		<member name="inertia_diagonal" type="Vector3" setter="set_inertia_diagonal" getter="get_inertia_diagonal" default="Vector3(0, 0, 0)">
+		</member>
+		<member name="inertia_orientation" type="Quaternion" setter="set_inertia_orientation" getter="get_inertia_orientation" default="Quaternion(0, 0, 0, 1)">
+		</member>
+		<member name="inertia_tensor" type="Basis" setter="set_inertia_tensor" getter="get_inertia_tensor" default="Basis(0, 0, 0, 0, 0, 0, 0, 0, 0)">
+		</member>
+		<member name="linear_velocity" type="Vector3" setter="set_linear_velocity" getter="get_linear_velocity" default="Vector3(0, 0, 0)">
+		</member>
+		<member name="mass" type="float" setter="set_mass" getter="get_mass" default="1.0">
+		</member>
+	</members>
+</class>

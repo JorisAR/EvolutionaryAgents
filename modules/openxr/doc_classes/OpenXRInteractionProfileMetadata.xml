@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="OpenXRInteractionProfileMetadata" inherits="Object" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="register_interaction_profile">
+			<return type="void" />
+			<param index="0" name="display_name" type="String" />
+			<param index="1" name="openxr_path" type="String" />
+			<param index="2" name="openxr_extension_name" type="String" />
+			<description>
+			</description>
+		</method>
+		<method name="register_io_path">
+			<return type="void" />
+			<param index="0" name="interaction_profile" type="String" />
+			<param index="1" name="display_name" type="String" />
+			<param index="2" name="toplevel_path" type="String" />
+			<param index="3" name="openxr_path" type="String" />
+			<param index="4" name="openxr_extension_name" type="String" />
+			<param index="5" name="action_type" type="int" enum="OpenXRAction.ActionType" />
+			<description>
+			</description>
+		</method>
+		<method name="register_profile_rename">
+			<return type="void" />
+			<param index="0" name="old_name" type="String" />
+			<param index="1" name="new_name" type="String" />
+			<description>
+			</description>
+		</method>
+		<method name="register_top_level_path">
+			<return type="void" />
+			<param index="0" name="display_name" type="String" />
+			<param index="1" name="openxr_path" type="String" />
+			<param index="2" name="openxr_extension_name" type="String" />
+			<description>
+			</description>
+		</method>
+	</methods>
+</class>

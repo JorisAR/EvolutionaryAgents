@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="OpenXRExtensionWrapperExtension" inherits="Object" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="_get_composition_layer" qualifiers="virtual">
+			<return type="int" />
+			<param index="0" name="index" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="_get_composition_layer_count" qualifiers="virtual">
+			<return type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="_get_composition_layer_order" qualifiers="virtual">
+			<return type="int" />
+			<param index="0" name="index" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="_get_requested_extensions" qualifiers="virtual">
+			<return type="Dictionary" />
+			<description>
+			</description>
+		</method>
+		<method name="_get_suggested_tracker_names" qualifiers="virtual">
+			<return type="PackedStringArray" />
+			<description>
+			</description>
+		</method>
+		<method name="_get_viewport_composition_layer_extension_properties" qualifiers="virtual">
+			<return type="Dictionary[]" />
+			<description>
+			</description>
+		</method>
+		<method name="_get_viewport_composition_layer_extension_property_defaults" qualifiers="virtual">
+			<return type="Dictionary" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_before_instance_created" qualifiers="virtual">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_event_polled" qualifiers="virtual">
+			<return type="bool" />
+			<param index="0" name="event" type="const void*" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_instance_created" qualifiers="virtual">
+			<return type="void" />
+			<param index="0" name="instance" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_instance_destroyed" qualifiers="virtual">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_main_swapchains_created" qualifiers="virtual">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_pre_render" qualifiers="virtual">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_process" qualifiers="virtual">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_register_metadata" qualifiers="virtual">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_session_created" qualifiers="virtual">
+			<return type="void" />
+			<param index="0" name="session" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_session_destroyed" qualifiers="virtual">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_state_exiting" qualifiers="virtual">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_state_focused" qualifiers="virtual">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_state_idle" qualifiers="virtual">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_state_loss_pending" qualifiers="virtual">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_state_ready" qualifiers="virtual">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_state_stopping" qualifiers="virtual">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_state_synchronized" qualifiers="virtual">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_state_visible" qualifiers="virtual">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_viewport_composition_layer_destroyed" qualifiers="virtual">
+			<return type="void" />
+			<param index="0" name="layer" type="const void*" />
+			<description>
+			</description>
+		</method>
+		<method name="_set_hand_joint_locations_and_get_next_pointer" qualifiers="virtual">
+			<return type="int" />
+			<param index="0" name="hand_index" type="int" />
+			<param index="1" name="next_pointer" type="void*" />
+			<description>
+			</description>
+		</method>
+		<method name="_set_instance_create_info_and_get_next_pointer" qualifiers="virtual">
+			<return type="int" />
+			<param index="0" name="next_pointer" type="void*" />
+			<description>
+			</description>
+		</method>
+		<method name="_set_session_create_and_get_next_pointer" qualifiers="virtual">
+			<return type="int" />
+			<param index="0" name="next_pointer" type="void*" />
+			<description>
+			</description>
+		</method>
+		<method name="_set_swapchain_create_info_and_get_next_pointer" qualifiers="virtual">
+			<return type="int" />
+			<param index="0" name="next_pointer" type="void*" />
+			<description>
+			</description>
+		</method>
+		<method name="_set_system_properties_and_get_next_pointer" qualifiers="virtual">
+			<return type="int" />
+			<param index="0" name="next_pointer" type="void*" />
+			<description>
+			</description>
+		</method>
+		<method name="_set_viewport_composition_layer_and_get_next_pointer" qualifiers="virtual">
+			<return type="int" />
+			<param index="0" name="layer" type="const void*" />
+			<param index="1" name="property_values" type="Dictionary" />
+			<param index="2" name="next_pointer" type="void*" />
+			<description>
+			</description>
+		</method>
+		<method name="get_openxr_api">
+			<return type="OpenXRAPIExtension" />
+			<description>
+			</description>
+		</method>
+		<method name="register_extension_wrapper">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+	</methods>
+</class>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="RegEx" inherits="RefCounted" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="clear">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="compile">
+			<return type="int" enum="Error" />
+			<param index="0" name="pattern" type="String" />
+			<description>
+			</description>
+		</method>
+		<method name="create_from_string" qualifiers="static">
+			<return type="RegEx" />
+			<param index="0" name="pattern" type="String" />
+			<description>
+			</description>
+		</method>
+		<method name="get_group_count" qualifiers="const">
+			<return type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_names" qualifiers="const">
+			<return type="PackedStringArray" />
+			<description>
+			</description>
+		</method>
+		<method name="get_pattern" qualifiers="const">
+			<return type="String" />
+			<description>
+			</description>
+		</method>
+		<method name="is_valid" qualifiers="const">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="search" qualifiers="const">
+			<return type="RegExMatch" />
+			<param index="0" name="subject" type="String" />
+			<param index="1" name="offset" type="int" default="0" />
+			<param index="2" name="end" type="int" default="-1" />
+			<description>
+			</description>
+		</method>
+		<method name="search_all" qualifiers="const">
+			<return type="RegExMatch[]" />
+			<param index="0" name="subject" type="String" />
+			<param index="1" name="offset" type="int" default="0" />
+			<param index="2" name="end" type="int" default="-1" />
+			<description>
+			</description>
+		</method>
+		<method name="sub" qualifiers="const">
+			<return type="String" />
+			<param index="0" name="subject" type="String" />
+			<param index="1" name="replacement" type="String" />
+			<param index="2" name="all" type="bool" default="false" />
+			<param index="3" name="offset" type="int" default="0" />
+			<param index="4" name="end" type="int" default="-1" />
+			<description>
+			</description>
+		</method>
+	</methods>
+</class>

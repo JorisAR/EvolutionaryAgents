@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="UPNPDevice" inherits="RefCounted" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="add_port_mapping" qualifiers="const">
+			<return type="int" />
+			<param index="0" name="port" type="int" />
+			<param index="1" name="port_internal" type="int" default="0" />
+			<param index="2" name="desc" type="String" default="&quot;&quot;" />
+			<param index="3" name="proto" type="String" default="&quot;UDP&quot;" />
+			<param index="4" name="duration" type="int" default="0" />
+			<description>
+			</description>
+		</method>
+		<method name="delete_port_mapping" qualifiers="const">
+			<return type="int" />
+			<param index="0" name="port" type="int" />
+			<param index="1" name="proto" type="String" default="&quot;UDP&quot;" />
+			<description>
+			</description>
+		</method>
+		<method name="is_valid_gateway" qualifiers="const">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="query_external_address" qualifiers="const">
+			<return type="String" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="description_url" type="String" setter="set_description_url" getter="get_description_url" default="&quot;&quot;">
+		</member>
+		<member name="igd_control_url" type="String" setter="set_igd_control_url" getter="get_igd_control_url" default="&quot;&quot;">
+		</member>
+		<member name="igd_our_addr" type="String" setter="set_igd_our_addr" getter="get_igd_our_addr" default="&quot;&quot;">
+		</member>
+		<member name="igd_service_type" type="String" setter="set_igd_service_type" getter="get_igd_service_type" default="&quot;&quot;">
+		</member>
+		<member name="igd_status" type="int" setter="set_igd_status" getter="get_igd_status" enum="UPNPDevice.IGDStatus" default="9">
+		</member>
+		<member name="service_type" type="String" setter="set_service_type" getter="get_service_type" default="&quot;&quot;">
+		</member>
+	</members>
+	<constants>
+		<constant name="IGD_STATUS_OK" value="0" enum="IGDStatus">
+		</constant>
+		<constant name="IGD_STATUS_HTTP_ERROR" value="1" enum="IGDStatus">
+		</constant>
+		<constant name="IGD_STATUS_HTTP_EMPTY" value="2" enum="IGDStatus">
+		</constant>
+		<constant name="IGD_STATUS_NO_URLS" value="3" enum="IGDStatus">
+		</constant>
+		<constant name="IGD_STATUS_NO_IGD" value="4" enum="IGDStatus">
+		</constant>
+		<constant name="IGD_STATUS_DISCONNECTED" value="5" enum="IGDStatus">
+		</constant>
+		<constant name="IGD_STATUS_UNKNOWN_DEVICE" value="6" enum="IGDStatus">
+		</constant>
+		<constant name="IGD_STATUS_INVALID_CONTROL" value="7" enum="IGDStatus">
+		</constant>
+		<constant name="IGD_STATUS_MALLOC_ERROR" value="8" enum="IGDStatus">
+		</constant>
+		<constant name="IGD_STATUS_UNKNOWN_ERROR" value="9" enum="IGDStatus">
+		</constant>
+	</constants>
+</class>

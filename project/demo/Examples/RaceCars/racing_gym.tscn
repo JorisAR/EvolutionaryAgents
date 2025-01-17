@@ -4,9 +4,8 @@
 [ext_resource type="Script" path="res://demo/gym.gd" id="1_rfkmq"]
 [ext_resource type="PackedScene" uid="uid://df0jdtrfvtrxk" path="res://demo/Examples/RaceCars/car.tscn" id="1_sl5v5"]
 [ext_resource type="Script" path="res://demo/movable_camera.gd" id="1_xjcbb"]
+[ext_resource type="SepCMAESParameters" uid="uid://dtad1urq2nu38" path="res://demo/Examples/sep_cma_es.tres" id="2_gnar7"]
 [ext_resource type="PackedScene" uid="uid://fle61c6dj2j7" path="res://demo/Examples/RaceCars/race_track.tscn" id="2_ttxyt"]
-
-[sub_resource type="SepCMAESParameters" id="SepCMAESParameters_31e77"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ljua4"]
 
@@ -22,7 +21,7 @@ sky = SubResource("Sky_6ka3r")
 [node name="Gym" type="EvolutionaryGym" parent="."]
 neural_network_parameters = ExtResource("1_iwoml")
 time_scale = 1000
-evolutionary_algorithm_parameters = SubResource("SepCMAESParameters_31e77")
+evolutionary_algorithm_parameters = ExtResource("2_gnar7")
 debug_verbose = true
 script = ExtResource("1_rfkmq")
 

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="CSGPolygon3D" inherits="CSGPrimitive3D" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<members>
+		<member name="depth" type="float" setter="set_depth" getter="get_depth" default="1.0">
+		</member>
+		<member name="material" type="Material" setter="set_material" getter="get_material">
+		</member>
+		<member name="mode" type="int" setter="set_mode" getter="get_mode" enum="CSGPolygon3D.Mode" default="0">
+		</member>
+		<member name="path_continuous_u" type="bool" setter="set_path_continuous_u" getter="is_path_continuous_u">
+		</member>
+		<member name="path_interval" type="float" setter="set_path_interval" getter="get_path_interval">
+		</member>
+		<member name="path_interval_type" type="int" setter="set_path_interval_type" getter="get_path_interval_type" enum="CSGPolygon3D.PathIntervalType">
+		</member>
+		<member name="path_joined" type="bool" setter="set_path_joined" getter="is_path_joined">
+		</member>
+		<member name="path_local" type="bool" setter="set_path_local" getter="is_path_local">
+		</member>
+		<member name="path_node" type="NodePath" setter="set_path_node" getter="get_path_node">
+		</member>
+		<member name="path_rotation" type="int" setter="set_path_rotation" getter="get_path_rotation" enum="CSGPolygon3D.PathRotation">
+		</member>
+		<member name="path_simplify_angle" type="float" setter="set_path_simplify_angle" getter="get_path_simplify_angle">
+		</member>
+		<member name="path_u_distance" type="float" setter="set_path_u_distance" getter="get_path_u_distance">
+		</member>
+		<member name="polygon" type="PackedVector2Array" setter="set_polygon" getter="get_polygon" default="PackedVector2Array(0, 0, 0, 1, 1, 1, 1, 0)">
+		</member>
+		<member name="smooth_faces" type="bool" setter="set_smooth_faces" getter="get_smooth_faces" default="false">
+		</member>
+		<member name="spin_degrees" type="float" setter="set_spin_degrees" getter="get_spin_degrees">
+		</member>
+		<member name="spin_sides" type="int" setter="set_spin_sides" getter="get_spin_sides">
+		</member>
+	</members>
+	<constants>
+		<constant name="MODE_DEPTH" value="0" enum="Mode">
+		</constant>
+		<constant name="MODE_SPIN" value="1" enum="Mode">
+		</constant>
+		<constant name="MODE_PATH" value="2" enum="Mode">
+		</constant>
+		<constant name="PATH_ROTATION_POLYGON" value="0" enum="PathRotation">
+		</constant>
+		<constant name="PATH_ROTATION_PATH" value="1" enum="PathRotation">
+		</constant>
+		<constant name="PATH_ROTATION_PATH_FOLLOW" value="2" enum="PathRotation">
+		</constant>
+		<constant name="PATH_INTERVAL_DISTANCE" value="0" enum="PathIntervalType">
+		</constant>
+		<constant name="PATH_INTERVAL_SUBDIVIDE" value="1" enum="PathIntervalType">
+		</constant>
+	</constants>
+</class>

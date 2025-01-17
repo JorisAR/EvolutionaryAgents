@@ -33,7 +33,7 @@ script = ExtResource("1_nbqab")
 agent = NodePath("Agent")
 character = NodePath("Scene/Agent")
 
-[node name="Agent" type="Agent" parent="."]
+[node name="Agent" type="EvolutionaryAgent" parent="."]
 neural_network_parameters = ExtResource("2_f4j0f")
 
 [node name="Scene" type="Node3D" parent="."]

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="OptimizableProblem" inherits="Node" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="_evaluate" qualifiers="virtual const">
+			<return type="float" />
+			<param index="0" name="genome" type="PackedFloat32Array" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="genome_size" type="int" setter="set_genome_size" getter="get_genome_size" default="1">
+		</member>
+	</members>
+	<signals>
+		<signal name="ended">
+			<param index="0" name="fitness" type="float" />
+			<description>
+			</description>
+		</signal>
+		<signal name="started">
+			<param index="0" name="genome" type="PackedFloat32Array" />
+			<description>
+			</description>
+		</signal>
+	</signals>
+</class>

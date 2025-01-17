@@ -2,19 +2,17 @@
 
 [ext_resource type="JSON" path="res://demo/Examples/ImageCompression/image_state.json" id="1_2pcgb"]
 [ext_resource type="Script" path="res://demo/Examples/ImageCompression/dispatcher.gd" id="1_2t3dg"]
+[ext_resource type="SepCMAESParameters" uid="uid://uv5n53k65hmw" path="res://demo/Examples/bounded_sep_cma_es.tres" id="2_b0tpp"]
 [ext_resource type="Script" path="res://demo/Examples/ImageCompression/CompressorHandler.gd" id="3_cy0ge"]
 [ext_resource type="Texture2D" uid="uid://x0tf68moidd4" path="res://demo/Examples/ImageCompression/painting.png" id="4_twjiu"]
 [ext_resource type="Texture2D" uid="uid://3d7hwscbfmem" path="res://addons/evolutionary_agents/icons/helix.svg" id="5_4ujxc"]
-
-[sub_resource type="SepCMAESParameters" id="SepCMAESParameters_ueuk0"]
-bound_enabled = true
 
 [node name="ImageCompression" type="ProblemOptimizer" node_paths=PackedStringArray("problem")]
 problem = NodePath("OptimizableProblem")
 population_size = 35
 stored_state = ExtResource("1_2pcgb")
 stored_save_state = true
-evolutionary_algorithm_parameters = SubResource("SepCMAESParameters_ueuk0")
+evolutionary_algorithm_parameters = ExtResource("2_b0tpp")
 debug_verbose = true
 debug_log_csv = true
 

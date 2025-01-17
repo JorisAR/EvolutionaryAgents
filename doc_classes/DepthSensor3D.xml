@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="DepthSensor3D" inherits="Sensor3D" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+		Simple sensor that performs a raycast.
+	</brief_description>
+	<description>
+		Uses raycasts to detect the environment. The origin and direction of the ray are determined by the transform, debug using the debug ray.
+	</description>
+	<tutorials>
+	</tutorials>
+	<members>
+		<member name="collision_mask" type="int" setter="set_collision_mask" getter="get_collision_mask" default="1">
+			Mask to decide what it should detect.
+		</member>
+		<member name="debug_show_debug_ray" type="bool" setter="set_show_debug_ray" getter="get_show_debug_ray" default="true">
+			It may be useful to see the ray. It changed colors depending on of an intersection was detected or not.
+		</member>
+		<member name="is_binary" type="float" setter="set_is_binary" getter="get_is_binary" default="0.0">
+			If true, either 0 (no collision) or 1 (collision) is reported. If false, it returns the euclidean distance between origin and intersection.
+		</member>
+		<member name="is_enabled" type="bool" setter="set_enabled" getter="get_enabled" default="true">
+			Does not perform checks if disabled.
+		</member>
+		<member name="max_distance" type="float" setter="set_max_distance" getter="get_max_distance" default="10.0">
+			Max distance to check for collisions.
+		</member>
+	</members>
+</class>

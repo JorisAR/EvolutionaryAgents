@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="AudioStreamPlaylist" inherits="AudioStream" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="get_bpm" qualifiers="const">
+			<return type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="get_list_stream" qualifiers="const">
+			<return type="AudioStream" />
+			<param index="0" name="stream_index" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="set_list_stream">
+			<return type="void" />
+			<param index="0" name="stream_index" type="int" />
+			<param index="1" name="audio_stream" type="AudioStream" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="fade_time" type="float" setter="set_fade_time" getter="get_fade_time" default="0.3">
+		</member>
+		<member name="loop" type="bool" setter="set_loop" getter="has_loop" default="true">
+		</member>
+		<member name="shuffle" type="bool" setter="set_shuffle" getter="get_shuffle" default="false">
+		</member>
+		<member name="stream_count" type="int" setter="set_stream_count" getter="get_stream_count" default="0">
+		</member>
+	</members>
+	<constants>
+		<constant name="MAX_STREAMS" value="64">
+		</constant>
+	</constants>
+</class>

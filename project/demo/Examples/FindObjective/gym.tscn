@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://d13qcnx6vo1nc"]
 
 [ext_resource type="NeuralNetworkParameters" uid="uid://b7gc53l60xf5g" path="res://demo/Examples/FindObjective/finder_nn.tres" id="1_tmt5w"]
-[ext_resource type="SepCMAESParameters" uid="uid://uv5n53k65hmw" path="res://demo/Examples/FindObjective/sep_cma_es.tres" id="1_yb5b5"]
+[ext_resource type="SepCMAESParameters" uid="uid://dtad1urq2nu38" path="res://demo/Examples/sep_cma_es.tres" id="1_yb5b5"]
 [ext_resource type="Script" path="res://demo/gym.gd" id="2_3m2bo"]
 [ext_resource type="PackedScene" uid="uid://s3hpnc6xapdb" path="res://demo/Examples/FindObjective/room.tscn" id="3_6mwls"]
 [ext_resource type="Script" path="res://demo/movable_camera.gd" id="5_icwby"]

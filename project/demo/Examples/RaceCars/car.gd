@@ -1,13 +1,14 @@
 extends CharacterBody3D
 
-@export var agent: Agent;
+@export var auto_start := false
+@export var agent: EvolutionaryAgent;
 @export var speed:= 5;
 @export var rotation_speed:= 1;
 
 @export var sensors: Array[DepthSensor3D];
 var active: bool = false;
 
-func get_agent() -> Agent:
+func get_agent() -> EvolutionaryAgent:
 	return agent;
 
 var _pos : Vector3;
@@ -19,7 +20,10 @@ func _ready() -> void:
 	_rot = global_rotation;
 	
 	if(sensors.size() != 5):
-		printerr("Should be 5 depth sensors")
+		printerr("Should have exactly 5 depth sensors")
+	
+	if(auto_start):
+		agent.start()
 
 func _physics_process(delta: float) -> void:
 	if(!active):
@@ -37,9 +41,12 @@ func _physics_process(delta: float) -> void:
 		sensors[4].get_output(),
 	]);
 	var action = Array(agent.infer(PackedFloat32Array(state)));
-		
-	#match Agent.get_max_element_index(action):
-	match Agent.sample_weighted_index(Agent.soft_max(action), randf()):
+	
+	#NOTE:
+	#By using sample_weighted_index based on soft_max, we treat the output of the network as a
+	#discrete probaility mass function over the possible moves. We sample it, and steer if its 1 or 2.
+	#no action is performed if we get 0.
+	match EvolutionaryAgent.sample_weighted_index(EvolutionaryAgent.soft_max(action), randf()):
 		1:
 			rotate_y(-rotation_speed * delta)
 		2:
@@ -56,9 +63,9 @@ func _physics_process(delta: float) -> void:
 
 func _on_round_end() -> void:
 	active = false;
-	#we only have one agent per room, so we can emit the rooms signal from here:
 	agent.ended.emit();	
 
+#called by the agents start signal
 func _on_agent_started() -> void:
 	time = 0;
 	agent.fitness = 0.0;
@@ -66,10 +73,11 @@ func _on_agent_started() -> void:
 	global_position = _pos;
 	global_rotation = _rot;
 
+#called when colliding with a reward checkpoint
 func _on_area_3d_area_entered(area: Area3D) -> void:
-	agent.fitness += 1;
+	agent.fitness += 1; #arbitrarily chosen positive reward for progressing in the level
 
-
+#called when colliding with a wall
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	agent.fitness -= 5;
+	agent.fitness -= 5; #arbitrarily chosen negative reward for crashing
 	_on_round_end();

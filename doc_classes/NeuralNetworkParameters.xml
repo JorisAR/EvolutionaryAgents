@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="NeuralNetworkParameters" inherits="Resource" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+		Simple feed-forward neural network storage.
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<members>
+		<member name="layer_structure" type="PackedInt32Array" setter="set_layer_structure" getter="get_layer_structure" default="PackedInt32Array(1, 1)">
+			Array of network layers from front to back. E.g., given (3,4,5), the input layer has 3 nodes, the single hidden layer has 4 nodes, and the output layer has 5 nodes. 
+			Expected to be at least length 2, and every value should be greater than 0
+		</member>
+		<member name="stored_network" type="JSON" setter="set_stored_network" getter="get_stored_network">
+			Json file that stores the network as floats.
+		</member>
+		<member name="use_existing_network" type="bool" setter="set_use_existing_network" getter="get_use_existing_network" default="false">
+			If true, the gym will load the stored network if it exists, else it will train from scratch.
+		</member>
+	</members>
+</class>

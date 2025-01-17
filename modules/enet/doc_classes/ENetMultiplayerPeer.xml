@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="ENetMultiplayerPeer" inherits="MultiplayerPeer" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="add_mesh_peer">
+			<return type="int" enum="Error" />
+			<param index="0" name="peer_id" type="int" />
+			<param index="1" name="host" type="ENetConnection" />
+			<description>
+			</description>
+		</method>
+		<method name="create_client">
+			<return type="int" enum="Error" />
+			<param index="0" name="address" type="String" />
+			<param index="1" name="port" type="int" />
+			<param index="2" name="channel_count" type="int" default="0" />
+			<param index="3" name="in_bandwidth" type="int" default="0" />
+			<param index="4" name="out_bandwidth" type="int" default="0" />
+			<param index="5" name="local_port" type="int" default="0" />
+			<description>
+			</description>
+		</method>
+		<method name="create_mesh">
+			<return type="int" enum="Error" />
+			<param index="0" name="unique_id" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="create_server">
+			<return type="int" enum="Error" />
+			<param index="0" name="port" type="int" />
+			<param index="1" name="max_clients" type="int" default="32" />
+			<param index="2" name="max_channels" type="int" default="0" />
+			<param index="3" name="in_bandwidth" type="int" default="0" />
+			<param index="4" name="out_bandwidth" type="int" default="0" />
+			<description>
+			</description>
+		</method>
+		<method name="get_peer" qualifiers="const">
+			<return type="ENetPacketPeer" />
+			<param index="0" name="id" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="set_bind_ip">
+			<return type="void" />
+			<param index="0" name="ip" type="String" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="host" type="ENetConnection" setter="" getter="get_host">
+		</member>
+	</members>
+</class>

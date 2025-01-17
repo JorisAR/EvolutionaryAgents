@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="OpenXRHand" inherits="Node3D" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<members>
+		<member name="bone_update" type="int" setter="set_bone_update" getter="get_bone_update" enum="OpenXRHand.BoneUpdate" default="0">
+		</member>
+		<member name="hand" type="int" setter="set_hand" getter="get_hand" enum="OpenXRHand.Hands" default="0">
+		</member>
+		<member name="hand_skeleton" type="NodePath" setter="set_hand_skeleton" getter="get_hand_skeleton" default="NodePath(&quot;&quot;)">
+		</member>
+		<member name="motion_range" type="int" setter="set_motion_range" getter="get_motion_range" enum="OpenXRHand.MotionRange" default="0">
+		</member>
+		<member name="skeleton_rig" type="int" setter="set_skeleton_rig" getter="get_skeleton_rig" enum="OpenXRHand.SkeletonRig" default="0">
+		</member>
+	</members>
+	<constants>
+		<constant name="HAND_LEFT" value="0" enum="Hands">
+		</constant>
+		<constant name="HAND_RIGHT" value="1" enum="Hands">
+		</constant>
+		<constant name="HAND_MAX" value="2" enum="Hands">
+		</constant>
+		<constant name="MOTION_RANGE_UNOBSTRUCTED" value="0" enum="MotionRange">
+		</constant>
+		<constant name="MOTION_RANGE_CONFORM_TO_CONTROLLER" value="1" enum="MotionRange">
+		</constant>
+		<constant name="MOTION_RANGE_MAX" value="2" enum="MotionRange">
+		</constant>
+		<constant name="SKELETON_RIG_OPENXR" value="0" enum="SkeletonRig">
+		</constant>
+		<constant name="SKELETON_RIG_HUMANOID" value="1" enum="SkeletonRig">
+		</constant>
+		<constant name="SKELETON_RIG_MAX" value="2" enum="SkeletonRig">
+		</constant>
+		<constant name="BONE_UPDATE_FULL" value="0" enum="BoneUpdate">
+		</constant>
+		<constant name="BONE_UPDATE_ROTATION_ONLY" value="1" enum="BoneUpdate">
+		</constant>
+		<constant name="BONE_UPDATE_MAX" value="2" enum="BoneUpdate">
+		</constant>
+	</constants>
+</class>

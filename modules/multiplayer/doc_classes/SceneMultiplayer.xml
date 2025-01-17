@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="SceneMultiplayer" inherits="MultiplayerAPI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="clear">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="complete_auth">
+			<return type="int" enum="Error" />
+			<param index="0" name="id" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="disconnect_peer">
+			<return type="void" />
+			<param index="0" name="id" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_authenticating_peers">
+			<return type="PackedInt32Array" />
+			<description>
+			</description>
+		</method>
+		<method name="send_auth">
+			<return type="int" enum="Error" />
+			<param index="0" name="id" type="int" />
+			<param index="1" name="data" type="PackedByteArray" />
+			<description>
+			</description>
+		</method>
+		<method name="send_bytes">
+			<return type="int" enum="Error" />
+			<param index="0" name="bytes" type="PackedByteArray" />
+			<param index="1" name="id" type="int" default="0" />
+			<param index="2" name="mode" type="int" enum="MultiplayerPeer.TransferMode" default="2" />
+			<param index="3" name="channel" type="int" default="0" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="allow_object_decoding" type="bool" setter="set_allow_object_decoding" getter="is_object_decoding_allowed" default="false">
+		</member>
+		<member name="auth_callback" type="Callable" setter="set_auth_callback" getter="get_auth_callback" default="Callable()">
+		</member>
+		<member name="auth_timeout" type="float" setter="set_auth_timeout" getter="get_auth_timeout" default="3.0">
+		</member>
+		<member name="max_delta_packet_size" type="int" setter="set_max_delta_packet_size" getter="get_max_delta_packet_size" default="65535">
+		</member>
+		<member name="max_sync_packet_size" type="int" setter="set_max_sync_packet_size" getter="get_max_sync_packet_size" default="1350">
+		</member>
+		<member name="refuse_new_connections" type="bool" setter="set_refuse_new_connections" getter="is_refusing_new_connections" default="false">
+		</member>
+		<member name="root_path" type="NodePath" setter="set_root_path" getter="get_root_path" default="NodePath(&quot;&quot;)">
+		</member>
+		<member name="server_relay" type="bool" setter="set_server_relay_enabled" getter="is_server_relay_enabled" default="true">
+		</member>
+	</members>
+	<signals>
+		<signal name="peer_authenticating">
+			<param index="0" name="id" type="int" />
+			<description>
+			</description>
+		</signal>
+		<signal name="peer_authentication_failed">
+			<param index="0" name="id" type="int" />
+			<description>
+			</description>
+		</signal>
+		<signal name="peer_packet">
+			<param index="0" name="id" type="int" />
+			<param index="1" name="packet" type="PackedByteArray" />
+			<description>
+			</description>
+		</signal>
+	</signals>
+</class>

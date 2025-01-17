@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="AudioStreamInteractive" inherits="AudioStream" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="add_transition">
+			<return type="void" />
+			<param index="0" name="from_clip" type="int" />
+			<param index="1" name="to_clip" type="int" />
+			<param index="2" name="from_time" type="int" enum="AudioStreamInteractive.TransitionFromTime" />
+			<param index="3" name="to_time" type="int" enum="AudioStreamInteractive.TransitionToTime" />
+			<param index="4" name="fade_mode" type="int" enum="AudioStreamInteractive.FadeMode" />
+			<param index="5" name="fade_beats" type="float" />
+			<param index="6" name="use_filler_clip" type="bool" default="false" />
+			<param index="7" name="filler_clip" type="int" default="-1" />
+			<param index="8" name="hold_previous" type="bool" default="false" />
+			<description>
+			</description>
+		</method>
+		<method name="erase_transition">
+			<return type="void" />
+			<param index="0" name="from_clip" type="int" />
+			<param index="1" name="to_clip" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_clip_auto_advance" qualifiers="const">
+			<return type="int" enum="AudioStreamInteractive.AutoAdvanceMode" />
+			<param index="0" name="clip_index" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_clip_auto_advance_next_clip" qualifiers="const">
+			<return type="int" />
+			<param index="0" name="clip_index" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_clip_name" qualifiers="const">
+			<return type="StringName" />
+			<param index="0" name="clip_index" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_clip_stream" qualifiers="const">
+			<return type="AudioStream" />
+			<param index="0" name="clip_index" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_transition_fade_beats" qualifiers="const">
+			<return type="float" />
+			<param index="0" name="from_clip" type="int" />
+			<param index="1" name="to_clip" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_transition_fade_mode" qualifiers="const">
+			<return type="int" enum="AudioStreamInteractive.FadeMode" />
+			<param index="0" name="from_clip" type="int" />
+			<param index="1" name="to_clip" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_transition_filler_clip" qualifiers="const">
+			<return type="int" />
+			<param index="0" name="from_clip" type="int" />
+			<param index="1" name="to_clip" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_transition_from_time" qualifiers="const">
+			<return type="int" enum="AudioStreamInteractive.TransitionFromTime" />
+			<param index="0" name="from_clip" type="int" />
+			<param index="1" name="to_clip" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_transition_list" qualifiers="const">
+			<return type="PackedInt32Array" />
+			<description>
+			</description>
+		</method>
+		<method name="get_transition_to_time" qualifiers="const">
+			<return type="int" enum="AudioStreamInteractive.TransitionToTime" />
+			<param index="0" name="from_clip" type="int" />
+			<param index="1" name="to_clip" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="has_transition" qualifiers="const">
+			<return type="bool" />
+			<param index="0" name="from_clip" type="int" />
+			<param index="1" name="to_clip" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="is_transition_holding_previous" qualifiers="const">
+			<return type="bool" />
+			<param index="0" name="from_clip" type="int" />
+			<param index="1" name="to_clip" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="is_transition_using_filler_clip" qualifiers="const">
+			<return type="bool" />
+			<param index="0" name="from_clip" type="int" />
+			<param index="1" name="to_clip" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="set_clip_auto_advance">
+			<return type="void" />
+			<param index="0" name="clip_index" type="int" />
+			<param index="1" name="mode" type="int" enum="AudioStreamInteractive.AutoAdvanceMode" />
+			<description>
+			</description>
+		</method>
+		<method name="set_clip_auto_advance_next_clip">
+			<return type="void" />
+			<param index="0" name="clip_index" type="int" />
+			<param index="1" name="auto_advance_next_clip" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="set_clip_name">
+			<return type="void" />
+			<param index="0" name="clip_index" type="int" />
+			<param index="1" name="name" type="StringName" />
+			<description>
+			</description>
+		</method>
+		<method name="set_clip_stream">
+			<return type="void" />
+			<param index="0" name="clip_index" type="int" />
+			<param index="1" name="stream" type="AudioStream" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="clip_count" type="int" setter="set_clip_count" getter="get_clip_count" default="0">
+		</member>
+		<member name="initial_clip" type="int" setter="set_initial_clip" getter="get_initial_clip" default="0">
+		</member>
+	</members>
+	<constants>
+		<constant name="TRANSITION_FROM_TIME_IMMEDIATE" value="0" enum="TransitionFromTime">
+		</constant>
+		<constant name="TRANSITION_FROM_TIME_NEXT_BEAT" value="1" enum="TransitionFromTime">
+		</constant>
+		<constant name="TRANSITION_FROM_TIME_NEXT_BAR" value="2" enum="TransitionFromTime">
+		</constant>
+		<constant name="TRANSITION_FROM_TIME_END" value="3" enum="TransitionFromTime">
+		</constant>
+		<constant name="TRANSITION_TO_TIME_SAME_POSITION" value="0" enum="TransitionToTime">
+		</constant>
+		<constant name="TRANSITION_TO_TIME_START" value="1" enum="TransitionToTime">
+		</constant>
+		<constant name="FADE_DISABLED" value="0" enum="FadeMode">
+		</constant>
+		<constant name="FADE_IN" value="1" enum="FadeMode">
+		</constant>
+		<constant name="FADE_OUT" value="2" enum="FadeMode">
+		</constant>
+		<constant name="FADE_CROSS" value="3" enum="FadeMode">
+		</constant>
+		<constant name="FADE_AUTOMATIC" value="4" enum="FadeMode">
+		</constant>
+		<constant name="AUTO_ADVANCE_DISABLED" value="0" enum="AutoAdvanceMode">
+		</constant>
+		<constant name="AUTO_ADVANCE_ENABLED" value="1" enum="AutoAdvanceMode">
+		</constant>
+		<constant name="AUTO_ADVANCE_RETURN_TO_HOLD" value="2" enum="AutoAdvanceMode">
+		</constant>
+		<constant name="CLIP_ANY" value="-1">
+		</constant>
+	</constants>
+</class>

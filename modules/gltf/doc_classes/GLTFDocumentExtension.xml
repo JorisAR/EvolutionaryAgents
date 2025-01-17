@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="GLTFDocumentExtension" inherits="Resource" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="_convert_scene_node" qualifiers="virtual">
+			<return type="void" />
+			<param index="0" name="state" type="GLTFState" />
+			<param index="1" name="gltf_node" type="GLTFNode" />
+			<param index="2" name="scene_node" type="Node" />
+			<description>
+			</description>
+		</method>
+		<method name="_export_node" qualifiers="virtual">
+			<return type="int" enum="Error" />
+			<param index="0" name="state" type="GLTFState" />
+			<param index="1" name="gltf_node" type="GLTFNode" />
+			<param index="2" name="json" type="Dictionary" />
+			<param index="3" name="node" type="Node" />
+			<description>
+			</description>
+		</method>
+		<method name="_export_post" qualifiers="virtual">
+			<return type="int" enum="Error" />
+			<param index="0" name="state" type="GLTFState" />
+			<description>
+			</description>
+		</method>
+		<method name="_export_preflight" qualifiers="virtual">
+			<return type="int" enum="Error" />
+			<param index="0" name="state" type="GLTFState" />
+			<param index="1" name="root" type="Node" />
+			<description>
+			</description>
+		</method>
+		<method name="_export_preserialize" qualifiers="virtual">
+			<return type="int" enum="Error" />
+			<param index="0" name="state" type="GLTFState" />
+			<description>
+			</description>
+		</method>
+		<method name="_generate_scene_node" qualifiers="virtual">
+			<return type="Node3D" />
+			<param index="0" name="state" type="GLTFState" />
+			<param index="1" name="gltf_node" type="GLTFNode" />
+			<param index="2" name="scene_parent" type="Node" />
+			<description>
+			</description>
+		</method>
+		<method name="_get_image_file_extension" qualifiers="virtual">
+			<return type="String" />
+			<description>
+			</description>
+		</method>
+		<method name="_get_saveable_image_formats" qualifiers="virtual">
+			<return type="PackedStringArray" />
+			<description>
+			</description>
+		</method>
+		<method name="_get_supported_extensions" qualifiers="virtual">
+			<return type="PackedStringArray" />
+			<description>
+			</description>
+		</method>
+		<method name="_import_node" qualifiers="virtual">
+			<return type="int" enum="Error" />
+			<param index="0" name="state" type="GLTFState" />
+			<param index="1" name="gltf_node" type="GLTFNode" />
+			<param index="2" name="json" type="Dictionary" />
+			<param index="3" name="node" type="Node" />
+			<description>
+			</description>
+		</method>
+		<method name="_import_post" qualifiers="virtual">
+			<return type="int" enum="Error" />
+			<param index="0" name="state" type="GLTFState" />
+			<param index="1" name="root" type="Node" />
+			<description>
+			</description>
+		</method>
+		<method name="_import_post_parse" qualifiers="virtual">
+			<return type="int" enum="Error" />
+			<param index="0" name="state" type="GLTFState" />
+			<description>
+			</description>
+		</method>
+		<method name="_import_preflight" qualifiers="virtual">
+			<return type="int" enum="Error" />
+			<param index="0" name="state" type="GLTFState" />
+			<param index="1" name="extensions" type="PackedStringArray" />
+			<description>
+			</description>
+		</method>
+		<method name="_parse_image_data" qualifiers="virtual">
+			<return type="int" enum="Error" />
+			<param index="0" name="state" type="GLTFState" />
+			<param index="1" name="image_data" type="PackedByteArray" />
+			<param index="2" name="mime_type" type="String" />
+			<param index="3" name="ret_image" type="Image" />
+			<description>
+			</description>
+		</method>
+		<method name="_parse_node_extensions" qualifiers="virtual">
+			<return type="int" enum="Error" />
+			<param index="0" name="state" type="GLTFState" />
+			<param index="1" name="gltf_node" type="GLTFNode" />
+			<param index="2" name="extensions" type="Dictionary" />
+			<description>
+			</description>
+		</method>
+		<method name="_parse_texture_json" qualifiers="virtual">
+			<return type="int" enum="Error" />
+			<param index="0" name="state" type="GLTFState" />
+			<param index="1" name="texture_json" type="Dictionary" />
+			<param index="2" name="ret_gltf_texture" type="GLTFTexture" />
+			<description>
+			</description>
+		</method>
+		<method name="_save_image_at_path" qualifiers="virtual">
+			<return type="int" enum="Error" />
+			<param index="0" name="state" type="GLTFState" />
+			<param index="1" name="image" type="Image" />
+			<param index="2" name="file_path" type="String" />
+			<param index="3" name="image_format" type="String" />
+			<param index="4" name="lossy_quality" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="_serialize_image_to_bytes" qualifiers="virtual">
+			<return type="PackedByteArray" />
+			<param index="0" name="state" type="GLTFState" />
+			<param index="1" name="image" type="Image" />
+			<param index="2" name="image_dict" type="Dictionary" />
+			<param index="3" name="image_format" type="String" />
+			<param index="4" name="lossy_quality" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="_serialize_texture_json" qualifiers="virtual">
+			<return type="int" enum="Error" />
+			<param index="0" name="state" type="GLTFState" />
+			<param index="1" name="texture_json" type="Dictionary" />
+			<param index="2" name="gltf_texture" type="GLTFTexture" />
+			<param index="3" name="image_format" type="String" />
+			<description>
+			</description>
+		</method>
+	</methods>
+</class>

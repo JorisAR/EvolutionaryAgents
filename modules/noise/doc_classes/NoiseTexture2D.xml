@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="NoiseTexture2D" inherits="Texture2D" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<members>
+		<member name="as_normal_map" type="bool" setter="set_as_normal_map" getter="is_normal_map" default="false">
+		</member>
+		<member name="bump_strength" type="float" setter="set_bump_strength" getter="get_bump_strength" default="8.0">
+		</member>
+		<member name="color_ramp" type="Gradient" setter="set_color_ramp" getter="get_color_ramp">
+		</member>
+		<member name="generate_mipmaps" type="bool" setter="set_generate_mipmaps" getter="is_generating_mipmaps" default="true">
+		</member>
+		<member name="height" type="int" setter="set_height" getter="get_height" default="512">
+		</member>
+		<member name="in_3d_space" type="bool" setter="set_in_3d_space" getter="is_in_3d_space" default="false">
+		</member>
+		<member name="invert" type="bool" setter="set_invert" getter="get_invert" default="false">
+		</member>
+		<member name="noise" type="Noise" setter="set_noise" getter="get_noise">
+		</member>
+		<member name="normalize" type="bool" setter="set_normalize" getter="is_normalized" default="true">
+		</member>
+		<member name="resource_local_to_scene" type="bool" setter="set_local_to_scene" getter="is_local_to_scene" overrides="Resource" default="false" />
+		<member name="seamless" type="bool" setter="set_seamless" getter="get_seamless" default="false">
+		</member>
+		<member name="seamless_blend_skirt" type="float" setter="set_seamless_blend_skirt" getter="get_seamless_blend_skirt" default="0.1">
+		</member>
+		<member name="width" type="int" setter="set_width" getter="get_width" default="512">
+		</member>
+	</members>
+</class>

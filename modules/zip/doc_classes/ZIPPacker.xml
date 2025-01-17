@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="ZIPPacker" inherits="RefCounted" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="close">
+			<return type="int" enum="Error" />
+			<description>
+			</description>
+		</method>
+		<method name="close_file">
+			<return type="int" enum="Error" />
+			<description>
+			</description>
+		</method>
+		<method name="open">
+			<return type="int" enum="Error" />
+			<param index="0" name="path" type="String" />
+			<param index="1" name="append" type="int" enum="ZIPPacker.ZipAppend" default="0" />
+			<description>
+			</description>
+		</method>
+		<method name="start_file">
+			<return type="int" enum="Error" />
+			<param index="0" name="path" type="String" />
+			<description>
+			</description>
+		</method>
+		<method name="write_file">
+			<return type="int" enum="Error" />
+			<param index="0" name="data" type="PackedByteArray" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<constants>
+		<constant name="APPEND_CREATE" value="0" enum="ZipAppend">
+		</constant>
+		<constant name="APPEND_CREATEAFTER" value="1" enum="ZipAppend">
+		</constant>
+		<constant name="APPEND_ADDINZIP" value="2" enum="ZipAppend">
+		</constant>
+	</constants>
+</class>

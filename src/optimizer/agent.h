@@ -14,14 +14,14 @@
 namespace godot
 {
 
-class Agent : public Node
+class EvolutionaryAgent : public Node
 {
-    GDCLASS(Agent, Node)
+    GDCLASS(EvolutionaryAgent, Node)
 
   public:
     static void _bind_methods();
-    Agent();
-    ~Agent();
+    EvolutionaryAgent();
+    ~EvolutionaryAgent();
 
     static int GetMaxElementIndex(const PackedFloat32Array &array);
     static PackedFloat32Array SoftMax(const PackedFloat32Array &array);
@@ -30,7 +30,7 @@ class Agent : public Node
 
     PackedFloat32Array infer(const PackedFloat32Array &state_vector);
     void update(const std::vector<int> &new_layers, const std::vector<float> &parameters);
-    void start_game();
+    void start();
 
     float get_fitness() const;
     void set_fitness(const float new_fitness);

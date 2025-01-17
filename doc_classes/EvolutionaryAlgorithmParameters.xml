@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="EvolutionaryAlgorithmParameters" inherits="Resource" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+	abstract class for evolutionary algorithms.
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<members>
+		<member name="bound_enabled" type="bool" setter="set_use_bound" getter="get_use_bound" default="false">
+			If true, ensure the entire population is bounded. For example: individual I{1,4,6,-6,0} would be clamped to: I{1,1,1,0,0} given bounds min: 0, max: 1
+		</member>
+		<member name="bound_lower" type="float" setter="set_lower_bound" getter="get_lower_bound" default="0.0">
+			The lower bound to clamp to if bounds are enabled.
+		</member>
+		<member name="bound_upper" type="float" setter="set_upper_bound" getter="get_upper_bound" default="1.0">
+			The upper bound to clamp to if bounds are enabled.
+		</member>
+	</members>
+</class>

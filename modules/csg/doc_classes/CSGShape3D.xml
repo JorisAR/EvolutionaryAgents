@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="CSGShape3D" inherits="GeometryInstance3D" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="get_collision_layer_value" qualifiers="const">
+			<return type="bool" />
+			<param index="0" name="layer_number" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_collision_mask_value" qualifiers="const">
+			<return type="bool" />
+			<param index="0" name="layer_number" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="get_meshes" qualifiers="const">
+			<return type="Array" />
+			<description>
+			</description>
+		</method>
+		<method name="is_root_shape" qualifiers="const">
+			<return type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_collision_layer_value">
+			<return type="void" />
+			<param index="0" name="layer_number" type="int" />
+			<param index="1" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+		<method name="set_collision_mask_value">
+			<return type="void" />
+			<param index="0" name="layer_number" type="int" />
+			<param index="1" name="value" type="bool" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="calculate_tangents" type="bool" setter="set_calculate_tangents" getter="is_calculating_tangents" default="true">
+		</member>
+		<member name="collision_layer" type="int" setter="set_collision_layer" getter="get_collision_layer" default="1">
+		</member>
+		<member name="collision_mask" type="int" setter="set_collision_mask" getter="get_collision_mask" default="1">
+		</member>
+		<member name="collision_priority" type="float" setter="set_collision_priority" getter="get_collision_priority" default="1.0">
+		</member>
+		<member name="operation" type="int" setter="set_operation" getter="get_operation" enum="CSGShape3D.Operation" default="0">
+		</member>
+		<member name="snap" type="float" setter="set_snap" getter="get_snap" default="0.001">
+		</member>
+		<member name="use_collision" type="bool" setter="set_use_collision" getter="is_using_collision" default="false">
+		</member>
+	</members>
+	<constants>
+		<constant name="OPERATION_UNION" value="0" enum="Operation">
+		</constant>
+		<constant name="OPERATION_INTERSECTION" value="1" enum="Operation">
+		</constant>
+		<constant name="OPERATION_SUBTRACTION" value="2" enum="Operation">
+		</constant>
+	</constants>
+</class>
