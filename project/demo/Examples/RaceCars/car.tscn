@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://df0jdtrfvtrxk"]
+[gd_scene load_steps=6 format=3 uid="uid://df0jdtrfvtrxk"]
 
 [ext_resource type="Script" path="res://demo/Examples/RaceCars/car.gd" id="1_1vfak"]
+[ext_resource type="NeuralNetworkParameters" uid="uid://drhietm2fcnfu" path="res://demo/Examples/RaceCars/car_nn.tres" id="2_15spc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ifwc"]
 albedo_color = Color(1, 0.28, 0.2, 1)
@@ -19,6 +20,7 @@ agent = NodePath("Agent")
 sensors = [NodePath("Sensors/DepthSensor3D"), NodePath("Sensors/DepthSensor3D2"), NodePath("Sensors/DepthSensor3D3"), NodePath("Sensors/DepthSensor3D4"), NodePath("Sensors/DepthSensor3D5")]
 
 [node name="Agent" type="Agent" parent="."]
+neural_network_parameters = ExtResource("2_15spc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_4ifwc")

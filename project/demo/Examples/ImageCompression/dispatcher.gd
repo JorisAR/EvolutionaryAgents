@@ -47,7 +47,7 @@ func get_settings_bytes() -> PackedByteArray:
 
 #endregion
 
-var SPLAT_COUNT := 128;
+var SPLAT_COUNT := 256;
 const SPLAT_FLOAT_COUNT := 5;
 const SPLAT_SIZE := SPLAT_FLOAT_COUNT * 4;
 

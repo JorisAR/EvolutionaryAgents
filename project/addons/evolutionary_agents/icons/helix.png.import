@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drkb32srby0a0"
-path="res://.godot/imported/craiy.png-85e7f30ef887507cbc856547dcdac74e.ctex"
+uid="uid://b31xwvcdmss5k"
+path="res://.godot/imported/helix.png-6010142e9518fc291232d7d28ac9f1bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://demo/Examples/ImageCompression/craiy.png"
-dest_files=["res://.godot/imported/craiy.png-85e7f30ef887507cbc856547dcdac74e.ctex"]
+source_file="res://addons/evolutionary_agents/icons/helix.png"
+dest_files=["res://.godot/imported/helix.png-6010142e9518fc291232d7d28ac9f1bf.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 [ext_resource type="JSON" path="res://demo/Examples/ImageCompression/image_state.json" id="1_2pcgb"]
 [ext_resource type="Script" path="res://demo/Examples/ImageCompression/dispatcher.gd" id="1_2t3dg"]
 [ext_resource type="Script" path="res://demo/Examples/ImageCompression/CompressorHandler.gd" id="3_cy0ge"]
-[ext_resource type="Texture2D" uid="uid://nnkmjjwiikrf" path="res://demo/Examples/ImageCompression/jar_half.png" id="4_mamvo"]
+[ext_resource type="Texture2D" uid="uid://x0tf68moidd4" path="res://demo/Examples/ImageCompression/painting.png" id="4_twjiu"]
 [ext_resource type="Texture2D" uid="uid://3d7hwscbfmem" path="res://addons/evolutionary_agents/icons/helix.svg" id="5_4ujxc"]
 
 [sub_resource type="SepCMAESParameters" id="SepCMAESParameters_ueuk0"]
@@ -11,8 +11,9 @@ bound_enabled = true
 
 [node name="ImageCompression" type="ProblemOptimizer" node_paths=PackedStringArray("problem")]
 problem = NodePath("OptimizableProblem")
-population_size = 50
+population_size = 35
 stored_state = ExtResource("1_2pcgb")
+stored_save_state = true
 evolutionary_algorithm_parameters = SubResource("SepCMAESParameters_ueuk0")
 debug_verbose = true
 debug_log_csv = true
@@ -24,7 +25,7 @@ dispatcher = NodePath("../SplatRenderer")
 
 [node name="SplatRenderer" type="Node" parent="." node_paths=PackedStringArray("_renderer")]
 script = ExtResource("1_2t3dg")
-_dataTexture = ExtResource("4_mamvo")
+_dataTexture = ExtResource("4_twjiu")
 _computeShader = "res://demo/Examples/ImageCompression/voronoi_renderer.glsl"
 _renderer = NodePath("../AspectRatioContainer/TextureRect")
 output_dir = "res://demo/Examples/ImageCompression/out"

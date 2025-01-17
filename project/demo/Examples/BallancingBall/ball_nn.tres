@@ -1,4 +1,0 @@
-[gd_resource type="NeuralNetworkParameters" format=3 uid="uid://c0laxjq7yld1b"]
-
-[resource]
-layer_structure = PackedInt32Array(8, 8, 8, 2)
