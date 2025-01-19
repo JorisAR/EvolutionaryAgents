@@ -63,7 +63,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_round_end() -> void:
 	active = false;
-	agent.ended.emit();	
+	agent.ended.emit();
 
 #called by the agents start signal
 func _on_agent_started() -> void:

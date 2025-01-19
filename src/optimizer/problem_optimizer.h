@@ -28,8 +28,8 @@ class ProblemOptimizer : public EvolutionaryOptimizer
 
     virtual void start_training() override;
     virtual void end_training() override;
-    virtual void start_generation() override;
-    virtual void end_generation() override;
+    virtual void _start_generation() override;
+    virtual void _end_generation() override;
 
     void run_individual(const int i);
     void on_individual_ended(const float fitness);

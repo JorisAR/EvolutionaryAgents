@@ -22,6 +22,7 @@ neural_network_parameters = ExtResource("1_tmt5w")
 time_scale = 1000
 evolutionary_algorithm_parameters = ExtResource("1_yb5b5")
 debug_verbose = true
+debug_log_csv = true
 script = ExtResource("2_3m2bo")
 
 [node name="Game" parent="corridor_gym" instance=ExtResource("3_6mwls")]
@@ -99,9 +100,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, -13, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, -13, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871558, 0, -0.0871558, 0.996195, 0, 8.471, 32.792)
+transform = Transform3D(1, 0, 0, 0, 0.987689, 0.156435, 0, -0.156435, 0.987689, 0, 10.701, 56.957)
 environment = SubResource("Environment_d0548")
+projection = 1
 current = true
+size = 70.897
 script = ExtResource("5_icwby")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

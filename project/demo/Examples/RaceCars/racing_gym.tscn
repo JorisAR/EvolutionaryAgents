@@ -23,6 +23,7 @@ neural_network_parameters = ExtResource("1_iwoml")
 time_scale = 1000
 evolutionary_algorithm_parameters = ExtResource("2_gnar7")
 debug_verbose = true
+debug_log_csv = true
 script = ExtResource("1_rfkmq")
 
 [node name="Car" parent="Gym" instance=ExtResource("1_sl5v5")]

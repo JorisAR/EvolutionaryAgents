@@ -77,8 +77,8 @@ void EvolutionaryOptimizer::_bind_methods()
 
     ClassDB::bind_method(D_METHOD("start_training"), &EvolutionaryOptimizer::start_training);
     ClassDB::bind_method(D_METHOD("end_training"), &EvolutionaryOptimizer::end_training);
-    // ClassDB::bind_method(D_METHOD("start_generation"), &EvolutionaryOptimizer::start_generation);
-    // ClassDB::bind_method(D_METHOD("end_generation"), &EvolutionaryOptimizer::end_generation);
+    ClassDB::bind_method(D_METHOD("_start_generation"), &EvolutionaryOptimizer::_start_generation);
+    ClassDB::bind_method(D_METHOD("_end_generation"), &EvolutionaryOptimizer::_end_generation);
 
     ClassDB::bind_method(D_METHOD("set_verbose", "verbose"), &EvolutionaryOptimizer::set_verbose);
     ClassDB::bind_method(D_METHOD("get_verbose"), &EvolutionaryOptimizer::get_verbose);
@@ -190,10 +190,10 @@ void EvolutionaryOptimizer::start_training()
     sum_fitness = 0.0f;
     UtilityFunctions::print("Training started.");
 
-    start_generation();
+    _start_generation();
 }
 
-void EvolutionaryOptimizer::start_generation()
+void EvolutionaryOptimizer::_start_generation()
 {
     current_generation++;
     // Generate population
@@ -212,7 +212,7 @@ void godot::EvolutionaryOptimizer::register_fitness(const int i, const float fit
     fitness_vector[i] = fitness;
 }
 
-void EvolutionaryOptimizer::end_generation()
+void EvolutionaryOptimizer::_end_generation()
 {
     auto generation_mean_fitness = generation_sum_fitness / population_size;
 
@@ -240,7 +240,7 @@ void EvolutionaryOptimizer::end_generation()
         end_training();
     }
     else
-        call_deferred("start_generation");
+        call_deferred("_start_generation");
 }
 
 void EvolutionaryOptimizer::end_training()

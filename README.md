@@ -1,5 +1,10 @@
 # GD Evolutionary Agents
 
+![Banner Image](https://github.com/JorisAR/JarEvolutionaryAgents/blob/main/banner.png?raw=true)
+
+**IMPORTANT NOTICE:**
+This project is highly experimental, and is intended for research and experimental purposes.
+
 This project enables the use of evolutionary algorithms (EAs) within the Godot game engine. It's specifically designed for:
 - Maximization problems, where one defines a function F(x), and the optimizer aims to find x such that F(x) is maximal.
 - Reinforcement learning problems, where one defines a Gym, and an agent that obtains a fitness value over a run. The neural network acting as the state-action function is trained using EAs.
@@ -7,8 +12,8 @@ The project includes logging functionality to track the training progress and to
 
 ## Features
 
-- **Neural Network**: A simple custom feed-forward neural network implementation.
 - **Evolutionary Algorithms**: Implements various evolutionary strategies for training.
+- **Neural Network**: A simple custom feed-forward neural network implementation.
 - **Logging**: Logs training data for later analysis.
 
 ## Getting Started
@@ -16,7 +21,7 @@ The project includes logging functionality to track the training progress and to
 ### Prerequisites
 
 #### Core
-- [Godot Engine](https://godotengine.org/download)
+- [Godot Engine](https://godotengine.org/download) written for c++
 
 #### Visualisation
 - [Python](https://www.python.org/downloads/)
@@ -25,19 +30,9 @@ The project includes logging functionality to track the training progress and to
 
 ### Installation
 
-1. **Clone the repository**
-   ```sh
-   git clone https://github.com/JorisAR/GDEvolutionaryAgents
-   cd GDEvolutionaryAgents
-   ```
+If available for your platform, consider using one of the provided prebuilt releases on the github page.
 
-2. **Install Python dependencies**
-   ```sh
-   pip install pandas matplotlib
-   ```
-
-3. **Open the project in Godot**
-   - Launch Godot and open the project directory.
+Alternatively, clone the repository, and build using scons as described in the [Godot documentation](https://docs.godotengine.org/en/stable/tutorials/scripting/gdextension/gdextension_cpp_example.html).
 
 ## Usage
 ### Demos

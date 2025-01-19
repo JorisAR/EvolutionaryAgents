@@ -1,4 +1,7 @@
-[gd_resource type="NeuralNetworkParameters" format=3 uid="uid://b7gc53l60xf5g"]
+[gd_resource type="NeuralNetworkParameters" load_steps=2 format=3 uid="uid://b7gc53l60xf5g"]
+
+[ext_resource type="JSON" path="res://demo/Examples/FindObjective/finder_nn_network.json" id="1_1p7um"]
 
 [resource]
 layer_structure = PackedInt32Array(3, 8, 4)
+stored_network = ExtResource("1_1p7um")

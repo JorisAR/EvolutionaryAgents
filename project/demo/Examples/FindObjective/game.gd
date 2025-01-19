@@ -66,7 +66,6 @@ func _on_small_body_entered(_body: Node3D) -> void:
 	
 #called by the agents start signal
 func _on_agent_started() -> void:
-	print("yo!")
 	time = 0;
 	agent.fitness = 0;
 	active = true;

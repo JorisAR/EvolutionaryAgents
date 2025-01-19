@@ -30,8 +30,8 @@ class EvolutionaryOptimizer : public Node
 
     virtual void start_training();
     virtual void end_training();
-    virtual void start_generation();
-    virtual void end_generation();
+    virtual void _start_generation();
+    virtual void _end_generation();
     void register_fitness(const int i, const float fitness);
 
     bool get_verbose() const;

@@ -30,8 +30,8 @@ class EvolutionaryGym : public EvolutionaryOptimizer
 
     virtual void start_training() override;
     virtual void end_training() override;
-    virtual void start_generation() override;
-    virtual void end_generation() override;
+    virtual void _start_generation() override;
+    virtual void _end_generation() override;
     void on_agent_ended();
 
     void set_agents(const TypedArray<EvolutionaryAgent> value);

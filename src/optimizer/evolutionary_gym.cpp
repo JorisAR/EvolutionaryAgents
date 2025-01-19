@@ -49,9 +49,9 @@ void EvolutionaryGym::start_training()
     EvolutionaryOptimizer::start_training();
 }
 
-void EvolutionaryGym::start_generation()
+void EvolutionaryGym::_start_generation()
 {
-    EvolutionaryOptimizer::start_generation();
+    EvolutionaryOptimizer::_start_generation();
     active_agent_count = population_size;
     for (size_t i = 0; i < population_size; i++)
     {
@@ -68,18 +68,18 @@ void EvolutionaryGym::on_agent_ended()
     active_agent_count--;
     if (active_agent_count == 0 && training && !run_once)
     {
-        end_generation();
+        _end_generation();
     }
 }
 
-void EvolutionaryGym::end_generation()
+void EvolutionaryGym::_end_generation()
 {
     int i = 0;
     for (EvolutionaryAgent *agent : agent_vector_)
     {
         register_fitness(i++, agent->get_fitness());
     }
-    EvolutionaryOptimizer::end_generation();
+    EvolutionaryOptimizer::_end_generation();
 }
 
 void EvolutionaryGym::end_training()
@@ -106,7 +106,7 @@ void EvolutionaryGym::end_training()
 
 void godot::EvolutionaryGym::_bind_methods()
 {
-    // ClassDB::bind_method(D_METHOD("on_agent_ended"), &EvolutionaryGym::on_agent_ended);
+    ClassDB::bind_method(D_METHOD("on_agent_ended"), &EvolutionaryGym::on_agent_ended);//need this to ensure it can be called 
     ClassDB::bind_method(D_METHOD("set_agents", "agents"), &EvolutionaryGym::set_agents);
     ClassDB::bind_method(D_METHOD("get_agents"), &EvolutionaryGym::get_agents);
 

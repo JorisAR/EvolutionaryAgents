@@ -5,4 +5,3 @@
 [resource]
 layer_structure = PackedInt32Array(11, 8, 3)
 stored_network = ExtResource("1_27cwu")
-use_existing_network = true

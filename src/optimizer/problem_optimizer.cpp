@@ -43,9 +43,9 @@ void ProblemOptimizer::start_training()
     EvolutionaryOptimizer::start_training();
 }
 
-void ProblemOptimizer::start_generation()
+void ProblemOptimizer::_start_generation()
 {
-    EvolutionaryOptimizer::start_generation();
+    EvolutionaryOptimizer::_start_generation();
     active_threads = 0;
     handled_problems = 0;
     if (multithreading)
@@ -79,7 +79,7 @@ void ProblemOptimizer::on_individual_ended(const float fitness) //const int i,
     //UtilityFunctions::print(active_threads.load());
     if ((!multithreading || (--active_threads) <= 0) && handled_problems >= population_size) // await all threads
     {
-        call_deferred("end_generation");
+        call_deferred("_end_generation");
     }
 
     if (handled_problems < population_size && !multithreading)
@@ -88,9 +88,9 @@ void ProblemOptimizer::on_individual_ended(const float fitness) //const int i,
     }
 }
 
-void ProblemOptimizer::end_generation()
+void ProblemOptimizer::_end_generation()
 {
-    EvolutionaryOptimizer::end_generation();
+    EvolutionaryOptimizer::_end_generation();
 }
 
 void ProblemOptimizer::end_training()

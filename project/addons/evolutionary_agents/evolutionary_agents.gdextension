@@ -32,3 +32,10 @@ android.release.arm64 = "res://addons/evolutionary_agents/bin/evolutionary_agent
 EvolutionaryOptimizer = "res://addons/evolutionary_agents/icons/helix.svg"
 EvolutionaryGym = "res://addons/evolutionary_agents/icons/helix.svg"
 ProblemOptimizer = "res://addons/evolutionary_agents/icons/helix.svg"
+EvolutionaryAlgorithmParameters = "res://addons/evolutionary_agents/icons/helix_white.svg"
+GeneticAlgorithmParameters = "res://addons/evolutionary_agents/icons/helix_white.svg"
+SepCMAESParameters = "res://addons/evolutionary_agents/icons/helix_white.svg"
+EvolutionaryStrategyParameters = "res://addons/evolutionary_agents/icons/helix_white.svg"
+
+EvolutionaryAgent = "res://addons/evolutionary_agents/icons/agent.svg"
+NeuralNetworkParameters = "res://addons/evolutionary_agents/icons/brain.svg"
