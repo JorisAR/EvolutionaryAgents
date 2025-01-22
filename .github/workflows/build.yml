@@ -1,7 +1,8 @@
 name: 🛠️ Builds
 on:
   push:
-  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -49,36 +50,35 @@ jobs:
             platform: android
             arch: arm64v8
     steps:
-      - name: (Windows) Install mingw64
-        if: ${{ startsWith(matrix.identifier, 'windows-') }}
-        shell: sh
-        run: |
-          sudo apt-get install mingw-w64
-          sudo update-alternatives --set x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-posix
-          sudo update-alternatives --set x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix
-      - name: (Android) Install JDK 17
-        if: ${{ startsWith(matrix.identifier, 'android-') }}
-        uses: actions/setup-java@v3
-        with:
-          java-version: 17
-          distribution: temurin
-      - name: (Android) Install Android SDK
-        if: ${{ startsWith(matrix.identifier, 'android-') }}
-        uses: android-actions/setup-android@v3
-      - name: (Android) Install NDK r23c
-        if: ${{ matrix.platform == 'android' }}
-        uses: nttld/setup-ndk@v1
-        with:
-          ndk-version: r23c
-          link-to-sdk: true
-      - name: Install Python
+      - name: Set up tools
+        steps:
+          - name: (Windows) Install mingw64
+            if: ${{ startsWith(matrix.identifier, 'windows-') }}
+            shell: sh
+            run: |
+              sudo apt-get install -y mingw-w64
+              sudo update-alternatives --set x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-posix
+              sudo update-alternatives --set x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix
+          - name: (Android) Set up Android environment
+            if: ${{ startsWith(matrix.identifier, 'android-') }}
+            steps:
+              - name: Install JDK 17
+                uses: actions/setup-java@v3
+                with:
+                  java-version: 17
+                  distribution: temurin
+              - name: Install Android SDK
+                uses: android-actions/setup-android@v3
+              - name: Install NDK r23c
+                uses: nttld/setup-ndk@v1
+                with:
+                  ndk-version: r23c
+                  link-to-sdk: true
+      - name: Install Python and SCons
         uses: actions/setup-python@v2
-      - name: Install SCons
-        shell: bash
         run: |
-          python -c "import sys; print(sys.version)"
+          python -m pip install --upgrade pip
           python -m pip install scons
-          scons --version
       - name: Checkout project
         uses: actions/checkout@v4
         with:
@@ -93,7 +93,6 @@ jobs:
             ${{ github.workspace }}/godot-cpp/gen/
           key: ${{ matrix.identifier }}-${{ github.ref }}-${{ github.sha }}
           restore-keys: |
-            ${{ matrix.identifier }}-${{ github.ref }}-${{ github.sha }}
             ${{ matrix.identifier }}-${{ github.ref }}-
             ${{ matrix.identifier }}-
       - name: Compile extension
@@ -103,30 +102,47 @@ jobs:
           SCONS_CACHE_LIMIT: 4096
         run: |
           scons target='${{ matrix.target }}' platform='${{ matrix.platform }}' arch='${{ matrix.arch }}' -j2
-          ls -l project/addons/*/bin/
-      # TODO: Replace '--no-clobber' with '--update=none' in ubuntu 24.04
-      # TODO: Workaround artifact folder structure: https://github.com/actions/upload-artifact/issues/174
-      - name: Copy README.md and LICENSE to addon and make a new directory for artifacts
-        shell: bash
+      - name: Prepare artifacts
         run: |
-          for addon in ${{ github.workspace }}/project/addons/*/; do
-            cp --no-clobber '${{ github.workspace }}/README.md' '${{ github.workspace }}/LICENSE' "$addon"
-          done
-          mkdir --parents ${{ github.workspace }}/github-artifact/${{ github.event.repository.name }}-${{ github.sha }}/
-          mv ${{ github.workspace }}/project/addons/ ${{ github.workspace }}/github-artifact/${{ github.event.repository.name }}-${{ github.sha }}/
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+          BUILD_DIR="${{ github.workspace }}/builds/${{ matrix.identifier }}"
+          mkdir -p "$BUILD_DIR"
+          cp -r project/addons/* "$BUILD_DIR/"
+          cp README.md LICENSE "$BUILD_DIR/"
+          cd builds
+          zip -r "${{ matrix.identifier }}.zip" "${{ matrix.identifier }}"
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.identifier }}
-          path: |
-            ${{ github.workspace }}/github-artifact
-  merge:
+          path: "builds/${{ matrix.identifier }}.zip"
+
+  create_release:
     runs-on: ubuntu-22.04
     needs: build
+    if: github.ref == 'refs/heads/main'
     steps:
-      # TODO: Simplify generating artifact names. See: https://github.com/orgs/community/discussions/26686
-      - name: Merge artifacts
-        uses: actions/upload-artifact/merge@v4
+      - name: Download build artifacts
+        uses: actions/download-artifact@v2
         with:
-          name: ${{ github.event.repository.name }}-${{ github.event_name == 'pull_request' && format('pr{0}', github.event.number) || github.ref_name }}
-          delete-merged: true
+          path: downloads
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: 'automated-build-${{ github.run_number }}'
+          release_name: 'Automated Build ${{ github.run_number }}'
+          draft: false
+          prerelease: false
+      - name: Upload Release Assets
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          for asset in downloads/*; do
+            echo "Uploading $asset..."
+            curl -H "Authorization: token $GITHUB_TOKEN" \
+                 -H "Content-Type: application/zip" \
+                 --data-binary @"$asset" \
+                 "$GITHUB_API_URL/repos/${{ github.repository }}/releases/${{ steps.create_release.outputs.id }}/assets?name=$(basename $asset)"
+          done
