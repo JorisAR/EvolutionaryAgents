@@ -152,7 +152,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           path: artifacts
 
@@ -172,9 +172,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Release Assets
-        uses: svenstaro/upload-release-action@v2
+        uses: actions/upload-release-asset@v1
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: artifacts/*.zip
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: artifacts/**/*.zip
           asset_name: '${{ matrix.identifier }}.zip'
-          tag: 'build-${{ github.run_number }}'
+          asset_content_type: application/zip
