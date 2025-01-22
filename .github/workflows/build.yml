@@ -172,10 +172,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Release Assets
-        uses: actions/upload-release-asset@v1
+        uses: softprops/action-gh-release@v2
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: artifacts/*/*.zip
-          asset_name: ${{ runner.os }}-${{ matrix.identifier }}.zip
-          asset_content_type: application/zip
+          files: |
+            artifacts/android-release-arm64v8/*.zip
+            artifacts/android-debug-arm64v8/*.zip
+            artifacts/windows-debug-x86_64/*.zip
+            artifacts/windows-release-x86_64/*.zip
+            artifacts/linux-release-x86_64/*.zip
+            artifacts/linux-debug-x86_64/*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
