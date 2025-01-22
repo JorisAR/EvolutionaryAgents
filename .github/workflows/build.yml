@@ -64,14 +64,12 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y zip
-
       - name: Install mingw64
         if: ${{ startsWith(matrix.identifier, 'windows-') }}
         run: |
           sudo apt-get install -y mingw-w64
           sudo update-alternatives --set x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-posix
           sudo update-alternatives --set x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix
-
       - name: Install JDK 17
         if: ${{ startsWith(matrix.identifier, 'android-') }}
         uses: actions/setup-java@v3
@@ -97,7 +95,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install scons
-
       - name: Set up SCons cache
         uses: actions/cache@v3
         with:
@@ -109,7 +106,6 @@ jobs:
           restore-keys: |
             ${{ matrix.identifier }}-${{ github.ref }}-
             ${{ matrix.identifier }}-
-
       - name: Compile extension
         shell: bash
         env:
@@ -118,7 +114,6 @@ jobs:
         run: |
           scons target='${{ matrix.target }}' platform='${{ matrix.platform }}' arch='${{ matrix.arch }}' -j2
           ls -l project/addons/*/bin/
-
       - name: Copy README.md and LICENSE to addon and prepare artifacts
         shell: bash
         run: |
@@ -131,11 +126,9 @@ jobs:
             cd "$addon"
             zip -r "$ARTIFACT_DIR/$ZIP_NAME" ./*
           done
-
       - name: List artifacts directory
         run: |
           ls -la ${{ github.workspace }}/artifacts/
-
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -151,6 +144,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Create Tag
+        id: create_tag
+        run: |
+          TAG_NAME=v${{ github.run_number }}
+          git tag $TAG_NAME
+          git push origin $TAG_NAME
+
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
@@ -162,18 +162,9 @@ jobs:
 
       - name: Create GitHub Release
         id: create_release
-        uses: actions/create-release@v1.1.4
-        with:
-          tag_name: 'build-${{ github.run_number }}'
-          release_name: 'Automated Build ${{ github.run_number }}'
-          draft: false
-          prerelease: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload Release Assets
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ steps.create_tag.outputs.TAG_NAME }}
           files: |
             artifacts/android-release-arm64v8/*.zip
             artifacts/android-debug-arm64v8/*.zip
@@ -183,5 +174,3 @@ jobs:
             artifacts/linux-debug-x86_64/*.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
