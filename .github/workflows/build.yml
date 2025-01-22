@@ -148,6 +148,7 @@ jobs:
         id: create_tag
         run: |
           TAG_NAME=v${{ github.run_number }}
+          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
           git tag $TAG_NAME
           git push origin $TAG_NAME
 
@@ -164,7 +165,7 @@ jobs:
         id: create_release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ steps.create_tag.outputs.TAG_NAME }}
+          tag_name: ${{ env.TAG_NAME }}
           files: |
             artifacts/android-release-arm64v8/*.zip
             artifacts/android-debug-arm64v8/*.zip
