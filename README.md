@@ -1,8 +1,8 @@
-# GD Evolutionary Agents
+# Evolutionary Agents
 
 ![Banner Image](https://github.com/JorisAR/JarEvolutionaryAgents/blob/main/banner.png?raw=true)
 
-**IMPORTANT NOTICE:**
+**⚠️ IMPORTANT NOTICE:**
 This project is highly experimental, and is intended for research and experimental purposes.
 
 This project enables the use of evolutionary algorithms (EAs) within the Godot game engine. It's specifically designed for:
@@ -29,10 +29,9 @@ The project includes logging functionality to track the training progress and to
 - Outputs are CSV, alternatives can be used.
 
 ### Installation
-
-If available for your platform, consider using one of the provided prebuilt releases on the github page.
-
-Alternatively, clone the repository, and build using scons as described in the [Godot documentation](https://docs.godotengine.org/en/stable/tutorials/scripting/gdextension/gdextension_cpp_example.html).
+- **⚠️ Important** Ensure that the .gdextension file and its sibling folders/files are in the following folder: ``res://addons/evolutionary_agents/``, otherwise it is not guaranteed to work.
+- If available for your platform, consider using one of the provided prebuilt releases on the github page.
+- Alternatively, clone the repository, and build using scons as described in the [Godot documentation](https://docs.godotengine.org/en/stable/tutorials/scripting/gdextension/gdextension_cpp_example.html).
 
 ## Usage
 ### Demos
