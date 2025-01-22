@@ -162,7 +162,7 @@ jobs:
 
       - name: Create GitHub Release
         id: create_release
-        uses: actions/create-release@v1
+        uses: actions/create-release@v1.1.4
         with:
           tag_name: 'build-${{ github.run_number }}'
           release_name: 'Automated Build ${{ github.run_number }}'
@@ -175,6 +175,7 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: artifacts/**/*.zip
-          asset_name: '${{ matrix.identifier }}.zip'
+          asset_path: artifacts/*/*.zip
+          asset_name: ${{ runner.os }}-${{ matrix.identifier }}.zip
           asset_content_type: application/zip
+
